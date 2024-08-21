@@ -1,0 +1,16 @@
+<?php return array (
+  'preserve_keys' => false,
+  'unique_key' => 
+  array (
+    0 => 'name',
+  ),
+  'update_object' => true,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '94edde3b05aeaa3793ae6f9d0747c31f',
+  'package' => 'modx',
+  'class' => 'modAccessPolicyTemplateGroup',
+  'signature' => 'a46b398f6a5248b35a5b91b0c5c581ac',
+  'native_key' => NULL,
+  'object' => '{"id":null,"name":"Element","description":"All Element-based policy templates."}',
+);

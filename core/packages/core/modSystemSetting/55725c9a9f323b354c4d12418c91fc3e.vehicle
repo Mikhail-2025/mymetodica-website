@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '72723db330c74f60ab52b0001e7a93e5',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '55725c9a9f323b354c4d12418c91fc3e',
+  'native_key' => 'context_tree_sortdir',
+  'object' => '{"key":"context_tree_sortdir","value":"ASC","xtype":"textfield","namespace":"core","area":"manager","editedon":null}',
+);

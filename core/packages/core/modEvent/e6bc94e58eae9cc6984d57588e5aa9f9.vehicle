@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'c3418b8052f339aeeb185d6230d41688',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => 'e6bc94e58eae9cc6984d57588e5aa9f9',
+  'native_key' => 'OnUserRemoveFromGroup',
+  'object' => '{"name":"OnUserRemoveFromGroup","service":1,"groupname":"User Groups"}',
+);

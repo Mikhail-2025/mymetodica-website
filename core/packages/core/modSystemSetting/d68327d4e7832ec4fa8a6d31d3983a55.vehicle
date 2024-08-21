@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '15d3ff144455ba0832f7b5187ba3d5fb',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => 'd68327d4e7832ec4fa8a6d31d3983a55',
+  'native_key' => 'topmenu_show_descriptions',
+  'object' => '{"key":"topmenu_show_descriptions","value":1,"xtype":"combo-boolean","namespace":"core","area":"manager","editedon":null}',
+);

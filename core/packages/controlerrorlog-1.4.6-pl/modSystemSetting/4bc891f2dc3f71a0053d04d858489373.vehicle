@@ -1,0 +1,16 @@
+<?php return array (
+  'unique_key' => 'key',
+  'preserve_keys' => true,
+  'update_object' => false,
+  'namespace' => 'controlerrorlog',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'c49a9caed19890e58a2374db36d8fc2e',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '4bc891f2dc3f71a0053d04d858489373',
+  'native_key' => 'controlerrorlog.allow_copy_deletion',
+  'object' => '{"key":"controlerrorlog.allow_copy_deletion","value":true,"xtype":"combo-boolean","namespace":"controlerrorlog","area":"controlerrorlog.main","editedon":null}',
+);
