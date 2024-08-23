@@ -1102,6 +1102,21 @@ h1 {
 .reviews__outer {
   padding: 118px 0 104px 0;
 }
+.reviews__total-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 7px;
+}
+.reviews__total-mask svg {
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
 .reviews .main-heading {
   margin: 0 0 19px 0;
 }
@@ -1131,6 +1146,7 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   gap: 7px;
+  position: relative;
 }
 .reviews__content {
   margin: 0 0 37px 0;
@@ -1166,6 +1182,11 @@ h1 {
   display: flex;
   gap: 6px;
   margin: 12px 0 0 0;
+  position: relative;
+  width: 154px;
+}
+.reviews__item-rating .reviews__total-mask {
+  gap: 6px;
 }
 
 .twentytwenty-container {
@@ -4467,6 +4488,9 @@ h1 {
   }
   .reviews__item-date {
     font-size: 14px;
+  }
+  .reviews__item-rating {
+    width: 124px;
   }
   .reviews__item-rating svg {
     width: 20px;
