@@ -39,7 +39,7 @@
 					</div>
 					<a class="header__tel" href="tel:+19177179885">+1 917 717 9885</a>
 					<div class="header__top-group">
-						<button class="btn jsOpenModal" data-url="modals/feedback.html">Book now</button>
+						<button class="btn" href="#modal" data-fancybox>Book now</button>
 						<div class="header__search-icon jsSearchIcon">
 							<svg class="header__search-default" width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="12.76" cy="12.8401" r="11.76" stroke="#54565A" stroke-width="2" />
@@ -498,7 +498,7 @@
 				</div>
 				<div class="header__bottom-row">
 					<a class="header__tel" href="tel:+19177179885">+1 917 717 9885</a>
-					<button class="btn jsOpenModal" data-url="modals/feedback.html">Book now</button>
+					<button class="btn" href="#modal" data-fancybox>Book now</button>
 				</div>
 			</div>
 		</div>
