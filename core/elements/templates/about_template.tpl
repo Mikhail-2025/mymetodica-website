@@ -56,80 +56,31 @@
 				</div>
 			</div>
 		</div>
+		{set $about_info = json_decode($_modx->resource.id |resource: 'about_info', true)}
+		{if $about_info}
 		<div class="about-info bottom-right-radius">
 			<div class="container">
+				{foreach $about_info as $row}
 				<div class="about-info__item">
-					<h2 class="main-heading">Skin diagnostics with canfield visia</h2>
+					<h2 class="main-heading">{$row.about_info_title}</h2>
 					<div class="about-info__inner">
 						<div class="about-info__img high-radius-img">
 							<picture>
-								<source srcset="assets/templates/site/img/webp/ai-1@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ai-1@x2.jpg" alt="">
+								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_info_img~'', 'options' => '&f=webp'])}" type="image/webp">
+								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_info_img~'', 'options' => '&f=png'])}" alt="">
 							</picture>
 						</div>
 						<div class="about-info__text">
-							<p>QUANTITATIVE ANALYSIS AND VISUAL ASSESSMENT WITH CANFIELD Visia CANFIELD Visia is a unique device that provides the ability to determine the overall health and age of the skin, revealing a revolutionary new metric to help select skin care products and treatment options. The new design of the rotating photography module significantly simplifies and improves the process of capturing photographs at standard viewing angles (45° and 90°), and also provides uniform diffuse illumination for exceptional clarity and clarity of skin structure details.</p>
+							{$row.about_info_desc}
 						</div>
 					</div>
 				</div>
-				<div class="about-info__item">
-					<h2 class="main-heading">Skin rejuvenation with Vectra M22</h2>
-					<div class="about-info__inner">
-						<div class="about-info__img high-radius-img">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/ai-2@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ai-2@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="about-info__text">
-							<p>Procedures using the M22 device are classics of modern cosmetology. This hardware complex helps to quickly and effectively solve the most common skin problems. Thanks to the combination and active use of three modules at once: IPL technology (photorejuvenation) and two types of laser, you can get rid of acne, unwanted pigmentation, spider veins or the first signs of aging.</p>
-						</div>
-					</div>
-				</div>
-				<div class="about-info__item">
-					<h2 class="main-heading">M22 by Lumenis</h2>
-					<div class="about-info__inner">
-						<div class="about-info__img high-radius-img">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/ai-3@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ai-3@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="about-info__text">
-							<p>QUANTITATIVE ANALYSIS AND VISUAL ASSESSMENT WITH CANFIELD Visia CANFIELD Visia is a unique device that provides the ability to determine the overall health and age of the skin, revealing a revolutionary new metric to help select skin care products and treatment options. The new design of the rotating photography module significantly simplifies and improves the process of capturing photographs at standard viewing angles (45° and 90°), and also provides uniform diffuse illumination for exceptional clarity and clarity of skin structure details.</p>
-						</div>
-					</div>
-				</div>
-				<div class="about-info__item">
-					<h2 class="main-heading">Legend Pro by Lumenis and Ulthera System</h2>
-					<div class="about-info__inner">
-						<div class="about-info__img high-radius-img">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/ai-4@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ai-4@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="about-info__text">
-							<p>Procedures using the M22 device are classics of modern cosmetology. This hardware complex helps to quickly and effectively solve the most common skin problems. Thanks to the combination and active use of three modules at once: IPL technology (photorejuvenation) and two types of laser, you can get rid of acne, unwanted pigmentation, spider veins or the first signs of aging.</p>
-						</div>
-					</div>
-				</div>
-				<div class="about-info__item">
-					<h2 class="main-heading">Splendor X by Lumenis</h2>
-					<div class="about-info__inner">
-						<div class="about-info__img high-radius-img">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/ai-5@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ai-5@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="about-info__text">
-							<p>QUANTITATIVE ANALYSIS AND VISUAL ASSESSMENT WITH CANFIELD Visia CANFIELD Visia is a unique device that provides the ability to determine the overall health and age of the skin, revealing a revolutionary new metric to help select skin care products and treatment options. The new design of the rotating photography module significantly simplifies and improves the process of capturing photographs at standard viewing angles (45° and 90°), and also provides uniform diffuse illumination for exceptional clarity and clarity of skin structure details.</p>
-						</div>
-					</div>
-				</div>
+				{/foreach}
 			</div>
 		</div>
+		{/if}
+		{set $about_gallery = json_decode($_modx->resource.id |resource: 'about_gallery', true)}
+		{if $about_gallery}
 		<div class="clinic">
 			<div class="container">
 				<h2 class="main-heading">Our clinic</h2>
@@ -137,54 +88,14 @@
 			<div class="slider-container">
 				<div class="clinic__slider swiper">
 					<div class="swiper-wrapper">
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-1@x2.png" data-fancybox="clinic">
+						{foreach $about_gallery as $row}
+						<a class="clinic__slider-item swiper-slide" href="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_gallery_img~'', 'options' => '&w=800'])}" data-fancybox="clinic">
 							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-1@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-1@x2.png" alt="">
+								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_gallery_img~'', 'options' => '&w=335&h=335&zc=1&f=webp'])}" type="image/webp">
+								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_gallery_img~'', 'options' => '&w=335&h=335&zc=1'])}" alt="">
 							</picture>
 						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-2@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-2@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-2@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-3@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-3@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-3@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-4@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-4@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-4@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-1@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-1@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-1@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-2@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-2@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-2@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-3@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-3@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-3@x2.png" alt="">
-							</picture>
-						</a>
-						<a class="clinic__slider-item swiper-slide" href="assets/templates/site/img/cl-4@x2.png" data-fancybox="clinic">
-							<picture>
-								<source srcset="assets/templates/site/img/webp/cl-4@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/cl-4@x2.png" alt="">
-							</picture>
-						</a>
+						{/foreach}
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -200,6 +111,8 @@
 				</div>
 			</div>
 		</div>
+		{/if}
+		{if $_modx->resource.about_video_ids}
 		<div class="videos">
 			<div class="container">
 				<h2 class="main-heading">Videos</h2>
@@ -207,141 +120,16 @@
 			<div class="slider-container">
 				<div class="videos__slider swiper">
 					<div class="swiper-wrapper">
-						<div class="video-card swiper-slide">
-							<a class="video-card__head" href="https://www.youtube.com/watch?v=QZJAomVKyLo" data-fancybox>
-								<picture>
-									<source srcset="assets/templates/site/img/webp/av@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/av@x2.jpg" alt="">
-								</picture>
-								<div class="play-btn">
-									<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g>
-											<circle cx="33.5" cy="33.5" r="33.5" fill="#7A7599" fill-opacity="0.8" />
-										</g>
-										<path d="M22.75 31.5002L22.75 45.1915C22.75 46.7311 24.4167 47.6934 25.75 46.9236L46 35.2322C47.3333 34.4624 47.3333 32.5379 46 31.7681L28.5 21.6645L25.75 20.0768C24.4167 19.307 22.75 20.2692 22.75 21.8088L22.75 25.0002" stroke="white" />
-										<defs>
-											<filter x="-10" y="-10" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="5" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_2014_2376" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_2014_2376" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							</a>
-							<div class="video-card__body">
-								<b>Filler augmentation</b>
-							</div>
-						</div>
-						<div class="video-card swiper-slide">
-							<a class="video-card__head" href="https://www.youtube.com/watch?v=QZJAomVKyLo" data-fancybox>
-								<picture>
-									<source srcset="assets/templates/site/img/webp/av@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/av@x2.jpg" alt="">
-								</picture>
-								<div class="play-btn">
-									<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g>
-											<circle cx="33.5" cy="33.5" r="33.5" fill="#7A7599" fill-opacity="0.8" />
-										</g>
-										<path d="M22.75 31.5002L22.75 45.1915C22.75 46.7311 24.4167 47.6934 25.75 46.9236L46 35.2322C47.3333 34.4624 47.3333 32.5379 46 31.7681L28.5 21.6645L25.75 20.0768C24.4167 19.307 22.75 20.2692 22.75 21.8088L22.75 25.0002" stroke="white" />
-										<defs>
-											<filter x="-10" y="-10" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="5" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_2014_2376" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_2014_2376" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							</a>
-							<div class="video-card__body">
-								<b>Filler augmentation</b>
-							</div>
-						</div>
-						<div class="video-card swiper-slide">
-							<a class="video-card__head" href="https://www.youtube.com/watch?v=QZJAomVKyLo" data-fancybox>
-								<picture>
-									<source srcset="assets/templates/site/img/webp/av@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/av@x2.jpg" alt="">
-								</picture>
-								<div class="play-btn">
-									<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g>
-											<circle cx="33.5" cy="33.5" r="33.5" fill="#7A7599" fill-opacity="0.8" />
-										</g>
-										<path d="M22.75 31.5002L22.75 45.1915C22.75 46.7311 24.4167 47.6934 25.75 46.9236L46 35.2322C47.3333 34.4624 47.3333 32.5379 46 31.7681L28.5 21.6645L25.75 20.0768C24.4167 19.307 22.75 20.2692 22.75 21.8088L22.75 25.0002" stroke="white" />
-										<defs>
-											<filter x="-10" y="-10" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="5" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_2014_2376" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_2014_2376" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							</a>
-							<div class="video-card__body">
-								<b>Filler augmentation</b>
-							</div>
-						</div>
-						<div class="video-card swiper-slide">
-							<a class="video-card__head" href="https://www.youtube.com/watch?v=QZJAomVKyLo" data-fancybox>
-								<picture>
-									<source srcset="assets/templates/site/img/webp/av@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/av@x2.jpg" alt="">
-								</picture>
-								<div class="play-btn">
-									<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g>
-											<circle cx="33.5" cy="33.5" r="33.5" fill="#7A7599" fill-opacity="0.8" />
-										</g>
-										<path d="M22.75 31.5002L22.75 45.1915C22.75 46.7311 24.4167 47.6934 25.75 46.9236L46 35.2322C47.3333 34.4624 47.3333 32.5379 46 31.7681L28.5 21.6645L25.75 20.0768C24.4167 19.307 22.75 20.2692 22.75 21.8088L22.75 25.0002" stroke="white" />
-										<defs>
-											<filter x="-10" y="-10" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="5" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_2014_2376" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_2014_2376" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							</a>
-							<div class="video-card__body">
-								<b>Filler augmentation</b>
-							</div>
-						</div>
-						<div class="video-card swiper-slide">
-							<a class="video-card__head" href="https://www.youtube.com/watch?v=QZJAomVKyLo" data-fancybox>
-								<picture>
-									<source srcset="assets/templates/site/img/webp/av@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/av@x2.jpg" alt="">
-								</picture>
-								<div class="play-btn">
-									<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g>
-											<circle cx="33.5" cy="33.5" r="33.5" fill="#7A7599" fill-opacity="0.8" />
-										</g>
-										<path d="M22.75 31.5002L22.75 45.1915C22.75 46.7311 24.4167 47.6934 25.75 46.9236L46 35.2322C47.3333 34.4624 47.3333 32.5379 46 31.7681L28.5 21.6645L25.75 20.0768C24.4167 19.307 22.75 20.2692 22.75 21.8088L22.75 25.0002" stroke="white" />
-										<defs>
-											<filter x="-10" y="-10" width="87" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="5" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_2014_2376" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_2014_2376" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							</a>
-							<div class="video-card__body">
-								<b>Filler augmentation</b>
-							</div>
-						</div>
+						{$_modx->runSnippet('!pdoResources', [
+							'parents' => 15,
+							'resources' => $_modx->resource.about_video_ids,
+							'depth' => 0,
+							'limit' => 20,
+							'includeTVs' => 'video_link,video_img',
+							'tpl' => '@FILE chunks/work/video_tpl.tpl',
+							'sortby' => '',
+							'sortdir' => ''
+						])}		
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,100 +145,22 @@
 				</div>
 			</div>
 		</div>
+		{/if}
+		{if $_modx->resource.about_videoshorts_ids}
 		<div class="shorts">
 			<div class="slider-container">
 				<div class="shorts__slider swiper">
 					<div class="swiper-wrapper">
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
-						<div class="shorts__slider-item swiper-slide jsOpenShort" data-url="video/short.mp4">
-							<div class="play-btn has-decor">
-								<svg width="72" height="72" viewBox="0 0 72 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<circle cx="36" cy="36.7046" r="36" fill="#F9F9F9" fill-opacity="0.8" />
-									<path d="M51.5 36.8386C52.1667 37.2235 52.1667 38.1857 51.5 38.5706L29 51.561C28.3333 51.9459 27.5 51.4648 27.5 50.695L27.5 24.7142C27.5 23.9444 28.3333 23.4633 29 23.8482L51.5 36.8386Z" fill="#EA6852" />
-								</svg>
-							</div>
-							<div class="shorts__slider-img">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/short@x2.webp" type="image/webp">
-									<img src="assets/templates/site/img/short@x2.jpg" alt="">
-								</picture>
-							</div>
-							<div class="shorts__slider-name">Laser hair removal </div>
-						</div>
+						{$_modx->runSnippet('!pdoResources', [
+							'parents' => 16,
+							'resources' => $_modx->resource.about_videoshorts_ids,
+							'depth' => 0,
+							'limit' => 20,
+							'includeTVs' => 'videoshorts_link,videoshorts_img',
+							'tpl' => '@FILE chunks/work/videoshorts_tpl.tpl',
+							'sortby' => '',
+							'sortdir' => ''
+						])}						
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -466,9 +176,10 @@
 				</div>
 			</div>
 			<div class="centered-box">
-				<a class="btn" href="#">See more</a>
+				<a target="_blank" class="btn" href="https://www.youtube.com/@metodica-medspa">See more</a>
 			</div>
 		</div>
+		{/if}
 		<div class="follow">
 			<div class="container">
 				<div class="follow__inner">
