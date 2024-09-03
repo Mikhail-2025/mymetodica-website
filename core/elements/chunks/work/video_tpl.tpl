@@ -1,7 +1,7 @@
 <div class="video-card swiper-slide">
 	<a class="video-card__head" href="{$_pls['tv.video_link']}" data-fancybox>
 		<picture>
-	        <source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.video_img'], 'options' => '&w=453&h=257&f=webp'])}" type="image/webp">
+	        <source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.video_img'], 'options' => '&w=453&h=257&f=webp&zc=1'])}" type="image/webp">
 	        <img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.video_img'], 'options' => '&w=453&h=257&zc=1'])}" alt="">
 	    </picture>
 		<div class="play-btn">

@@ -87,10 +87,10 @@
 		<div class="container">
 			<ul class="header__menu">
 				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">About</a>
+					<a class="header__menu-link" href="{14 | url}">About</a>
 				</li>
 				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">Doctors</a>
+					<a class="header__menu-link" href="{31 | url}">Doctors</a>
 				</li>
 				<li class="header__menu-item has-child">
 					<a class="header__menu-link" href="#">I want</a>
@@ -460,13 +460,13 @@
 					</div>
 				</li>
 				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">Photos</a>
+					<a class="header__menu-link" href="{27 | url}">Photos</a>
 				</li>
 				<li class="header__menu-item">
 					<a class="header__menu-link" href="#">Promo offers</a>
 				</li>
 				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">Reviews</a>
+					<a class="header__menu-link" href="{2 | url}">Reviews</a>
 				</li>
 				<li class="header__menu-item">
 					<a class="header__menu-link" href="#">Contacts</a>

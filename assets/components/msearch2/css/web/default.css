@@ -11,10 +11,11 @@
 #mse2_filters .disabled {
     color: #aaa;
 }
-
+/*
 #mse2_results {
     margin-bottom: 20px;
 }
+*/
 
 #mse2_filters .mse2_number_slider {
     font-size: .7em;

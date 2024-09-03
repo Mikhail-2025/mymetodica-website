@@ -189,102 +189,44 @@
 				<div class="practice__inner">
 					<div class="practice__img high-radius-img">
 						<picture>
-							<source srcset="assets/templates/site/img/webp/practice@x2.webp" type="image/webp">
-							<img src="assets/templates/site/img/practice@x2.jpg" alt="">
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.our_practice_img, 'options' => '&w=548&h=456&f=webp&zc=1'])}" type="image/webp">
+        					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.our_practice_img, 'options' => '&w=548&h=456&zc=1'])}" alt="">
 						</picture>
 					</div>
 					<div class="practice__content">
 						<div class="main-heading practice__response-heading">Our Practice</div>
-						<h3 class="small-heading text-transform">Metodica</h3>
-						<p>We provide recommendations for skin care, prevention and treatment only when indicated. We have two diagnostic devices: Visia for assessing skin quality and Vectra for assessing facial volumes. These devices help us determine the true condition of each client's skin and develop an individual treatment plan.</p>
-						<p>We are in touch with our clients after procedures: we clarify the condition of the skin, give recommendations, answer any questions</p>
+						{$_modx->resource.our_practice}
 						<div class="practice__btn">
-							<a class="btn on-pink" href="#">See more </a>
+							<a class="btn on-pink" href="{14 | url}">See more</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		{include 'file:chunks/work/home-reviews.tpl'}
+		{if $_modx->resource.home_photos_ids}
 		<div class="compare">
 			<div class="container">
 				<h2 class="main-heading">Before & after</h2>
 				<div class="compare__inner">
-					<div class="compare__item">
-						<div class="compare__item-img">
-							<div class="jsTwenty">
-								<img src="assets/templates/site/img/c-1@x2.jpg" alt="">
-								<img src="assets/templates/site/img/c-2@x2.jpg" alt="">
-							</div>
-						</div>
-						<div class="compare__item-content">
-							<div class="compare__item-head">
-								<h3 class="small-heading">Lips</h3>
-								<div class="compare__item-icon">
-									<img src="assets/templates/site/img/svg/ci-1.svg" alt="">
-								</div>
-							</div>
-							<div class="compare__item-body">
-								<ul class="compare-list">
-									<li class="compare-list__item">Filler augmentation,</li>
-									<li class="compare-list__item">Restylane Kysse 1 ml</li>
-									<li class="compare-list__item">14 days after initial treatmen</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="compare__item">
-						<div class="compare__item-img">
-							<div class="jsTwenty">
-								<img src="assets/templates/site/img/c-3@x2.jpg" alt="">
-								<img src="assets/templates/site/img/c-4@x2.jpg" alt="">
-							</div>
-						</div>
-						<div class="compare__item-content">
-							<div class="compare__item-head">
-								<h3 class="small-heading">Acne</h3>
-								<div class="compare__item-icon">
-									<img src="assets/templates/site/img/svg/ci-2.svg" alt="">
-								</div>
-							</div>
-							<div class="compare__item-body">
-								<ul class="compare-list">
-									<li class="compare-list__item">IPL phototherapy 6 sessions,</li>
-									<li class="compare-list__item">Jessner’s Peel 6 sessions</li>
-									<li class="compare-list__item">20 days after the treatment course</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="compare__item">
-						<div class="compare__item-img">
-							<div class="jsTwenty">
-								<img src="assets/templates/site/img/c-5@x2.jpg" alt="">
-								<img src="assets/templates/site/img/c-6@x2.jpg" alt="">
-							</div>
-						</div>
-						<div class="compare__item-content">
-							<div class="compare__item-head">
-								<h3 class="small-heading">Wrinkles</h3>
-								<div class="compare__item-icon">
-									<img src="assets/templates/site/img/svg/ci-3.svg" alt="">
-								</div>
-							</div>
-							<div class="compare__item-body">
-								<ul class="compare-list">
-									<li class="compare-list__item">Dysport, 50 units</li>
-									<li class="compare-list__item">14 days after initial treatmen</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+					{$_modx->runSnippet('!pdoResources', [
+						'parents' => 27,
+						'resources' => $_modx->resource.home_photos_ids,
+						'depth' => 0,
+						'limit' => 3,
+						'includeTVs' => 'photo_before_img,photo_after_img,photo_params,photo_icon',
+						'tpl' => '@FILE chunks/work/blog_photos_tpl.tpl',
+						'sortby' => '',
+						'sortdir' => ''
+					])}
 				</div>
 				<div class="centered-box">
-					<a class="btn dark" href="#">See more</a>
-					<button class="btn compare-wish jsOpenModal" data-url="modals/feedback.html">i wish</button>
+					<a class="btn dark" href="{27 | url}">See more</a>
+					<button class="btn compare-wish" href="#modal" data-fancybox>i wish</button>
 				</div>
 			</div>
 		</div>
+		{/if}
 		<div class="specialist top-left-radius">
 			<div class="container">
 				<h2 class="main-heading">Doctors</h2>
@@ -292,78 +234,15 @@
 			<div class="slider-container">
 				<div class="specialist__slider swiper">
 					<div class="swiper-wrapper">
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
-						<div class="specialist-card swiper-slide">
-							<div class="specialist-card__head">
-								<picture>
-									<source srcset="assets/templates/site/img/webp/spec.webp" type="image/webp">
-									<img src="assets/templates/site/img/spec.jpg" alt="">
-								</picture>
-							</div>
-							<div class="specialist-card__body">
-								<h3 class="small-heading specialist-card__name">Dr.Lector</h3>
-								<p>Cosmetologist</p>
-							</div>
-						</div>
+						{$_modx->runSnippet('!pdoResources', [
+							'parents' => 31,
+							'depth' => 0,
+							'limit' => 10,
+							'includeTVs' => 'doctor_specialization,doctor_img',
+							'tpl' => '@FILE chunks/work/home_doctors_tpl.tpl',
+							'sortby' => 'menuindex',
+							'sortdir' => 'asc'
+						])}						
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
