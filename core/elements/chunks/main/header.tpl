@@ -463,7 +463,7 @@
 					<a class="header__menu-link" href="{27 | url}">Photos</a>
 				</li>
 				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">Promo offers</a>
+					<a class="header__menu-link" href="{37 | url}">Promo offers</a>
 				</li>
 				<li class="header__menu-item">
 					<a class="header__menu-link" href="{2 | url}">Reviews</a>

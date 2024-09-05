@@ -129,7 +129,7 @@
 							'tpl' => '@FILE chunks/work/video_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''
-						])}		
+						])}
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -160,7 +160,7 @@
 							'tpl' => '@FILE chunks/work/videoshorts_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''
-						])}						
+						])}
 					</div>
 					<div class="swiper-button-prev">
 						<svg width="21" height="34" viewBox="0 0 21 34" fill="none" xmlns="http://www.w3.org/2000/svg">
