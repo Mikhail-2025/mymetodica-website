@@ -5,43 +5,25 @@
 				<img src="assets/templates/site/img/svg/feedback.svg" alt="">
 			</div>
 			<div class="feedback__content">
-				<h2 class="main-heading text-left">Get free consultation  with our specialist</h2>
-				<form class="feedback__form" action="#">
-					<div class="feedback__form-inner">
-						<div class="feedback__form-left">
-							<div class="feedback__form-item">
-								<span class="feedback__form-name">Name *</span>
-								<input class="feedback__form-input" type="text" required>
-							</div>
-							<div class="feedback__form-item">
-								<span class="feedback__form-name">Phone *</span>
-								<input class="feedback__form-input jsTel" type="tel" required>
-							</div>
-							<div class="feedback__form-item">
-								<span class="feedback__form-name">E-mail</span>
-								<input class="feedback__form-input" type="email">
-							</div>
-						</div>
-						<div class="feedback__form-right">
-							<div class="feedback__form-item">
-								<span class="feedback__form-name">Comments</span>
-								<input class="feedback__form-textarea" type="text">
-							</div>
-							<div class="feedback__form-item">
-								<label class="control control-checkbox">
-									<input type="checkbox" checked>
-									<span class="control__text">Согласен с условием обработки <a href="#">
-											<ins>персональных данных</ins>
-										</a>
-									</span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="feedback__btn">
-						<button class="btn dark">Submit</button>
-					</div>
-				</form>
+				<h2 class="main-heading text-left">Get free consultation with our specialist</h2>
+				{set $form_mail = 1 | resource: 'form_mail'}
+				{set $emailsender = $_modx->config.emailsender}
+				{$_modx->runSnippet('!AjaxForm', [
+					'snippet' => 'FormIt',
+					'form' => 'feedback_form',
+					'preHooks' => 'chkbot',
+					'hooks' => 'FormItSaveForm,email',
+					'formName' =>'Get free consultation with our specialist',
+					'formFields' => 'namefeeed,phonefeeed,emailfeeed,message',
+					'fieldNames' => 'namefeeed==Имя отправителя,phonefeeed==Телефон отправителя,emailfeeed==Email,message==Комментарий'
+					'emailTpl' => 'feedback_report_tpl',
+					'emailSubject' => 'Сообщение с сайта mymetodica.com',
+					'emailFrom' => $emailsender,
+					'emailTo' => $form_mail,
+					'validate'=>'namefeeed:required,emailfeeed:email:required,phonefeeed:required,politikmodal:required',
+					'validationErrorMessage'=>'The form contains errors!',
+					'successMessage' => 'Message sent successfully'
+				])}
 			</div>
 		</div>
 	</div>

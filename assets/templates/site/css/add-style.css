@@ -1,3 +1,15 @@
 .form__input.error {
 	border: 1px solid red;
 }
+
+.feedback__form-input.error {
+	border: 1px solid red;
+}
+
+.search-categories__item input:disabled ~ .search-categories__item-text {
+	background: #ccc;
+}
+
+.control-checkbox input[type=checkbox].error~.control__text:before {
+    border: 1px solid #f71d21;
+}

@@ -18,24 +18,33 @@
 				</div>
 				<div class="header__top-right">
 					<div class="social header__social">
-						<a class="social__item" href="#">
+						{set $soc_instagram = 1 | resource: 'soc_instagram'}
+						{set $soc_facebook = 1 | resource: 'soc_facebook'}
+						{set $soc_youtube = 1 | resource: 'soc_youtube'}
+						{if $soc_instagram}
+						<a class="social__item" href="{$soc_instagram}" target="_blank">
 							<svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="18.3421" cy="18.3421" r="18.3421" fill="#7A7599" />
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M13.4547 8.83919C12.2306 8.83919 11.0567 9.32546 10.1911 10.191C9.32551 11.0566 8.83923 12.2306 8.83923 13.4547V22.6857C8.83923 23.9098 9.32551 25.0838 10.1911 25.9493C11.0567 26.8149 12.2306 27.3012 13.4547 27.3012H22.6857C23.9098 27.3012 25.0838 26.8149 25.9494 25.9493C26.8149 25.0838 27.3012 23.9098 27.3012 22.6857V13.4547C27.3012 12.2306 26.8149 11.0566 25.9494 10.191C25.0838 9.32546 23.9098 8.83919 22.6857 8.83919H13.4547ZM18.0702 14.7135C17.18 14.7135 16.3262 15.0671 15.6967 15.6966C15.0672 16.3261 14.7135 17.1799 14.7135 18.0702C14.7135 18.9604 15.0672 19.8142 15.6967 20.4437C16.3262 21.0733 17.18 21.4269 18.0702 21.4269C18.9605 21.4269 19.8143 21.0733 20.4438 20.4437C21.0733 19.8142 21.427 18.9604 21.427 18.0702C21.427 17.1799 21.0733 16.3261 20.4438 15.6966C19.8143 15.0671 18.9605 14.7135 18.0702 14.7135ZM13.0351 18.0702C13.0351 16.7348 13.5656 15.4541 14.5099 14.5098C15.4541 13.5656 16.7348 13.0351 18.0702 13.0351C19.4056 13.0351 20.6863 13.5656 21.6306 14.5098C22.5748 15.4541 23.1053 16.7348 23.1053 18.0702C23.1053 19.4056 22.5748 20.6863 21.6306 21.6305C20.6863 22.5748 19.4056 23.1053 18.0702 23.1053C16.7348 23.1053 15.4541 22.5748 14.5099 21.6305C13.5656 20.6863 13.0351 19.4056 13.0351 18.0702ZM23.1053 11.3567C22.6602 11.3567 22.2333 11.5336 21.9185 11.8483C21.6038 12.1631 21.427 12.59 21.427 13.0351C21.427 13.4802 21.6038 13.9071 21.9185 14.2219C22.2333 14.5366 22.6602 14.7135 23.1053 14.7135C23.5504 14.7135 23.9773 14.5366 24.2921 14.2219C24.6069 13.9071 24.7837 13.4802 24.7837 13.0351C24.7837 12.59 24.6069 12.1631 24.2921 11.8483C23.9773 11.5336 23.5504 11.3567 23.1053 11.3567Z" fill="#F3F3F3" />
 							</svg>
 						</a>
-						<a class="social__item" href="#">
+						{/if}
+						{if $soc_facebook}
+						<a class="social__item" href="{$soc_facebook}" target="_blank">
 							<svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="19.0263" cy="18.3421" r="18.3421" fill="#7A7599" />
 								<path d="M29.1404 18.0702C29.1404 12.508 24.6324 8 19.0702 8C13.508 8 9 12.508 9 18.0702C9 23.6324 13.508 28.1404 19.0702 28.1404C19.1292 28.1404 19.1882 28.1404 19.2472 28.1364V20.3006H17.0837V17.7791H19.2472V15.9224C19.2472 13.7707 20.561 12.5985 22.4807 12.5985C23.4011 12.5985 24.1918 12.6653 24.42 12.6968V14.9468H23.0982C22.0558 14.9468 21.8513 15.4425 21.8513 16.1702V17.7752H24.3492L24.0227 20.2966H21.8513V27.7509C26.0603 26.5433 29.1404 22.6686 29.1404 18.0702Z" fill="#F3F3F3" />
 							</svg>
 						</a>
-						<a class="social__item" href="#">
+						{/if}
+						{if $soc_youtube}
+						<a class="social__item" href="{$soc_youtube}" target="_blank">
 							<svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="18.7105" cy="18.3421" r="18.3421" fill="#7A7599" />
 								<path d="M28.5688 13.4598C28.4593 12.5464 27.5986 11.6705 26.698 11.5532C21.2072 10.8708 15.6532 10.8708 10.1624 11.5532C9.26106 11.6703 8.40028 12.5464 8.29079 13.4598C7.90307 16.8073 7.90307 20.0531 8.29079 23.3999C8.40028 24.3133 9.26106 25.1899 10.1624 25.3065C15.6532 25.9888 21.2072 25.9888 26.698 25.3065C27.5986 25.1901 28.4593 24.3133 28.5688 23.3999C28.9566 20.0534 28.9566 16.8073 28.5688 13.4598ZM16.6914 21.9071V14.9536L21.9064 18.4305L16.6914 21.9071Z" fill="#F3F3F3" />
 							</svg>
 						</a>
+						{/if}
 					</div>
 					<a class="header__tel" href="tel:+19177179885">+1 917 717 9885</a>
 					<div class="header__top-group">
@@ -70,8 +79,8 @@
 					</div>
 				</div>
 				<div class="header__search jsHeaderSearch">
-					<form class="form" action="#">
-						<input class="form__input" type="text" name="" placeholder="Поиск...">
+					<form class="form" action="{55 | url}" method="get" id="mse2_form">
+						<input class="form__input" type="text"name="query" value="{$.get['query']}" placeholder="Поиск...">
 						<button class="header__search-btn">
 							<svg width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="12.76" cy="12.8401" r="11.76" stroke="#54565A" stroke-width="2" />
@@ -86,12 +95,15 @@
 	<div class="header__bottom jsMenu">
 		<div class="container">
 			<ul class="header__menu">
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="{14 | url}">About</a>
-				</li>
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="{31 | url}">Doctors</a>
-				</li>
+				{$_modx->runSnippet('!pdoMenu', [
+					'parents' => 0,
+					'level' => 1,
+					'resources' => '14,31',
+					'tplOuter' => '@INLINE {$wrapper}',
+					'tpl' => '@INLINE <li class="header__menu-item" ><a class="header__menu-link" href="{$link}">{$menutitle}</a></li>',
+					'tplHere' => '@INLINE <li class="header__menu-item current"><span class="header__menu-link" href="{$link}">{$menutitle}</span></li>',
+					'hereClass' => 'current'
+				])}
 				<li class="header__menu-item has-child">
 					<a class="header__menu-link" href="#">I want</a>
 					<div class="header__menu-mobile jsTogglerHead">
@@ -459,42 +471,42 @@
 						</div>
 					</div>
 				</li>
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="{27 | url}">Photos</a>
-				</li>
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="{37 | url}">Promo offers</a>
-				</li>
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="{2 | url}">Reviews</a>
-				</li>
-				<li class="header__menu-item">
-					<a class="header__menu-link" href="#">Contacts</a>
-				</li>
-				<li class="header__menu-item current">
-					<a class="header__menu-link" href="#">Refferal</a>
-				</li>
+				{$_modx->runSnippet('!pdoMenu', [
+					'parents' => 0,
+					'level' => 1,
+					'resources' => '27,37,2,43,53',
+					'tplOuter' => '@INLINE {$wrapper}',
+					'tpl' => '@INLINE <li class="header__menu-item" ><a class="header__menu-link" href="{$link}">{$menutitle}</a></li>',
+					'tplHere' => '@INLINE <li class="header__menu-item current"><span class="header__menu-link" href="{$link}">{$menutitle}</span></li>',
+					'hereClass' => 'current'
+				])}
 			</ul>
 			<div class="header__bottom-mobile">
 				<div class="social header__social">
-					<a class="social__item" href="#">
+					{if $soc_instagram}
+					<a class="social__item" href="{$soc_instagram}" target="_blank">
 						<svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="18.3421" cy="18.3421" r="18.3421" fill="#EA6852" />
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M13.4547 8.83917C12.2306 8.83917 11.0566 9.32545 10.191 10.191C9.32545 11.0566 8.83917 12.2306 8.83917 13.4547V22.6857C8.83917 23.9098 9.32545 25.0837 10.191 25.9493C11.0566 26.8149 12.2306 27.3012 13.4547 27.3012H22.6857C23.9098 27.3012 25.0837 26.8149 25.9493 25.9493C26.8149 25.0837 27.3012 23.9098 27.3012 22.6857V13.4547C27.3012 12.2306 26.8149 11.0566 25.9493 10.191C25.0837 9.32545 23.9098 8.83917 22.6857 8.83917H13.4547ZM18.0702 14.7134C17.1799 14.7134 16.3261 15.0671 15.6966 15.6966C15.0671 16.3261 14.7134 17.1799 14.7134 18.0702C14.7134 18.9604 15.0671 19.8142 15.6966 20.4437C16.3261 21.0732 17.1799 21.4269 18.0702 21.4269C18.9604 21.4269 19.8142 21.0732 20.4437 20.4437C21.0732 19.8142 21.4269 18.9604 21.4269 18.0702C21.4269 17.1799 21.0732 16.3261 20.4437 15.6966C19.8142 15.0671 18.9604 14.7134 18.0702 14.7134ZM13.0351 18.0702C13.0351 16.7348 13.5656 15.4541 14.5098 14.5098C15.4541 13.5656 16.7348 13.0351 18.0702 13.0351C19.4056 13.0351 20.6862 13.5656 21.6305 14.5098C22.5748 15.4541 23.1053 16.7348 23.1053 18.0702C23.1053 19.4056 22.5748 20.6862 21.6305 21.6305C20.6862 22.5748 19.4056 23.1053 18.0702 23.1053C16.7348 23.1053 15.4541 22.5748 14.5098 21.6305C13.5656 20.6862 13.0351 19.4056 13.0351 18.0702ZM23.1053 11.3567C22.6601 11.3567 22.2332 11.5335 21.9185 11.8483C21.6037 12.1631 21.4269 12.5899 21.4269 13.0351C21.4269 13.4802 21.6037 13.9071 21.9185 14.2219C22.2332 14.5366 22.6601 14.7134 23.1053 14.7134C23.5504 14.7134 23.9773 14.5366 24.292 14.2219C24.6068 13.9071 24.7836 13.4802 24.7836 13.0351C24.7836 12.5899 24.6068 12.1631 24.292 11.8483C23.9773 11.5335 23.5504 11.3567 23.1053 11.3567Z" fill="#F3F3F3" />
 						</svg>
 					</a>
-					<a class="social__item" href="#">
+					{/if}
+					{if $soc_facebook}
+					<a class="social__item" href="{$soc_facebook}" target="_blank">
 						<svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="19.0263" cy="18.3421" r="18.3421" fill="#EA6852" />
 							<path d="M29.1404 18.0702C29.1404 12.508 24.6324 8 19.0702 8C13.508 8 9 12.508 9 18.0702C9 23.6324 13.508 28.1404 19.0702 28.1404C19.1292 28.1404 19.1882 28.1404 19.2472 28.1364V20.3006H17.0837V17.7791H19.2472V15.9224C19.2472 13.7707 20.561 12.5985 22.4807 12.5985C23.4011 12.5985 24.1918 12.6653 24.42 12.6968V14.9468H23.0982C22.0558 14.9468 21.8513 15.4425 21.8513 16.1702V17.7752H24.3492L24.0227 20.2966H21.8513V27.7509C26.0603 26.5433 29.1404 22.6686 29.1404 18.0702Z" fill="#F3F3F3" />
 						</svg>
 					</a>
-					<a class="social__item" href="#">
+					{/if}
+					{if $soc_youtube}
+					<a class="social__item" href="{$soc_youtube}" target="_blank">
 						<svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<circle cx="18.7105" cy="18.3421" r="18.3421" fill="#EA6852" />
 							<path d="M28.5689 13.4598C28.4594 12.5464 27.5986 11.6705 26.698 11.5532C21.2073 10.8708 15.6532 10.8708 10.1625 11.5532C9.26112 11.6703 8.40034 12.5464 8.29085 13.4598C7.90313 16.8073 7.90313 20.0531 8.29085 23.3999C8.40034 24.3132 9.26112 25.1899 10.1625 25.3064C15.6532 25.9888 21.2073 25.9888 26.698 25.3064C27.5986 25.1901 28.4594 24.3132 28.5689 23.3999C28.9567 20.0534 28.9567 16.8073 28.5689 13.4598ZM16.6915 21.9071V14.9536L21.9065 18.4305L16.6915 21.9071Z" fill="#F3F3F3" />
 						</svg>
 					</a>
+					{/if}
 				</div>
 				<div class="header__bottom-row">
 					<a class="header__tel" href="tel:+19177179885">+1 917 717 9885</a>
