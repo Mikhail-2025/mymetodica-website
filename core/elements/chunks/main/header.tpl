@@ -128,72 +128,16 @@
 										</div>
 									</div>
 									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Мимические морщины</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Розацеа</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Опущение тканей</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Купероз (видимые сосуды)</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Нечеткий овал</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Снижение упругости</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Носогубные морщины</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Широкие поры</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Провалы под глазами</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Тусклый цвет лица</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Темные круги под глазами</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Жирная кожа</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Двойной подбородок</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Сухость и шелушение кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пигментация</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Недостаточный объем губ</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Акне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Сухость губ</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пятна постакне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Морщины на шее</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Рубцы постакне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Отечность лица</a>
-										</li>
+										{$_modx->runSnippet('!pdoResources', [
+											'parents' => 54,
+											'depth' => 1,
+											'limit' => 0,
+											'includeTVs' => 'iwant_filtergroup',
+											'where' => '{ "iwant_filtergroup":"70","modResource.template":"21" }'
+											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
+											'sortby' => '',
+											'sortdir' => ''
+										])}
 									</ul>
 								</div>
 								<div class="header__submenu-item">
@@ -208,36 +152,16 @@
 										</div>
 									</div>
 									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Нежелательные волосы (unwanted hair)</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Гипергидроз, повышенная потливость</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Рубцы, шрамы</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Растяжки, стрии</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Дряблая кожа на бедрах, ягодицах, животе, коленях и руках</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пигментные пятна, веснушки</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Прыщи, угри</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Выпадение волос</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Старение кожи рук</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Возрастные изменения декольте</a>
-										</li>
+										{$_modx->runSnippet('!pdoResources', [
+											'parents' => 54,
+											'depth' => 1,
+											'limit' => 0,
+											'includeTVs' => 'iwant_filtergroup',
+											'where' => '{ "iwant_filtergroup":"71","modResource.template":"21" }'
+											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
+											'sortby' => '',
+											'sortdir' => ''
+										])}
 									</ul>
 								</div>
 								<div class="header__submenu-item">
@@ -252,21 +176,16 @@
 										</div>
 									</div>
 									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Качество кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Упругость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Гладкость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Подтянутое лицо</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Косметология для мужчин</a>
-										</li>
+										{$_modx->runSnippet('!pdoResources', [
+											'parents' => 54,
+											'depth' => 1,
+											'limit' => 0,
+											'includeTVs' => 'iwant_filtergroup',
+											'where' => '{ "iwant_filtergroup":"72","modResource.template":"21" }'
+											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
+											'sortby' => '',
+											'sortdir' => ''
+										])}
 									</ul>
 								</div>
 							</div>
@@ -285,188 +204,23 @@
 					<div class="header__submenu jsTogglerBody">
 						<div class="container">
 							<div class="header__submenu-inner">
-								<div class="header__submenu-item">
-									<div class="header__submenu-name">
-										<a href="#">Facial treatment</a>
+								{$_modx->runSnippet('!pdoMenu', [
+									'parents' => 54,
+									'level' => 2,
+									'tplOuter' => '@INLINE {$wrapper}',
+									'tplInner' => '@INLINE <ul class="submenu-list jsTogglerBody">{$wrapper}</ul>',
+									'tplParentRow' => '@INLINE <div class="header__submenu-item"><div class="header__submenu-name"><a href="{$link}">{$menutitle}</a></div><div class="header__menu-mobile jsTogglerHead">
+									<span>{$menutitle}</span>
+									<div class="header__menu-icon">
+										<span></span>
+										<span></span>
 									</div>
-									<div class="header__menu-mobile jsTogglerHead">
-										<span>Facial treatment</span>
-										<div class="header__menu-icon">
-											<span> </span>
-											<span></span>
-										</div>
-									</div>
-									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Мимические морщины</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Розацеа</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Опущение тканей</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Купероз (видимые сосуды)</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Нечеткий овал</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Снижение упругости</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Носогубные морщины</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Широкие поры</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Провалы под глазами</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Тусклый цвет лица</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Темные круги под глазами</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Жирная кожа</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Двойной подбородок</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Сухость и шелушение кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пигментация</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Недостаточный объем губ</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Акне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Сухость губ</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пятна постакне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Морщины на шее</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Рубцы постакне</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Отечность лица</a>
-										</li>
-									</ul>
 								</div>
-								<div class="header__submenu-item">
-									<div class="header__submenu-name">
-										<a href="#">Machine treatment</a>
-									</div>
-									<div class="header__menu-mobile jsTogglerHead">
-										<span>Machine treatment</span>
-										<div class="header__menu-icon">
-											<span> </span>
-											<span></span>
-										</div>
-									</div>
-									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Нежелательные волосы (unwanted hair)</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Гипергидроз, повышенная потливость</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Рубцы, шрамы</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Растяжки, стрии</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Дряблая кожа на бедрах, ягодицах, животе, коленях и руках</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Пигментные пятна, веснушки</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Прыщи, угри</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Выпадение волос</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Старение кожи рук</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Возрастные изменения декольте</a>
-										</li>
-									</ul>
-								</div>
-								<div class="header__submenu-item">
-									<div class="header__submenu-name">
-										<a href="#">Injection treatment</a>
-									</div>
-									<div class="header__menu-mobile jsTogglerHead">
-										<span>Injection treatment</span>
-										<div class="header__menu-icon">
-											<span> </span>
-											<span></span>
-										</div>
-									</div>
-									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Качество кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Упругость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Гладкость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Подтянутое лицо</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Косметология для мужчин</a>
-										</li>
-									</ul>
-								</div>
-								<div class="header__submenu-item">
-									<div class="header__submenu-name">
-										<a href="#">Laser hair removal</a>
-									</div>
-									<div class="header__menu-mobile jsTogglerHead">
-										<span>Laser hair removal</span>
-										<div class="header__menu-icon">
-											<span> </span>
-											<span></span>
-										</div>
-									</div>
-									<ul class="submenu-list jsTogglerBody">
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Качество кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Упругость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Гладкость кожи</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Подтянутое лицо</a>
-										</li>
-										<li class="submenu-list__item">
-											<a class="submenu-list__link" href="#">Косметология для мужчин</a>
-										</li>
-									</ul>
-								</div>
+								{$wrapper}</div>',
+									'tplInnerRow' => '@INLINE <li class="submenu-list__item"><a class="submenu-list__link" href="{$link}">{$menutitle}</a></li>',
+									'tpl' => '@INLINE <div class="header__submenu-name"><a href="{$link}">{$menutitle}</a></div>'
+								])}
+
 							</div>
 						</div>
 					</div>

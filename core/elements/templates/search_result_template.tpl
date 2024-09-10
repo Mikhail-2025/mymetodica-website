@@ -6,23 +6,20 @@
 	<main>
 		<div class="container">
 			<h1>{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
-			<div class="search-result">
-				<div class="search-result__item">
-					<h2 class="main-heading text-left">Result #1</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, optio fugiat incidunt iusto porro laudantium! Distinctio, ipsum voluptatem aliquam commodi nobis eum dolorem facilis explicabo numquam, necessitatibus dolores velit! Animi?</p>
-					<a class="btn" href="#">Details</a>
+			<div class="search-result" id="pdopage">
+				<div class="rows">
+				{$_modx->runSnippet('!pdoPage', [
+					'element' => 'mSearch2',
+					'setMeta' => 0,
+					'limit' => 12,
+					'where' => ['template:NOT in' => [0,16,18,10,5,6,19]]
+					'ajaxMode' => 'button',
+					'tpl' => '@FILE chunks/work/tpl.mSearch2.row_my.tpl',
+					'ajaxTplMore'  => '@INLINE <div class="centered-box"><button class="btn btn-default btn-more more-btn">See more</button></div>'
+				])}
 				</div>
-				<div class="search-result__item">
-					<h2 class="main-heading text-left">Result #2</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, optio fugiat incidunt iusto porro laudantium! Distinctio, ipsum voluptatem aliquam commodi nobis eum dolorem facilis explicabo numquam, necessitatibus dolores velit! Animi?</p>
-					<a class="btn" href="#">Details</a>
-				</div>
-				<div class="search-result__item">
-					<h2 class="main-heading text-left">Result #3</h2>
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid, optio fugiat incidunt iusto porro laudantium! Distinctio, ipsum voluptatem aliquam commodi nobis eum dolorem facilis explicabo numquam, necessitatibus dolores velit! Animi?</p>
-					<a class="btn" href="#">Details</a>
-				</div>
-			</div>
+				{'page.nav' | placeholder}
+			</div>		
 		</div>
 	</main>
 	{include 'file:chunks/main/footer.tpl'}
