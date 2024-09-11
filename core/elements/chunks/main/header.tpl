@@ -104,8 +104,8 @@
 					'tplHere' => '@INLINE <li class="header__menu-item current"><span class="header__menu-link" href="{$link}">{$menutitle}</span></li>',
 					'hereClass' => 'current'
 				])}
-				<li class="header__menu-item has-child">
-					<a class="header__menu-link" href="#">I want</a>
+				<li class="header__menu-item has-child {if $_modx->resource.id == '73'}current{/if}">
+					<a class="header__menu-link" href="{73 | url}">I want</a>
 					<div class="header__menu-mobile jsTogglerHead">
 						<span>I want</span>
 						<div class="header__menu-icon">
