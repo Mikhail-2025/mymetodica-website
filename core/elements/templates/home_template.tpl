@@ -5,184 +5,42 @@
 	{include 'file:chunks/main/header.tpl'}
 	<main>
 		{include 'file:chunks/work/home-slider.tpl'}
+		{set $home_service = json_decode($_modx->resource.id |resource: 'home_service', true)}
+		{if $home_service}
 		<div class="main-services">
 			<div class="container">
 				<div class="main-services__inner">
+					{foreach $home_service as $row}
 					<div class="main-services__item">
 						<div class="main-services__img">
 							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-1-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-1-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-2@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-2@x2.jpg" alt="">
+								<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_service_mobile_img~'', 'options' => '&w=690&h=314&zc=1&f=webp'])}" type="image/webp">
+								<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_service_mobile_img~'', 'options' => '&w=690&h=314&zc=1'])}">
+								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_service_pc_img~'', 'options' => '&w=440&h=389&zc=1&f=webp'])}" type="image/webp">
+								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_service_pc_img~'', 'options' => '&w=440&h=389&zc=1'])}" alt="">
 							</picture>
 						</div>
 						<div class="main-services__content">
 							<span class="grower"></span>
-							<h3 class="small-heading">Разгладить<br> морщины</h3>
+							<h3 class="small-heading">{$row.home_service_name}</h3>
+							{var $service = $row.home_service_ids | split}
+							{if $service}
 							<ul class="main-services__list">
+								{foreach $service as $item}
 								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
+									<a class="main-services__link" href="{$item | url}">{$item | resource: 'pagetitle'}</a>
 								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
+								{/foreach}
 							</ul>
+							{/if}
 						</div>
 					</div>
-					<div class="main-services__item">
-						<div class="main-services__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-2-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-2-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-2@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-2@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="main-services__content">
-							<span class="grower"></span>
-							<h3 class="small-heading">Подтянуть<br> кожу</h3>
-							<ul class="main-services__list">
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="main-services__item">
-						<div class="main-services__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-3-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-3-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-3@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-3@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="main-services__content">
-							<span class="grower"></span>
-							<h3 class="small-heading">Преобразить<br> губы</h3>
-							<ul class="main-services__list">
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="main-services__item">
-						<div class="main-services__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-4-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-4-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-4@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-4@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="main-services__content">
-							<span class="grower"></span>
-							<h3 class="small-heading">Сузить
-								<br> поры
-							</h3>
-							<ul class="main-services__list">
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="main-services__item">
-						<div class="main-services__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-5-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-5-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-5@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-5@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="main-services__content">
-							<span class="grower"></span>
-							<h3 class="small-heading">Осветлить
-								<br> пигментацию
-							</h3>
-							<ul class="main-services__list">
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="main-services__item">
-						<div class="main-services__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/webp/ms-6-mobile@x2.webp" type="image/webp">
-								<source media="(max-width: 768px)" srcset="assets/templates/site/img/ms-6-mobile@x2.jpg">
-								<source srcset="assets/templates/site/img/webp/ms-6@x2.webp" type="image/webp">
-								<img src="assets/templates/site/img/ms-6@x2.jpg" alt="">
-							</picture>
-						</div>
-						<div class="main-services__content">
-							<span class="grower"></span>
-							<h3 class="small-heading">Удалить<br> нежелательные волосы</h3>
-							<ul class="main-services__list">
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Ботокс</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Филлеры</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">Лазерное омоложение</a>
-								</li>
-								<li class="main-services__list-item">
-									<a class="main-services__link" href="#">RF microneedling</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					{/foreach}
+	
 				</div>
 			</div>
 		</div>
+		{/if}
 		<div class="practice">
 			<div class="container">
 				<h2 class="main-heading">Our Practice</h2>

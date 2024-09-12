@@ -35,8 +35,8 @@
 							</div>
 							{/if}
 							<div class="detail-main__buttons">
-								<button class="btn" href="#modal" data-fancybox>Book now</button>
-								<a class="btn dark" href="#">Оставить отзыв </a>
+								<a target="_blank" class="btn" href="https://n317373.alteg.io">Book now</a>
+								<a target="_blank" class="btn dark" href="https://www.google.com/maps/place/Metodica+Med+Spa/@40.57875,-73.975369,17z/data=!4m18!1m9!3m8!1s0x89c2458a53e5dbcd:0x5ce5a1bd58881cd!2s626+Sheepshead+Bay+Rd,+Brooklyn,+NY+11224,+USA!3b1!8m2!3d40.5788673!4d-73.975389!10e3!16s%2Fg%2F11y2yj6bt3!3m7!1s0x89c244490dcef487:0x34c7c85fed3a3124!8m2!3d40.5787502!4d-73.9753691!9m1!1b1!16s%2Fg%2F11rcszzwc7!5m1!1e1?hl=en&entry=ttu&g_ep=EgoyMDI0MDkwOS4wIKXMDSoASAFQAw%3D%3D">Leave feedback</a>
 							</div>
 						</div>
 					</div>
