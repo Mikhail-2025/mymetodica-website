@@ -24,7 +24,7 @@
 			<div class="footer__inner">
 				<div class="footer__left">
 					<a class="footer__logo" href="{$_modx->config['site_url']}">
-						<img src="assets/templates/site/img/svg/footer-logo.svg" alt="">
+						<img src="{1 | resource: 'site_logo_footer'}" alt="">
 					</a>
 					<div class="footer__follow">
 						<p>Follow us</p>
@@ -68,15 +68,8 @@
 					])}
 				</ul>
 				<div class="footer__textblock">
-					<p>Adress:
-						<br> 626 Sheepshead Bay RD, Brooklyn, NY, USA
-					</p>
-					<p>Subway Stations:
-						<br> West 8th Street, NY Aquarium Station (Q Train)
-						<br> Neptune Avenue Station (F Train)
-					</p>
-					<p>сall <a href="tel:+19177179885">+1 917 717 9885</a>
-					</p>
+					{1 | resource: 'site_adress_footer'}
+					<p>сall <a href="tel:{1 | resource: 'site_phone' | preg_replace : '/[^0-9+]/' : ''}">{1 | resource: 'site_phone'}</a></p>
 				</div>
 			</div>
 		</div>
@@ -84,9 +77,9 @@
 			<div class="footer__inner">
 				<span>{'' | date : 'Y'} © METODICA Med Spa</span>
 				<span class="footer__link">
-					<a href="#">Terms and Conditions</a>
-					<a href="#">Accessibility</a>
-					<a href="#">Privacy Policy</a>
+					<a target="_blank" href="{1 | resource: 'site_pdf_termsandconditions'}">Terms and Conditions</a>
+					<a target="_blank" href="{1 | resource: 'site_pdf_accessibility'}">Accessibility</a>
+					<a target="_blank" href="{1 | resource: 'site_pdf_privacypolicy'}">Privacy Policy</a>
 				</span>
 				<span>Сreated by — <a target="_blank" href="https://www.abcwww.ru/">«ABV Site»</a>
 				</span>
