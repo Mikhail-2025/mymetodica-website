@@ -4,8 +4,8 @@
 	{set $discount_add = ($_pls['tv.service_price'] ?: 0) / 100 * $discount}
 {/if}
 <tr class="{$discount}">
-	<td data-cell="{$_pls['tv.service_price'] + $discount_add}$">{$pagetitle}</td>
-	<td class="search-table__price">{$_pls['tv.service_price'] + $discount_add}$</td>
+	<td data-cell="{$_pls['tv.service_price'] | floatval + $discount_add}$">{$pagetitle}</td>
+	<td class="search-table__price">{$_pls['tv.service_price'] | floatval + $discount_add}$</td>
 	<td>
 	    {if $.cookie['getDiscount'] == 'Y'}
 	        <a class="btn" href="{'widget_link' | placeholder}" target="_blank">Sign up</a>

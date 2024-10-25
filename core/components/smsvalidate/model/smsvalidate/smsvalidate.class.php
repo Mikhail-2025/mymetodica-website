@@ -82,7 +82,7 @@ class SmsValidate
         curl_close($ch);
         $res = json_decode($html, true);
         
-        $this->modx->log(1, print_r($res, 1));
+        //$this->modx->log(1, print_r($res, 1));
         
         if($res[$phone]['error'] === '0') {
             return true;
