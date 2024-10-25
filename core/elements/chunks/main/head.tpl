@@ -1,3 +1,4 @@
+{'@FILE snippets/setDiscountConfig.php' | snippet}
 <head>
 	<meta charset="UTF-8">
 	<base href="{$_modx->config.site_url}">

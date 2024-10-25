@@ -13,3 +13,51 @@
 .control-checkbox input[type=checkbox].error~.control__text:before {
     border: 1px solid #f71d21;
 }
+.specialist-card__name a {
+	color: #fff;
+}
+
+.detail-education__content p:has(strong) {
+  margin: 0 0 0px 0 !important;
+}
+.footer__dop_text {
+	margin: 0px 0px 25px 0px;
+}
+.footer__dop_text_mob {
+	display: none;
+}
+
+/*a.ivanov*/
+.error_sms_code.error + .form__item {
+    display: block!important;
+}
+.jGrowl {
+    z-index: 100000;
+}
+.sms_code_wrap.show {
+    display: block!important;
+}
+.error_sms_code {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.error_sms_code .btn {
+    width: 150px;
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 16px;
+    background-color: #a17c7c;
+}
+/*a.ivanov end*/
+
+
+@media screen and (max-width: 768px) {
+	.footer__dop_text {
+		display: none;
+	}
+	.footer__dop_text_mob {
+		display: block;
+	}
+
+}

@@ -1,6 +1,19 @@
 $(document).ready(function() {
 	let form = $('#filter-form');
+	
+	// a.ivanov
+	if(form.hasClass('jsFormNoAjax')) {
+	    setTimeout(function() {
+	        form.find('input[name="group"]:checked').trigger('click');    
+	        if(form.hasClass('no_filtercategory')) {
+	            form.removeClass('jsFormNoAjax');
+	        }
+	    }, 1);
+	}
+	// a.ivanov end
+	
 	$(document).on('click', 'input[name="group"]', function(){
+		$('body input:checkbox').prop('checked', false);
 		form.submit();
 	});
 	$(document).on('click', 'input[name="categories[]"]', function(){
@@ -21,6 +34,46 @@ $(document).ready(function() {
 				$('#step-2').html(data.articles);
 				$('#step-3').html(data.video);
 				$('#step-4').html(data.shorts);
+				if (data.direction) {
+					$('#step-5-filter').html(data.direction);
+				}
+
+				// a.ivanov
+				$('.jsGetDiscountButton').on('click', function() {
+			      var title = $(this).data('discount');
+			      $('#modal_form .jsInputDiscount').val(title);
+			    });
+			    
+			    let form = $('#filter-form');
+			    if(form.hasClass('jsFormNoAjax')) {
+			        var j = 0;			        
+			        var form_category = form.data('category').toString();
+			        if(form_category != '') {
+			        	if (form_category.indexOf(',') > -1) {
+			            	arr_category = form_category.split(',');
+			        	} else {
+			        		arr_category = [form_category];
+			        	}
+			        } else {
+			            arr_category = [];
+			        }
+			        var length = arr_category.length;
+            	    $('#step-5-filter').find('.search-categories__item').each(function() {
+            	        var $this = $(this);
+                        for(var i = 0; i < length; i++) {
+                            if(arr_category[i] == $this.data('category')) {
+                                $this.find('input').prop('checked', true);
+                                j = j + 1;
+                            }
+                        }
+            	    });
+            	    if(j > 0) {
+            	        form.submit();
+            	        form.removeClass('jsFormNoAjax');
+            	    }
+            	}
+			    // a.ivanov end
+				
 
 				new Swiper(".videos__slider", {
 			        spaceBetween: 20,
@@ -88,6 +141,8 @@ $(document).ready(function() {
             },
             beforeSend : function() {
 	            $('.search-main').css('opacity', .5);
+
+
 	        },
         });
 		return false;

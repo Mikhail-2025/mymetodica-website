@@ -1,5 +1,5 @@
 <label class="search-main__item swiper-slide">
-	<input type="radio" name="group" value="{$id}">
+	<input type="radio" name="group" value="{$id}" {if $.get.filtergroup == $id} checked{/if}>
 	<span class="search-main__item-body">
 		<picture>
 			<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.photo_filtergroup_mobile_img'], 'options' => '&w=690&h=290&f=webp&zc=1'])}" type="image/webp">

@@ -5,7 +5,7 @@
 	{include 'file:chunks/main/header.tpl'}
 	<main>
 		<h1>{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
-		<form id="filter-form" method="post">
+		<form id="filter-form" method="post" class="{if $.get.filtergroup}jsFormNoAjax{/if} {if !$.get.filtercategory}no_filtercategory{/if}" data-group="{$.get.filtergroup}" data-category="{$.get.filtercategory}">
 			<div class="search-main">
 				<div class="container">
 					<h2 class="main-heading">Select group</h2>
@@ -30,15 +30,15 @@
 			<div class="search-categories">
 				<div class="container">
 					<h2 class="main-heading">What worries you?</h2>
-					<div class="search-categories__inner">				
-						{$_modx->runSnippet('!pdoResources', [
+					<div id="step-5-filter" class="search-categories__inner{if $.get.filtergroup} no_ajax{/if}">				
+						{*$_modx->runSnippet('!pdoResources', [
 							'parents' => 75,
 							'depth' => 0,
 							'limit' => 0,
 							'tpl' => '@FILE chunks/work/filtercategories_tpl.tpl',
 							'sortby' => 'menuindex',
 							'sortdir' => 'asc'
-						])}
+						])*}
 					</div>
 				</div>
 			</div>
