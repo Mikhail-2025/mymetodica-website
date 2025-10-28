@@ -1,8 +1,8 @@
 <a class="specialist-item" href="{$id | url}">
 	<div class="specialist-item__head">
 		<picture>
-			<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['doctor_img'], 'options' => '&w=335&h=335&f=webp&zc=1'])}" type="image/webp">
-			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['doctor_img'], 'options' => '&w=335&h=335&zc=1'])}" alt="">
+			<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['doctor_img'], 'options' => '&w=335&h=335&f=webp&zc=T'])}" type="image/webp">
+			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['doctor_img'], 'options' => '&w=335&h=335&zc=T'])}" alt="">
 		</picture>
 	</div>
 	<div class="specialist-item__body">

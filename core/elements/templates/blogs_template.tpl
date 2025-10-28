@@ -4,20 +4,7 @@
 <body>
 	{include 'file:chunks/main/header.tpl'}
 	<main>
-		<div class="blog-main">
-			<div class="container">
-				<h1>{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
-				{$_modx->runSnippet('pdoResources', [
-					'parents' => $_modx->resource.id,
-					'depth' => 0,
-					'limit' => 1,
-					'includeTVs' => 'blog_detal_img,blog_doctor_text,blog_doctor_link',
-					'tpl' => '@FILE chunks/work/last_blog_row.tpl',
-					'sortby' => 'publishedon',
-					'sortdir' => 'desc'
-				])}
-			</div>
-		</div>
+		<h1>{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
 		{$_modx->runSnippet('!mFilter2', [
         	'parents' => $_modx->resource.id,
         	'setMeta' => 0,

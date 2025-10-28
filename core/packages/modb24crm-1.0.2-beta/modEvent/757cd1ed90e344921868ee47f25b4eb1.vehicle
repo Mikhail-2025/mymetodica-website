@@ -1,0 +1,16 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'name',
+  'namespace' => 'modb24crm',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '3343a18c2864198951512a4839da6508',
+  'package' => 'modx',
+  'class' => 'modEvent',
+  'signature' => '757cd1ed90e344921868ee47f25b4eb1',
+  'native_key' => 'modB24CRMOnBeforeRequest',
+  'object' => '{"name":"modB24CRMOnBeforeRequest","service":6,"groupname":"modB24CRM"}',
+);

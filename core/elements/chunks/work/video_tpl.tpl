@@ -1,9 +1,8 @@
 <div class="video-card swiper-slide">
 	<a class="video-card__head" href="{$_pls['tv.video_link']}" data-fancybox>
-		<picture>
-	        <source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.video_img'], 'options' => '&w=453&h=257&f=webp&zc=1'])}" type="image/webp">
-	        <img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.video_img'], 'options' => '&w=453&h=257&zc=1'])}" alt="">
-	    </picture>
+		{$_modx->runSnippet('!youtube', [
+			'url' => $_pls['tv.video_link']
+		])}
 		<div class="play-btn">
 			<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<g>
@@ -24,4 +23,9 @@
 	<div class="video-card__body">
 		<b>{$pagetitle}</b>
 	</div>
+	{if $_pls['tv.video_text']}
+	<div class="video-card__body video-card__body_read">
+		<button data-id={$id} class="btn ajaxVideoJS">Read more</button>
+	</div>
+	{/if}
 </div>

@@ -6,12 +6,14 @@
 	<main>
 		<div class="services-main">
 			<div class="services-main__banner">
-				<picture>
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_mobile_img, 'options' => '&w=750&h=582&f=webp&zc=1'])}" type="image/webp">
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_mobile_img, 'options' => '&w=750&h=582&zc=1'])}">
-					<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=1903&h=606&f=webp&zc=1'])}" type="image/webp">
-					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=1903&h=606&zc=1'])}" alt="">
-				</picture>
+				<div class="container">
+					<div class="services-main__banner-inner">
+						<picture>
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=831&h=619&f=webp&zc=1'])}" type="image/webp">
+							<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=831&h=619&zc=1'])}" alt="">
+						</picture>
+					</div>
+				</div>
 			</div>
 			<div class="services-main__content">
 				<div class="container">
@@ -22,8 +24,8 @@
 						</div>
 						<div class="services-main__categories">
 							<a class="services-main__link jsAnchorLink" href="#prices">Prices</a>
-							{if $_modx->resource.services_doctors_ids}<a class="services-main__link jsAnchorLink" href="#specialists">Doctors</a>{/if}
-							{if $_modx->resource.services_blogs_ids}<a class="services-main__link jsAnchorLink" href="#stocks">Stock</a>{/if}
+							{if $_modx->resource.services_doctors_ids}<a class="services-main__link jsAnchorLink" href="#specialists">Staff</a>{/if}
+							{if $_modx->resource.services_blogs_ids}<a class="services-main__link jsAnchorLink" href="#stocks">Articles</a>{/if}
 							<a class="services-main__link jsAnchorLink" href="#reviews">Reviews</a>
 						</div>
 					</div>
@@ -37,6 +39,7 @@
 						'parents' => $_modx->resource.id,
 						'depth' => 0,
 						'limit' => 0,
+						'includeTVs' => 'menu_treatments',
 						'tpl' => '@FILE chunks/work/services_razdel_tpl.tpl',
 						'sortby' => 'menuindex',
 						'sortdir' => 'asc'
@@ -108,7 +111,7 @@
 				</div>
 			</div>
 			<div class="centered-box">
-				<a target="_blank" class="btn" href="https://www.youtube.com/@metodica-medspa">See more</a>
+				<a target="_blank" class="btn" href="{1 | resource : 'soc_youtube'}">See more</a>
 			</div>
 		</div>
 		{/if}
@@ -172,7 +175,7 @@
 							'parents' => $_modx->resource.id,
 							'depth' => 0,
 							'limit' => 0,
-							'includeTVs' => 'service_price',
+							'includeTVs' => 'service_price,service_price_old',
 							'tpl' => '@FILE chunks/work/service_price_tpl.tpl',
 							'sortby' => 'menuindex',
 							'sortdir' => 'asc'
@@ -257,7 +260,7 @@
 		{if $_modx->resource.services_doctors_ids}
 		<div class="specialist no-offset-bottom top-left-radius" id="specialists">
 			<div class="container">
-				<h2 class="main-heading">Doctors</h2>
+				<h2 class="main-heading">Staff</h2>
 			</div>
 			<div class="slider-container">
 				<div class="specialist__slider swiper">

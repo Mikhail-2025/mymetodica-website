@@ -12,7 +12,7 @@
         	'limit' => 3,
         	'tplOuter' => '@FILE chunks/work/review_tplOuter.tpl',
         	'tpl' => '@FILE chunks/work/review_row.tpl',
-        	'sort' => 'resource|menuindex:asc',
+        	'sort' => 'resource|publishedon:desc',
         	'ajaxMode' => 'button',
         	'includeContent' => 1,
         	'includeTVs' => 'review_date,review_link,review_rating,filter_review',

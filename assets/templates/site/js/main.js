@@ -7,7 +7,8 @@ $(document).ready(function () {
         let mask = function (event) {
             let pos = this.selectionStart;
             if (pos < 3) event.preventDefault();
-            let matrix = "+1 ___ ___ ____",
+            //let matrix = "+1 ___ ___ ____",
+            let matrix = "+1 (___) ___-____",
                 i = 0,
                 def = matrix.replace(/\D/g, ""),
                 val = this.value.replace(/\D/g, ""),
@@ -52,9 +53,15 @@ $(document).ready(function () {
         speed: 800,
         effect: "fade",
         autoHeight: true,
+        preloadImages: true,
+        watchSlidesProgress: true,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
         },
     });
     new Swiper(".specialist__slider", {
@@ -256,5 +263,29 @@ $(document).ready(function () {
         $('.jsSearchIcon, .jsHeaderSearch').toggleClass('active')
         $('.jsBurger, .jsMenu').removeClass('active');
     })
+    $(window).on('scroll', function () {
+        if (window.scrollY > 70) {
+            $('.fixed-panel').addClass('active')
+        } else {
+            $('.fixed-panel').removeClass('active')
+        }
+    })
 })
 
+
+$(document).ready(function () {
+    var windowWidth = window.innerWidth;
+    if (windowWidth < 768) {
+           $('.shorts__slider-item').fancybox({
+            maxWidth: 1280,
+            maxHeight: 720,
+            width: '100%',
+            height: '100%',
+            video: {
+                autoplay: true
+            },
+            
+
+        });
+    } 
+});

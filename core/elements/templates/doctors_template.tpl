@@ -7,10 +7,7 @@
 		<div class="specialist-main">
 			<div class="specialist-main__img">
 				<picture>
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.doctors_mobile_img, 'options' => '&w=750&h=652&f=webp&zc=1'])}" type="image/webp">
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.doctors_mobile_img, 'options' => '&w=750&h=652&zc=1'])}">
-					<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.doctors_pc_img, 'options' => '&w=1903&h=624&f=webp&zc=1'])}" type="image/webp">
-					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.doctors_pc_img, 'options' => '&w=1903&h=624&zc=1'])}" alt="">
+					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.doctors_pc_img, 'options' => '&w=898&h=630&zc=1'])}" alt="">
 				</picture>
 			</div>
 			<div class="specialist-main__content jsContentBlock">

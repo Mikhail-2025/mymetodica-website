@@ -15,7 +15,7 @@
 			{1 | resource: 'home_contacts_time'}
 		</div>
 		<div class="contacts__item">
-			<button class="btn" href="#modal" data-fancybox>Book now</button>
+			<a target="_blank" class="btn" href="https://n1239285.alteg.io/">Free Advice</a>
 		</div>
 	</div>
 </div>

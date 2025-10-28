@@ -6,12 +6,14 @@
 	<main>
 		<div class="stock-main">
 			<div class="stock-main__img">
-				<picture>
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_mobile_img, 'options' => '&w=750&h=612&f=webp&zc=1'])}" type="image/webp">
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_mobile_img, 'options' => '&w=750&h=612&zc=1'])}">
-					<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_pc_img, 'options' => '&w=1903&h=520&f=webp&zc=1'])}" type="image/webp">
-					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_pc_img, 'options' => '&w=1903&h=520&zc=1'])}" alt="">
-				</picture>
+				<div class="container">
+					<div class="stock-main__img-inner">
+						<picture>
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_img, 'options' => '&w=730&h=524&f=webp&zc=1'])}" type="image/webp">
+							<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.offer_img, 'options' => '&w=730&h=524&zc=1'])}" alt="">
+						</picture>
+					</div>
+				</div>
 			</div>
 			<div class="stock-main__content">
 				<div class="container">
@@ -60,16 +62,18 @@
 					<div class="stock-info__content">
 						{$_modx->resource.offer_text}
 						<div class="stock-info__buttons">
-							{if $_modx->resource.offer_button_buynow}<a target="_blank" class="btn" href="{$_modx->resource.offer_button_buynow}">Buy Now</a>{/if}
-							{if $_modx->resource.offer_button_freeadvice}<a target="_blank" class="btn dark" href="{$_modx->resource.offer_button_freeadvice}">Free Advice</a>{/if}
+							{* if $_modx->resource.offer_button_buynow}<a target="_blank" class="btn" href="{$_modx->resource.offer_button_buynow}">Buy Now</a>{/if *}
+							<a target="_blank" class="btn dark" href="https://n1239285.alteg.io">Free Advice</a>
 						</div>
 					</div>
+					{*
 					<div class="stock-info__img">
 						<picture>
 							<source srcset="assets/templates/site/img/webp/stock-info@x2.webp" type="image/webp">
 							<img src="assets/templates/site/img/stock-info@x2.png" alt="">
 						</picture>
 					</div>
+					*}
 				</div>
 				{/if}
 			</div>

@@ -4,15 +4,25 @@
 <body>
 	{include 'file:chunks/main/header.tpl'}
 	<main>
+		{if $_modx->resource.blog_another_view == '1'}
 		<div class="blog-main">
 			<div class="container">
-				<h1>Metodica blog</h1>
+				<h1 class="main-heading text-alt-left">{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
+				<div class="blog-main__inner">
+					<img class="blog-main__full_img" src="{$_modx->resource.blog_another_view_img}">
+					<img class="blog-main__full_mobile_img" src="{$_modx->resource.blog_another_view_mobile_img}">
+				</div>
+			</div>
+		</div>
+		{else}
+		<div class="blog-main">
+			<div class="container">
 				<div class="blog-main__inner">
 					<div class="blog-main__content">
-						<h2 class="main-heading text-left">{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h2>
+						<h1 class="main-heading text-left">{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
 						{if $_modx->resource.blog_start_text}
 						<div class="blog-main__text">
-							{$_modx->resource.blog_start_text}
+							{$_modx->resource.blog_start_text} 
 						</div>
 						{/if}
 						{if $_modx->resource.blog_filter}
@@ -33,9 +43,14 @@
 				</div>
 			</div>
 		</div>
+		{/if}
 		<div class="blog-content">
 			<div class="container">
 				<div class="blog-header">
+					{set $soc_instagram = 1 | resource: 'soc_instagram'}
+					{set $soc_facebook = 1 | resource: 'soc_facebook'}
+					{set $soc_youtube = 1 | resource: 'soc_youtube'}
+					{if $_modx->resource.blog_another_view != '1'}
 					<div class="blog-header__inner">
 						<div class="blog-header__main">
 							{var $m_time = $_modx->resource.publishedon}
@@ -45,14 +60,11 @@
 									'm_time' => $m_time
 								])}
 							</span>
-							{if $_modx->resource.blog_doctor_text}<span>Medically Reviewed by {$_modx->resource.blog_doctor_text}</span>{/if}
+							{if $_modx->resource.blog_doctor_text}<span>Aesthetician's Reviewed by {$_modx->resource.blog_doctor_text}</span>{/if}
 						</div>
 						<div class="blog-header__box">
 							<span>Follow</span>
 							<div class="social blog-header__social">
-								{set $soc_instagram = 1 | resource: 'soc_instagram'}
-								{set $soc_facebook = 1 | resource: 'soc_facebook'}
-								{set $soc_youtube = 1 | resource: 'soc_youtube'}
 								{if $soc_instagram}
 								<a class="social__item" href="{$soc_instagram}" target="_blank">
 									<svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,6 +92,7 @@
 							</div>
 						</div>
 					</div>
+					{/if}
 				</div>
 				{if $_modx->resource.blog_one_text || $_modx->resource.blog_one_img}
 				<div class="blog-row">
@@ -140,7 +153,7 @@
 					<div class="follow__content">
 						<h2 class="main-heading">Get a consultation now</h2>
 						<div class="centered-box">
-							<button class="btn" href="#modal" data-fancybox>Call us</button>
+							<a target="_blank" class="btn" href="https://n1239285.alteg.io/">Free Advice</a>
 						</div>
 					</div>
 				</div>
@@ -164,7 +177,7 @@
 				</div>
 				<div class="centered-box">
 					<a class="btn dark" href="{27 | url}">See more</a>
-					<button class="btn compare-wish" href="#modal" data-fancybox>i wish</button>
+					<button class="btn compare-wish" href="#modal" data-fancybox>I wish</button>
 				</div>
 			</div>
 		</div>
@@ -178,8 +191,8 @@
 				<div class="controller__inner">
 					<div class="controller__img">
 						<picture>
-							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&f=webp&zc=1'])}" type="image/webp">
-        					<img src="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&zc=1'])}" alt="">
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&f=webp&zc=T'])}" type="image/webp">
+        					<img src="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&zc=T'])}" alt="">
 						</picture>
 					</div>
 					<div class="controller__content">
@@ -326,6 +339,7 @@
 							<path d="M1.34425 0.997559C5.39236 9.59988 8.96028 13.0377 17.5713 16.7754C8.85991 20.6656 5.26271 24.1709 1.34425 33.0024" stroke="white" stroke-width="2" />
 						</svg>
 					</div>
+					<div class="swiper-pagination"></div>
 				</div>
 				<div class="centered-box">
 					<a class="btn" href="{20 | url}">See more</a>

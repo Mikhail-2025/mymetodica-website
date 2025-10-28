@@ -402,6 +402,7 @@ public function createThumbnail($src, $options) {
 				$this->config['modphpthumb']['far'] = $this->modx->getOption('phpthumb_far', null, 'C');
 				$this->config['modphpthumb']['config_ttf_directory'] = MODX_CORE_PATH . 'model/phpthumb/fonts/';
 				$this->config['modphpthumb']['config_document_root'] = $this->modx->getOption('phpthumb_document_root', null, '');
+				$this->config['modphpthumb']['config_imagemagick_path'] = $this->modx->getOption('phpthumb_imagemagick_path', null, '');
 			}
 			$this->phpThumb = new phpthumb();  // unfortunately we have to create a new object for each image!
 			foreach ($this->config['modphpthumb'] as $param => $value) {  // add MODX system settings

@@ -1,0 +1,31 @@
+<form class="form" action="{'id' | resource | url : ['scheme' => 'full']}" method="post" id="modal_form_discount">
+    <input type="hidden" class="jsInputDiscount" name="get_discount" value="">
+	<div class="form__item">
+    <input type="hidden" name="af_action" value="modal_form_discount">
+		<p>Name* </p>
+		<input class="form__input" type="text" id="af_name" name="name" value="" />
+	</div>
+	<div class="form__item">
+		<p>Phone number*</p>
+		<input class="form__input jsTel" type="tel" id="af_phone" name="phone" value="" />
+		
+	</div>
+    <span class="error_sms_code" style="visibility:hidden; height:0; overflow:hidden;"></span>
+	<div class="form__item sms_code_wrap jsSmsCodeWrap">
+		<p>Enter verification code*</p>
+		<input class="form__input" id="smsCode" type="text" name="sms_code" value="" />
+		<span class="error_sms_code"></span>
+	</div>
+
+	<div class="form__item">
+		<p>Email* </p>
+		<input class="form__input" type="email" id="af_email" name="email" value="" />
+	</div>
+	<button type="submit" class="btn">Get Code</button>
+	[[+fi.success:is=`1`:then=`
+    <div class="alert alert-success">[[+fi.successMessage]]</div>
+    `]]
+    [[+fi.validation_error:is=`1`:then=`
+    <div class="alert alert-danger">[[+fi.validation_error_message]]</div>
+    `]]
+</form>

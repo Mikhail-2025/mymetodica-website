@@ -9,7 +9,7 @@
 		{include 'file:chunks/main/follow.tpl'}
 		<div class="practice">
 			<div class="container">
-				<h2 class="main-heading no-mobile">Our clinic</h2>
+				<h2 class="main-heading no-mobile">Our Med Spa</h2>
 				<div class="practice__inner">
 					<div class="practice__img high-radius-img">
 						<picture>
@@ -18,7 +18,7 @@
 						</picture>
 					</div>
 					<div class="practice__content light">
-						<div class="main-heading practice__response-heading">Our clinic</div>
+						<div class="main-heading practice__response-heading">Our Med Spa</div>
 						{$_modx->resource.content}
 						<div class="practice__btn">
 							<a class="btn" href="{14 | url}">See more</a>

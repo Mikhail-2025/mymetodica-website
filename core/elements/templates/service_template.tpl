@@ -6,30 +6,43 @@
 	<main>
 		<div class="services-main">
 			<div class="services-main__banner">
-				<picture>
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_mobile_img, 'options' => '&w=750&h=582&f=webp&zc=1'])}" type="image/webp">
-					<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_mobile_img, 'options' => '&w=750&h=582&zc=1'])}">
-					<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=1903&h=606&f=webp&zc=1'])}" type="image/webp">
-					<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=1903&h=606&zc=1'])}" alt="">
-				</picture>
+				<div class="container">
+					<div class="services-main__banner-inner">
+						<picture>
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=831&h=619&f=webp&zc=1'])}" type="image/webp">
+							<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.services_pc_img, 'options' => '&w=831&h=619&zc=1'])}" alt="">
+						</picture>
+					</div>
+				</div>
 			</div>
 			<div class="services-main__content">
 				<div class="container">
 					<div class="services-main__inner">
-						<h2 class="main-heading text-left">{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h2>
+						<h1 class="main-heading text-left">{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
 						<div class="services-main__text">
-							{$_modx->resource.content}
+							{$_modx->resource.introtext}
 						</div>
 						<div class="services-main__categories">
-							<a class="services-main__link jsAnchorLink" href="#prices">Prices</a>
-							{if $_modx->resource.services_doctors_ids}<a class="services-main__link jsAnchorLink" href="#specialists">Doctors</a>{/if}
-							{if $_modx->resource.services_blogs_ids}<a class="services-main__link jsAnchorLink" href="#stocks">Stock</a>{/if}
+							{if $_modx->resource.services_price_ids}<a class="services-main__link jsAnchorLink" href="#prices">Prices</a>{/if}
+							{if $_modx->resource.services_doctors_ids}<a class="services-main__link jsAnchorLink" href="#specialists">Staff</a>{/if}
+							{if $_modx->resource.services_blogs_ids}<a class="services-main__link jsAnchorLink" href="#stocks">Articles</a>{/if}
 							<a class="services-main__link jsAnchorLink" href="#reviews">Reviews</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{if $_modx->resource.content}
+		<div class="service_advantages_text">
+			<div class="container">
+				<div class="about-main__inner">
+					<div class="about-main__text">
+						{$_modx->resource.content}
+					</div>
+				</div>
+			</div>
+		</div>
+		{/if}
 		{if $_modx->resource.services_video_ids}
 		<div class="videos">
 			<div class="container">
@@ -94,7 +107,7 @@
 				</div>
 			</div>
 			<div class="centered-box">
-				<a target="_blank" class="btn" href="https://www.youtube.com/@metodica-medspa">See more</a>
+				<a target="_blank" class="btn" href="{1 | resource : 'soc_youtube'}">See more</a>
 			</div>
 		</div>
 		{/if}
@@ -102,11 +115,10 @@
 		{if $services_goodinfo}
 		<div class="faq faq-js">
 			<div class="container">
-				<h2 class="main-heading">Article about</h2>
 				<div class="faq__box">
 					{foreach $services_goodinfo as $row}
 					<div class="faq__item">
-						<div class="faq__item-head jsTogglerHead">
+						<div class="faq__item-head jsTogglerHead {if $row.services_goodinfo_expand == '1'}active{/if}">
 							<h3 class="small-heading faq__item-name">{$row.services_goodinfo_title}</h3>
 							<div class="faq__item-chevron">
 								<svg width="28" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -114,8 +126,8 @@
 								</svg>
 							</div>
 						</div>
-						<div class="faq__item-body jsTogglerBody">
-							<p>A: {$row.services_goodinfo_desc}</p>
+						<div class="faq__item-body jsTogglerBody" {if $row.services_goodinfo_expand == '1'}style="display: block;"{/if}>
+							{$row.services_goodinfo_desc}
 						</div>
 					</div>
 					{/foreach}
@@ -127,17 +139,17 @@
 		{set $blog_doctor_img = $_modx->resource.services_doctor_id | resource: 'doctor_img'}
 		{set $doctor_specialization = $_modx->resource.services_doctor_id | resource: 'doctor_specialization'}
 		{set $doctor_experience = $_modx->resource.services_doctor_id | resource: 'doctor_experience'}
-		<div class="controller">
+		<div class="controller" id="article-reviewer">
 			<div class="container">
 				<div class="controller__inner">
 					<div class="controller__img">
 						<picture>
-							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&f=webp&zc=1'])}" type="image/webp">
-        					<img src="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&zc=1'])}" alt="">
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&f=webp&zc=T'])}" type="image/webp">
+        					<img src="{$_modx->runSnippet('!pThumb', ['input' => $blog_doctor_img, 'options' => '&w=257&h=257&zc=T'])}" alt="">
 						</picture>
 					</div>
 					<div class="controller__content">
-						<p class="controller__head">The article has been checked by a doctor</p>
+						<p class="controller__head">Article reviewed by</p>
 						<div class="controller__info">
 							<h3 class="controller__name">{$_modx->resource.services_doctor_id | resource: 'pagetitle'}</h3>
 							{if $doctor_specialization}<p class="controller__position">{$doctor_specialization}</p>{/if}
@@ -149,24 +161,28 @@
 			</div>
 		</div>
 		{/if}
+		{if $_modx->resource.services_price_ids}
 		<div class="prices bottom-right-radius" id="prices">
 			<div class="container">
 				<h2 class="main-heading">Prices</h2>
 				<div class="search-services__inner">
 					<table class="search-table">
 						{$_modx->runSnippet('!pdoResources', [
-							'parents' => $_modx->resource.parent,
-							'depth' => 0,
+							'parents' => 54,
+							'resources' => $_modx->resource.services_price_ids,
+							'depth' => 2,
 							'limit' => 0,
-							'includeTVs' => 'service_price',
+							'includeTVs' => 'service_price,service_price_old',
 							'tpl' => '@FILE chunks/work/service_price_tpl.tpl',
 							'sortby' => 'menuindex',
 							'sortdir' => 'asc'
 						])}
 					</table>
 				</div>
+				<div class="main-heading-price-text">Service prices may vary slightly. Our representative will provide you with the exact price when scheduling your appointment.</div>
 			</div>
 		</div>
+		{/if}
 		{if $_modx->resource.services_photos_ids}
 		<div class="compare">
 			<div class="container">
@@ -176,7 +192,7 @@
 						'parents' => 27,
 						'resources' => $_modx->resource.services_photos_ids,
 						'depth' => 0,
-						'limit' => 3,
+						'limit' => 0,
 						'includeTVs' => 'photo_before_img,photo_after_img,photo_params,photo_icon',
 						'tpl' => '@FILE chunks/work/blog_photos_tpl.tpl',
 						'sortby' => '',
@@ -190,18 +206,16 @@
 			</div>
 		</div>
 		{/if}
+		{if $_modx->resource.reviews_photos_ids}
 		<div class="reviews no-offset bottom-right-radius" id="reviews">
 			<div class="container">
 				<h2 class="main-heading">Reviews</h2>
-				<div class="reviews__head">
-					{$_modx->runSnippet('!countRating')}
-					<span>[[!+total]] reviews</span>
-				</div>
 				<div class="reviews__content">
 					{$_modx->runSnippet('!pdoResources', [
 						'parents' => 2,
+						'resources' => $_modx->resource.reviews_photos_ids,
 						'depth' => 0,
-						'limit' => 3,
+						'limit' => 0,
 						'setTotal' => 1,
 						'includeContent' => 1,
 						'includeTVs' => 'review_date,review_link,review_rating',
@@ -215,6 +229,7 @@
 				</div>
 			</div>
 		</div>
+		{/if}
 		{set $services_faq = json_decode($_modx->resource.id |resource: 'services_faq', true)}
 		{if $services_faq}
 		<div class="faq">
@@ -243,7 +258,7 @@
 		{if $_modx->resource.services_doctors_ids}
 		<div class="specialist no-offset-bottom top-left-radius" id="specialists">
 			<div class="container">
-				<h2 class="main-heading">Doctors</h2>
+				<h2 class="main-heading">Staff</h2>
 			</div>
 			<div class="slider-container">
 				<div class="specialist__slider swiper">

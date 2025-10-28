@@ -1,4 +1,4 @@
-<a class="services-categories__item" href="{$id | url}">
+<a class="services-categories__item" {if $_pls['tv.menu_treatments'] == '1'}href="{$id | url}"{else}href="#"{/if}" {if $_pls['tv.menu_treatments'] != '1'}onclick="return false;"{/if}>
 	<h3 class="services-categories__name">
 		<span>{$pagetitle}</span>
 	</h3>

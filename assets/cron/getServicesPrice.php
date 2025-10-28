@@ -1,13 +1,12 @@
-<?
+<?php
 define('MODX_API_MODE', true);
-require_once('/home/mymetodi/public_html/index.php');
+require_once('/var/www/mymetodica.com/index.php');
 $modx=new modX();
 $modx->initialize('web');
 
 $company_id = 305687;
 $url = 'https://api.alteg.io/api/v1/services/'.$company_id.'/';
 
-$data = json_encode($data, JSON_UNESCAPED_UNICODE);
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -38,17 +37,13 @@ if (!empty($result['data'])) {
             }
             
             if(count($res)) {
-                /*echo '<pre>';
-                print_r($res);
-                echo '</pre>';*/
-                //$modx->log(1, print_r($res, 1));
-                
                 $tmp_res = $modx->getObject('modResource', $res[0]);
                 if($tmp_res) {
                     $tmp_res->setTVValue('service_price', $value['price_min']);
+                    $tmp_res->setTVValue('service_price_old', $value['price_max']);
+                    $tmp_res->save();  // ВАЖНО: Сохранить изменения!
+                    echo "Updated: " . $tmp_res->get('pagetitle') . " - $" . $value['price_min'] . "/$" . $value['price_max'] . "\n";
                 }
-            } else {
-                $modx->log(1, 'Не найден ресурс на сайте по ID=' . $value['id']);
             }
             
         }

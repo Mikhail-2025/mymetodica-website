@@ -1,8 +1,9 @@
 <div id="mse2_mfilter">
     <form action="{$_modx->resource.id | url}" method="post" id="mse2_filters" class="search-categories">
         <div class="container">
+            <h2 class="main-heading">All Articles just for you</h2>
             <div class="search-categories__inner">
-                {$filters}
+                
                 <button style="display:none" type="reset" class="btn btn-light">Сбросить</button>
             </div>
         </div>

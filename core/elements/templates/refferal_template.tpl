@@ -4,7 +4,7 @@
 <body>
 	{include 'file:chunks/main/header.tpl'}
 	<main>
-		<div class="blog-main">
+		<div class="blog-main refferalmain">
 			<div class="container">
 				<div class="blog-main__inner referals">
 					<div class="blog-main__content">
@@ -13,7 +13,8 @@
 					</div>
 					{if $_modx->resource.refferal_video}
 					<div class="blog-main__img">
-						<video src="{$_modx->resource.refferal_video}" autoplay muted loop></video>
+						<video src="{$_modx->resource.refferal_video}" autoplay muted loop playsinline></video> 
+						
 					</div>
 					{/if}
 				</div>
@@ -25,21 +26,23 @@
 					<div class="stock-info__content">
 						{$_modx->resource.content}
 						<div class="stock-info__buttons">
-							{if $_modx->resource.refferal_buynow}<a target="_blank" class="btn" href="{$_modx->resource.refferal_buynow}">Buy Now</a>{/if}
+							{*if $_modx->resource.refferal_buynow}<a target="_blank" class="btn" href="{$_modx->resource.refferal_buynow}">Buy Now</a>{/if*}
 							{if $_modx->resource.refferal_freeadvice}<a target="_blank" class="btn dark" href="{$_modx->resource.refferal_freeadvice}">Free Advice</a>{/if}
 						</div>
 					</div>
+					{*
 					<div class="stock-info__img">
 						<picture>
 							<source srcset="assets/templates/site/img/webp/stock-info@x2.webp" type="image/webp">
 							<img src="assets/templates/site/img/stock-info@x2.png" alt="">
 						</picture>
 					</div>
+					*}
 				</div>
 			</div>
 		</div>
 		{set $refferal_info = json_decode($_modx->resource.id |resource: 'refferal_info', true)}
-		{if $refferal_info}
+		{* if $refferal_info}
 		<div class="faq bg faq-js">
 			<div class="container">
 				<div class="faq__box">
@@ -64,7 +67,7 @@
 				</div>
 			</div>
 		</div>
-		{/if}
+		{/if *}
 	</main>
 	{include 'file:chunks/main/footer.tpl'}
 </body>

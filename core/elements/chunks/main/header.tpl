@@ -48,7 +48,7 @@
 					</div>
 					<a class="header__tel" href="tel:{1 | resource: 'site_phone' | preg_replace : '/[^0-9+]/' : ''}">{1 | resource: 'site_phone'}</a>
 					<div class="header__top-group">
-						<button class="btn" href="#modal" data-fancybox>Book now</button>
+						<a target="_blank" class="btn" href="https://n1239285.alteg.io/">Free Advice</a>
 						<div class="header__search-icon jsSearchIcon">
 							<svg class="header__search-default" width="31" height="28" viewBox="0 0 31 28" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="12.76" cy="12.8401" r="11.76" stroke="#54565A" stroke-width="2" />
@@ -105,9 +105,9 @@
 					'hereClass' => 'current'
 				])}
 				<li class="header__menu-item has-child {if $_modx->resource.id == '73'}current{/if}">
-					<a class="header__menu-link" href="{73 | url}">I want</a>
+					<a class="header__menu-link" href="{73 | url}">{73 | resource : 'pagetitle' | notags | htmlent}</a>
 					<div class="header__menu-mobile jsTogglerHead">
-						<span>I want</span>
+						<span>{73 | resource : 'pagetitle' | notags | htmlent}</span>
 						<div class="header__menu-icon">
 							<span> </span>
 							<span> </span>
@@ -129,11 +129,11 @@
 									</div>
 									<ul class="submenu-list jsTogglerBody">
 										{$_modx->runSnippet('!pdoResources', [
-											'parents' => 54,
+											'parents' => 75,
 											'depth' => 1,
 											'limit' => 0,
-											'includeTVs' => 'iwant_filtergroup',
-											'where' => '{ "iwant_filtergroup":"70","modResource.template":"21" }'
+											'includeTVs' => 'iwant_filtergroup_new',
+											'where' => '{ "iwant_filtergroup_new":"70" }'
 											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
 											'sortby' => '',
 											'sortdir' => ''
@@ -153,11 +153,11 @@
 									</div>
 									<ul class="submenu-list jsTogglerBody">
 										{$_modx->runSnippet('!pdoResources', [
-											'parents' => 54,
+											'parents' => 75,
 											'depth' => 1,
 											'limit' => 0,
-											'includeTVs' => 'iwant_filtergroup',
-											'where' => '{ "iwant_filtergroup":"71","modResource.template":"21" }'
+											'includeTVs' => 'iwant_filtergroup_new',
+											'where' => '{ "iwant_filtergroup_new":"71" }'
 											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
 											'sortby' => '',
 											'sortdir' => ''
@@ -177,11 +177,11 @@
 									</div>
 									<ul class="submenu-list jsTogglerBody">
 										{$_modx->runSnippet('!pdoResources', [
-											'parents' => 54,
+											'parents' => 75,
 											'depth' => 1,
 											'limit' => 0,
-											'includeTVs' => 'iwant_filtergroup',
-											'where' => '{ "iwant_filtergroup":"72","modResource.template":"21" }'
+											'includeTVs' => 'iwant_filtergroup_new',
+											'where' => '{ "iwant_filtergroup_new":"72" }'
 											'tpl' => '@FILE chunks/work/menu_row_tpl.tpl',
 											'sortby' => '',
 											'sortdir' => ''
@@ -207,17 +207,11 @@
 								{$_modx->runSnippet('!pdoMenu', [
 									'parents' => 54,
 									'level' => 2,
+									'includeTVs' => 'menu_treatments',
 									'tplOuter' => '@INLINE {$wrapper}',
 									'tplInner' => '@INLINE <ul class="submenu-list jsTogglerBody">{$wrapper}</ul>',
-									'tplParentRow' => '@INLINE <div class="header__submenu-item"><div class="header__submenu-name"><a href="{$link}">{$menutitle}</a></div><div class="header__menu-mobile jsTogglerHead">
-									<span>{$menutitle}</span>
-									<div class="header__menu-icon">
-										<span></span>
-										<span></span>
-									</div>
-								</div>
-								{$wrapper}</div>',
-									'tplInnerRow' => '@INLINE <li class="submenu-list__item"><a class="submenu-list__link" href="{$link}">{$menutitle}</a></li>',
+									'tplParentRow' => '@FILE chunks/menu/treatments_tplParentRow_tpl.tpl',
+									'tplInnerRow' => '@FILE chunks/menu/treatments_tplInnerRow_tpl.tpl',
 									'tpl' => '@INLINE <div class="header__submenu-name"><a href="{$link}">{$menutitle}</a></div>'
 								])}
 
@@ -264,7 +258,7 @@
 				</div>
 				<div class="header__bottom-row">
 					<a class="header__tel" href="tel:{1 | resource: 'site_phone' | preg_replace : '/[^0-9+]/' : ''}">{1 | resource: 'site_phone'}</a>
-					<button class="btn" href="#modal" data-fancybox>Book now</button>
+					<a target="_blank" class="btn" href="https://n1239285.alteg.io/">Free Advice</a>
 				</div>
 			</div>
 		</div>

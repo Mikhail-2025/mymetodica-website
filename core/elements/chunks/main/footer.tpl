@@ -1,3 +1,24 @@
+{if $.cookie['accept'] != 'accept'}
+<div class="cky-consent-container cky-box-bottom-left" tabindex="0">
+   <div class="cky-consent-bar" data-cky-tag="notice" style="background-color:#FFFFFF;border-color:#f4f4f4">
+      <div class="cky-notice">
+         <p class="cky-title" role="heading" aria-level="1" data-cky-tag="title" style="color:#212121">We value your privacy</p>
+         <div class="cky-notice-group">
+            <div class="cky-notice-des" data-cky-tag="description" style="color:#212121">
+               <p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            </div>
+            <div class="cky-notice-btn-wrapper" data-cky-tag="notice-buttons"> 
+            <button class="cky-btn cky-btn-reject" aria-label="Reject All" data-cky-tag="reject-button" style="color:#DB836D;background-color:transparent;border-color:#DB836D">Reject All</button>
+            <button class="cky-btn cky-btn-accept" aria-label="Accept All" data-cky-tag="accept-button" style="color:#FFFFFF;background-color:#DB836D;border-color:#DB836D">Accept All</button>  
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{/if}
+
+
+
 <div style="display:none;" id="modal" class="modal">
 	{set $form_mail = 1 | resource: 'form_mail'}
 	{set $emailsender = $_modx->config.emailsender}
@@ -5,15 +26,37 @@
 		'snippet' => 'FormIt',
 		'form' => 'modal_form',
 		'preHooks' => 'chkbot',
-		'hooks' => 'FormItSaveForm,email',
+		'hooks' => 'FormItSaveForm,email,modB24CRM',
+		'modB24CRMHook' => 'MainLeed',
 		'formName' =>'Book now',
 		'formFields' => 'name,phone,email',
-		'fieldNames' => 'name==Имя отправителя,phone==Телефон отправителя,email==Email'
+		'fieldNames' => 'name==Имя отправителя,phone==Телефон отправителя,email==Email',
 		'emailTpl' => 'modal_report_tpl',
 		'emailSubject' => 'Сообщение с сайта mymetodica.com',
 		'emailFrom' => $emailsender,
 		'emailTo' => $form_mail,
-		'validate'=>'name:required,email:email:required,phone:required',
+		'validate'=>'name:required,email:email:required,phone:required,politikmodal:required',
+		'validationErrorMessage'=>'The form contains errors!',
+		'successMessage' => 'Message sent successfully'
+	])}
+</div>
+
+<div style="display:none;" id="modal_discount" class="modal">
+	<h2 class="main-heading">Get access to prices</h2>
+	{$_modx->runSnippet('!AjaxForm', [
+		'snippet' => 'FormIt',
+		'form' => '@FILE chunks/validators/modal_form_discount.tpl',
+		'preHooks' => 'chkbot',
+		'hooks' => 'smsValidate,FormItSaveForm,email',
+		'formName' =>'Get Discount',
+		'formFields' => 'name,phone,email,sms_code',
+		'fieldNames' => 'name==Имя отправителя,phone==Телефон отправителя,email==Email,Код СМС==sms_code',
+		'emailTpl' => 'modal_report_discount_tpl',
+		'emailSubject' => 'Сообщение с сайта mymetodica.com',
+		'emailFrom' => 'emailsender' | option,
+		'emailTo' => 1 | resource: 'form_mail',
+		'customValidators' => 'smsValidate',
+		'validate'=>'name:required,email:email:required,phone:required,sms_code:smsValidate',
 		'validationErrorMessage'=>'The form contains errors!',
 		'successMessage' => 'Message sent successfully'
 	])}
@@ -59,14 +102,21 @@
 						</div>
 					</div>
 				</div>
+				
+				
 				<ul class="footer__menu text-transform">
+				    {* 2025-05-31: Исключаем Sitemap (ID 345) из футера *}
 					{$_modx->runSnippet('!pdoMenu', [
 						'parents' => 0,
 						'level' => 1,
+						'resources' => '-345', 
 						'tplOuter' => '@INLINE {$wrapper}',
 						'tpl' => '@INLINE <li class="footer__menu-item"><a class="footer__menu-link" href="{$link}">{$menutitle}</a></li>',
 					])}
 				</ul>
+				
+				
+				
 				<div class="footer__textblock">
 					{1 | resource: 'site_adress_footer'}
 					<p>сall <a href="tel:{1 | resource: 'site_phone' | preg_replace : '/[^0-9+]/' : ''}">{1 | resource: 'site_phone'}</a></p>
@@ -81,15 +131,45 @@
 					<a target="_blank" href="{1 | resource: 'site_pdf_accessibility'}">Accessibility</a>
 					<a target="_blank" href="{1 | resource: 'site_pdf_privacypolicy'}">Privacy Policy</a>
 				</span>
-				<span>Сreated by — <a target="_blank" href="https://www.abcwww.ru/">«ABV Site»</a>
-				</span>
 			</div>
 		</div>
 	</div>
 </footer>
+
+{$_modx->runSnippet('!mobileAppleBlock')}
 <script src="assets/templates/site/js/jquery-3.6.1.js"></script>
 <script src="assets/templates/site/js/fancybox.js"></script>
 <script src="assets/templates/site/js/swiper.js"></script>
-<script src="assets/templates/site/js/twenty-twenty.js"> </script>
-<script src="assets/templates/site/js/main.js"></script>
-<script src="assets/templates/site/js/add-scripts.js"></script>
+<script src="assets/templates/site/js/twenty-twenty.js"></script>
+<script src="assets/templates/site/js/jquery.cookie.js"></script>
+<script src="assets/templates/site/js/main.js?v18"></script>
+<script src="assets/templates/site/js/add-scripts.js?v20"></script>
+
+
+
+
+
+
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a) { m[i]=m[i]||function() { (m[i].a=m[i].a||[]).push(arguments) } ;
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++)  { if (document.scripts[j].src === r)  {  return;  }  } 
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a) } )
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(97743105, "init",  { 
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+    } );
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/97743105" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Google Tag Manager (noscript) --> 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6G3Q3F7" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<!-- End Google Tag Manager (noscript) -->
+
+

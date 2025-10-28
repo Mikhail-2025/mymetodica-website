@@ -13,9 +13,9 @@
 					</div>
 					<div class="about-main__img">
 						<picture>
-							<source srcset="assets/templates/site/img/webp/am@x2.webp" type="image/webp">
-							<img src="assets/templates/site/img/am@x2.png" alt="">
-						</picture>
+							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.about_start_service, 'options' => '&w=607&h=309&zc=1&f=webp'])}" type="image/webp">
+							<img src="{$_modx->runSnippet('!pThumb', ['input' => $_modx->resource.about_start_service, 'options' => '&w=607&h=309&zc=1'])}" alt="">
+					</picture>
 					</div>
 				</div>
 			</div>
@@ -28,11 +28,9 @@
 					{foreach $about_service as $row}
 					<a class="services-card" href="{$row.about_service_link | url}">
 						<div class="services-card__img">
-							<picture>
-								<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_mobile~'', 'options' => '&w=690&h=314&zc=1&f=webp'])}" type="image/webp">
-								<source media="(max-width: 768px)" srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_mobile~'', 'options' => '&w=690&h=314&zc=1'])}">
-								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_pc~'', 'options' => '&w=670&h=730&zc=1&f=webp'])}" type="image/webp">
-								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_pc~'', 'options' => '&w=670&h=730&zc=1'])}" alt="">
+							<picture>								
+								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_pc~'', 'options' => '&w=640&h=580&zc=1&f=webp'])}" type="image/webp">
+								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_service_img_pc~'', 'options' => '&w=640&h=580&zc=1'])}" alt="">
 							</picture>
 						</div>
 						<h3 class="small-heading services-card__name">{$row.about_service_name}</h3>
@@ -43,6 +41,15 @@
 		</div>
 		{/if}
 		{$_modx->resource.id | resource: 'about_advantages'}
+		<div class="about_advantages_text">
+			<div class="container">
+				<div class="about-main__inner">
+					<div class="about-main__text">
+						{$_modx->resource.about_advantages_text}
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="follow pink">
 			<div class="container">
 				<div class="follow__inner">
@@ -50,8 +57,8 @@
 						<img src="assets/templates/site/img/svg/follow-white.svg" alt="">
 					</div>
 					<div class="follow__content">
-						<h2 class="main-heading text-left">We are waiting for you in our clinic!</h2>
-						<button class="btn" href="#modal" data-fancybox>Book now</button>
+						<h2 class="main-heading text-left">We are waiting for you in our Med Spa</h2>
+						<a href="https://n1239285.alteg.io/" target="_blank" class="btn">Book now</a>
 					</div>
 				</div>
 			</div>
@@ -64,12 +71,14 @@
 				<div class="about-info__item">
 					<h2 class="main-heading">{$row.about_info_title}</h2>
 					<div class="about-info__inner">
+						{if $row.about_info_img}
 						<div class="about-info__img high-radius-img">
 							<picture>
 								<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_info_img~'', 'options' => '&f=webp'])}" type="image/webp">
 								<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.about_info_img~'', 'options' => '&f=png'])}" alt="">
 							</picture>
 						</div>
+						{/if}
 						<div class="about-info__text">
 							{$row.about_info_desc}
 						</div>
@@ -83,7 +92,7 @@
 		{if $about_gallery}
 		<div class="clinic">
 			<div class="container">
-				<h2 class="main-heading">Our clinic</h2>
+				<h2 class="main-heading">Our Med Spa</h2>
 			</div>
 			<div class="slider-container">
 				<div class="clinic__slider swiper">
@@ -176,7 +185,7 @@
 				</div>
 			</div>
 			<div class="centered-box">
-				<a target="_blank" class="btn" href="https://www.youtube.com/@metodica-medspa">See more</a>
+				<a target="_blank" class="btn" href="{1 | resource : 'soc_youtube'}">See more</a>
 			</div>
 		</div>
 		{/if}

@@ -52,8 +52,9 @@ class SmsValidate
         //отправка СМС в сервис
         
         // создаем сигнатуру
+        $timestamp = time();  // Фиксируем timestamp для подписи и запроса
         $params = array(
-            'timestamp' => time(),
+            'timestamp' => $timestamp,
             'login'     => $this->config['sms_login'],
             'phone'     => $phone,
             'sender'    => $this->config['sms_sender'],
@@ -70,7 +71,7 @@ class SmsValidate
         	'phone' => $phone,
         	'text' => $code,
         	'sender' => $this->config['sms_sender'],
-        	'timestamp' => time(),
+        	'timestamp' => $timestamp,
         );
         
         $url = 'https://dashboard.intistele.com/external/get/' . $method . '.php?';
@@ -82,12 +83,25 @@ class SmsValidate
         curl_close($ch);
         $res = json_decode($html, true);
         
-        //$this->modx->log(1, print_r($res, 1));
+        $this->modx->log(1, '[SMS API] Response: ' . print_r($res, true));
         
-        if($res[$phone]['error'] === '0') {
-            return true;
+        // Проверка формата ответа
+        if (isset($res['error']) && $res['error'] != 0) {
+            // Общая ошибка API (error 31 и т.д.)
+            $this->modx->log(1, '[SMS-validate] API error: ' . $res['error']);
+            return false;
         }
-        return false;
+        
+        if (isset($res[$phone]) && $res[$phone]['error'] == 0) {
+            // Успешная отправка
+            $this->modx->log(1, '[SMS-validate] SMS sent successfully to ' . $phone);
+            return true;
+        } else {
+            // Ошибка отправки на конкретный номер
+            $this->modx->log(1, '[SMS-validate] error send to provider for phone: ' . $phone);
+            $this->modx->log(1, print_r($res, 1));
+            return false;
+        }
     }
     
     // экранирование входящего массива, оставляем только нужные поля
@@ -101,12 +115,21 @@ class SmsValidate
         }
         return $output;
     }
-
     public function runProcess($request, $value, $limit = 30)
     {
         $success = false;
         $message = '';
         $request = $this->arraySanitise($request);
+        
+        // Защита от дубликатов: если форма уже была валидирована недавно (5 минут) - сразу возвращаем success
+        if(isset($_SESSION['sms_validated_at']) && (time() - $_SESSION['sms_validated_at']) < 300) {
+            $this->modx->log(1, '[SMS-validate] Form already validated recently. Skipping duplicate.');
+            return [
+                'success' => true,
+                'message' => '',
+            ];
+        }
+        
         if($request['phone'] && $request['name'] && $request['email']) {
             if(!isset($_SESSION['sms_code']) || $request['repeat_sms'] == 1) {
                 $_SESSION['sms_code'] = $this->generateCode();
@@ -138,9 +161,12 @@ class SmsValidate
                     $message = $this->modx->lexicon('sms_validate_send_incorrect_with_repeat');
                 }
             } else {
+                // УСПЕШНАЯ ВАЛИДАЦИЯ - сохраняем timestamp для защиты от дубликатов (5 минут)
+                $_SESSION['sms_validated_at'] = time();
                 unset($_SESSION['sms_code']);
                 unset($_SESSION['exec_time']);
                 $success = true;
+                $this->modx->log(1, '[SMS-validate] Success! Code validated. Protection active for 5 minutes.');
             }
             $output = [
                 'success' => $success,

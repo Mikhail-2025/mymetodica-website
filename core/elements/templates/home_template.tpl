@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {include 'file:chunks/main/head.tpl'}
-<body>
+<body class="main-page"> 
 	{include 'file:chunks/main/header.tpl'}
 	<main>
 		{include 'file:chunks/work/home-slider.tpl'}
@@ -65,7 +65,7 @@
 		{if $_modx->resource.home_photos_ids}
 		<div class="compare">
 			<div class="container">
-				<h2 class="main-heading">Before & after</h2>
+				<h2 class="main-heading">Before & After</h2>
 				<div class="compare__inner">
 					{$_modx->runSnippet('!pdoResources', [
 						'parents' => 27,
@@ -80,14 +80,14 @@
 				</div>
 				<div class="centered-box">
 					<a class="btn dark" href="{27 | url}">See more</a>
-					<button class="btn compare-wish" href="#modal" data-fancybox>i wish</button>
+					<a target="_blank" class="btn" href="https://n1239285.alteg.io/">I wish</a>
 				</div>
 			</div>
 		</div>
 		{/if}
 		<div class="specialist top-left-radius">
 			<div class="container">
-				<h2 class="main-heading">Doctors</h2>
+				<h2 class="main-heading">Staff</h2>
 			</div>
 			<div class="slider-container">
 				<div class="specialist__slider swiper">
@@ -180,8 +180,8 @@
 							'parents' => 15,
 							'resources' => $_modx->resource.home_video_ids,
 							'depth' => 0,
-							'limit' => 20,
-							'includeTVs' => 'video_link,video_img',
+							'limit' => 0,
+							'includeTVs' => 'video_link,video_img,video_text',
 							'tpl' => '@FILE chunks/work/video_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''
@@ -205,14 +205,14 @@
 		{if $_modx->resource.home_videoshorts_ids}
 		<div class="shorts">
 			<div class="slider-container">
-				<div class="shorts__slider swiper">
+				<div class="shorts__slider swiper"> 
 					<div class="swiper-wrapper">
 						{$_modx->runSnippet('!pdoResources', [
 							'parents' => 16,
 							'resources' => $_modx->resource.home_videoshorts_ids,
 							'depth' => 0,
-							'limit' => 20,
-							'includeTVs' => 'videoshorts_link,videoshorts_img',
+							'limit' => 0,
+							'includeTVs' => 'videoshorts_link,videoshorts_img,video_text',
 							'tpl' => '@FILE chunks/work/videoshorts_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''
@@ -232,7 +232,7 @@
 				</div>
 			</div>
 			<div class="centered-box">
-				<a target="_blank" class="btn" href="https://www.youtube.com/@metodica-medspa">See more</a>
+				<a target="_blank" class="btn" href="{1 | resource : 'soc_youtube'}">See more</a>
 			</div>
 		</div>
 		{/if}
