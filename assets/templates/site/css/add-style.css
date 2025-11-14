@@ -293,6 +293,47 @@
   position: relative;
 }
 
+/*TT33712 a.ivanov*/
+.ai_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 39px;
+}
+
+.ai_btn  span {
+    margin-right: 20px;
+}
+
+.ai_button_wrap--inner {
+    margin-top: 20px;
+}
+
+.ai_pre_wrap .about-advantages {
+    margin-bottom: 20px;
+}
+
+.ai_wrap {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.ai_wrap .ai_button_wrap--inner.last {
+    margin-top: 0;
+}
+
+.ai_wrap .ai_button_wrap {
+    justify-content: center;
+}
+.ai_wrap--service .ai_btn {
+    padding: 10px 39px;
+}
+
+.stock-info__buttons {
+    margin-top: 20px;
+}
+/*TT33712 a.ivanov end*/
+
 @media screen and (max-width: 1340px) {
     .title-blog {
        font-size: 70px; 
@@ -417,7 +458,41 @@
     .footer__dop_text_mob {
         display: block;
     }
-
+     /* TT33712 a.ivanov */
+    .ai_button_wrap {
+        flex-direction: row-reverse;
+    }
+    
+    .ai_button_wrap--inner.last {
+        margin-top: -37px;
+    }
+    
+    .ai_btn {
+        padding: 10px 14px;
+    }
+    
+    .ai_btn span {
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    
+    .ai_btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ai_wrap--service .ai_button_wrap {
+        flex-direction: row;
+    }
+    
+    .ai_wrap--offer .ai_button_wrap {
+        justify-content: center;
+    }
+    
+    .ai_wrap--service .ai_button_wrap--inner.last {
+        margin-top: 20px;
+    }
+    /* TT33712 a.ivanov end */
 }
 
 @media screen and (max-width: 500px) {
@@ -433,7 +508,7 @@
 }
 /* ========== Scroll offset for #prices anchor ========== */
 #prices {
-    scroll-margin-top: 40vh; /* 40% from top of screen */
+    scroll-margin-top: 50vh; /* 50% from top of screen */
 }
 /* ========== End scroll offset ========== */
 
@@ -451,3 +526,14 @@
     scroll-margin-top: 15vh; /* 15% from top of screen */
 }
 /* ========== End scroll offset ========== */
+
+/* Fix для якоря #videos на мобильных - учитываем высоту липкого header */
+#videos {
+    scroll-margin-top: 150px; /* Компенсация sticky header */
+}
+
+@media (max-width: 768px) {
+    #videos {
+        scroll-margin-top: 150px; /* На мобильных header ~74px */
+    }
+}

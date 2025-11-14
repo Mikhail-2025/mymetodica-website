@@ -109,7 +109,7 @@
 					{$_modx->runSnippet('!pdoMenu', [
 						'parents' => 0,
 						'level' => 1,
-						'resources' => '-345', 
+						'resources' => '-345,-398', 
 						'tplOuter' => '@INLINE {$wrapper}',
 						'tpl' => '@INLINE <li class="footer__menu-item"><a class="footer__menu-link" href="{$link}">{$menutitle}</a></li>',
 					])}
@@ -140,7 +140,7 @@
 <script src="assets/templates/site/js/jquery-3.6.1.js"></script>
 <script src="assets/templates/site/js/fancybox.js"></script>
 <script src="assets/templates/site/js/swiper.js"></script>
-<script src="assets/templates/site/js/twenty-twenty.js"></script>
+<script src="assets/templates/site/js/twenty-twenty.js?v1"></script>
 <script src="assets/templates/site/js/jquery.cookie.js"></script>
 <script src="assets/templates/site/js/main.js?v18"></script>
 <script src="assets/templates/site/js/add-scripts.js?v20"></script>

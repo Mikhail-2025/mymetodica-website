@@ -7,9 +7,13 @@
 			</svg>
 		</div>
 		<div class="shorts__slider-img">
-			{$_modx->runSnippet('!youtube', [
-				'url' => $_pls['tv.videoshorts_link']
-			])}
+			{var $parts1 = $_pls['tv.videoshorts_link']|split:'/'}
+			{var $parts2 = $parts1.4|split:'?'}
+			{var $videoId = $parts2.0}
+			<picture>
+				<source srcset="https://i.ytimg.com/vi_webp/{$videoId}/hqdefault.webp" type="image/webp">
+				<img src="https://img.youtube.com/vi/{$videoId}/hqdefault.jpg" alt="{$pagetitle}" loading="lazy" decoding="async">
+			</picture>
 		</div>
 		<div class="shorts__slider-name">{$pagetitle}</div>
 	</a>
@@ -18,4 +22,4 @@
 		<button data-id={$id} class="btn ajaxVideoShortsJS">Read more</button>
 	</div>
 	{/if}
-</div>	
+</div>

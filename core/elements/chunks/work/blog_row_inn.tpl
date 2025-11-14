@@ -3,7 +3,7 @@
 		<div class="articles__item-img">
 			<picture>
 				<source srcset="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.blog_img'], 'options' => '&w=662&h=450&f=webp&zc=1'])}" type="image/webp">
-				<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.blog_img'], 'options' => '&w=662&h=450&zc=1'])}" alt="">
+				<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.blog_img'], 'options' => '&w=662&h=450&zc=1'])}" width="662" height="450" alt="">
 			</picture>
 		</div>
 		<div class="articles__item-body">

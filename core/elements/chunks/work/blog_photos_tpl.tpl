@@ -1,8 +1,8 @@
 <div class="compare__item">
 	<div class="compare__item-img">
 		<div class="jsTwenty">
-			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.photo_before_img'], 'options' => '&w=440&h=400&zc=1'])}" alt="">
-			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.photo_after_img'], 'options' => '&w=440&h=400&zc=1'])}" alt="">
+			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.photo_before_img'], 'options' => '&w=440&h=400&zc=1'])}" width="440" height="400" alt="">
+			<img src="{$_modx->runSnippet('!pThumb', ['input' => $_pls['tv.photo_after_img'], 'options' => '&w=440&h=400&zc=1'])}" width="440" height="400" alt="">
 		</div>
 	</div>
 	<div class="compare__item-content">

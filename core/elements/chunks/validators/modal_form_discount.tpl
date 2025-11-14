@@ -19,7 +19,7 @@
         <div class="form__item">
             <label style="display:flex; align-items:center; font-size:14px;">
                 <input type="checkbox" name="politikmodal" value="1" style="margin-right:10px;" />
-                <span>I agree to the <a href="/privacy-policy" target="_blank" style="color:#ea6852;">Privacy Policy</a>*</span>
+                <span>I agree to the <a href="{1 | resource: 'site_pdf_privacypolicy'}" target="_blank" style="color:#ea6852;">Privacy Policy</a>*</span>
             </label>
         </div>
         <button type="submit" class="btn" id="get_code_btn">Get Code</button>

@@ -1,326 +1,294 @@
-$(document).ready(function () {
-  $('.blog-content .faq__item .faq__item-body.jsTogglerBody').eq(0).show();
-  //$('.faq-js .faq__box .faq__item-body.jsTogglerBody').eq(0).show();
+(function (win, $) {
+	if (!$) {
+		return;
+	}
 
-  // a.ivanov
-/*  $('#smsCode').on('input, keyup', function() {
-      console.log('input');
-      if($(this).val()) {
-          $(this).closest('.form__item').show();
-      }
-  });*/
-  // a.ivanov end
+	var resendTimerInterval = null;
+	var reviewHandlerBound = false;
+	var cookieHandlersBound = false;
 
-});
-$(document).on('af_complete', function(event, response) {
-    var form = response.form;
-    if (form.attr('id') == 'modal_form') {
-        if (response.success){
-            console.log('[DISCOUNT DEBUG] SUCCESS! Starting discount flow...');
-        		$.fancybox.close();
-        		$.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
-        }
-    }
+	function onReady(callback) {
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', callback, { once: true });
+		} else {
+			callback();
+		}
+	}
 
-    // a.ivanov
-    if (form.attr('id') == 'modal_form_discount') {
-        console.log('[FORM DEBUG] Submit. serializeArray:', form.serializeArray());
-        console.log('[DISCOUNT DEBUG] Form submitted. Response:', response);
+	function runIdle(callback, timeout) {
+		if ('requestIdleCallback' in win) {
+			requestIdleCallback(function () { callback(); }, { timeout: timeout || 1000 });
+		} else {
+			setTimeout(callback, timeout || 0);
+		}
+	}
 
-        if (response.success){
-            console.log('[DISCOUNT DEBUG] SUCCESS! Code verified. Starting discount flow...');
-            $.fancybox.close();
-            $.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
+	function initFaqPreview() {
+		var $faqItems = $('.blog-content .faq__item .faq__item-body.jsTogglerBody');
+		if ($faqItems.length) {
+			$faqItems.eq(0).show();
+		}
+	}
 
-            $.ajax({
-                type: 'POST',
-                url: '/ajax-discount.html',
-                dataType: 'json',
-                cache: false,
-                data: {
-                    action: 'getDiscount'
-                },
-                success: function(data) {
-                    var group = $('#filter-form input[name=group]:checked').val();
-                    var category = '';
-                    $('#step-5-filter input[type=checkbox]:checked').each(function() {
-                        if(category == '') {
-                            category = $(this).val();
-                        } else {
-                            category = category + ',' + $(this).val();
-                        }
-                    });
+	function bindMoreReviews() {
+		if (reviewHandlerBound) {
+			return;
+		}
+		reviewHandlerBound = true;
+		$(document).on('click', '.jsMorereview', function (event) {
+			event.preventDefault();
+			var $button = $(this);
+			var masterId = $button.attr('data-master');
+			var currentCount = parseInt($button.attr('data-count'), 10) || 0;
+			$.ajax({
+				type: 'POST',
+				url: '/ajax-more.html',
+				dataType: 'json',
+				cache: false,
+				data: { starmore: currentCount, master_id: masterId },
+				beforeSend: function () {
+					$('.reviews__content').css('opacity', 0.5);
+				},
+				success: function (data) {
+					$('.reviews__content').css('opacity', 1);
+					if (!data || !data.service) {
+						return;
+					}
+					var nextCount = currentCount + 3;
+					$button.attr('data-count', nextCount);
+					$('.reviews__content').append(data.service);
+					if (data.allcount && nextCount >= data.allcount) {
+						$button.remove();
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					alert(textStatus + ' ' + errorThrown);
+				}
+			});
+		});
+	}
 
-                    let url = '';
-                    if(group !== 'undefined' || group !== '') {
-                        url = form.attr('action') + '?filtergroup=' + group;
-                    }
-                    if(category !== 'undefined' || category !== '') {
-                        url = url + '&filtercategory=' + category;
-                    }
-                    // Determine anchor based on page URL
-                    // VARIANT 2: Use #step-1 for to-concern, #prices for other pages
-                    var anchor = (url.indexOf('to-concern') !== -1) ? '#step-1' : '#prices';
-                    document.location.href = url + anchor;
-                }
-                ,error: function(jqXHR, textStatus, errorThrown) {
-                    alert(textStatus + ' ' + errorThrown);
-                },
-                beforeSend : function() {
-                },
-            });
+	function bindCookieButtons() {
+		if (cookieHandlersBound) {
+			return;
+		}
+		cookieHandlersBound = true;
+		$(document).on('click', '.cky-btn-accept, .cky-btn-reject', function () {
+			$('.cky-box-bottom-left').remove();
+			if ($.cookie) {
+				$.cookie('accept', 'accept', { expires: 7 });
+			}
+		});
+	}
 
-        } else {
-            // Check if SMS-related message exists
-            if(response.data.sms_code !== undefined) {
-                var smsMessage = response.data.sms_code;
-                console.log('[DISCOUNT DEBUG] SMS message received:', smsMessage);
+	function collapseSpecialistLists() {
+		runIdle(function () {
+			$('.specialist-item').each(function () {
+				var $item = $(this);
+				var $rows = $item.find('.specialist-item__body ul li');
+				var maxVisible = 4;
+				if ($rows.length > maxVisible) {
+					$rows.slice(maxVisible).hide();
+					var url = $item.attr('href');
+					$item.find('.specialist-item__body ul').append('<a href="' + url + '" class="read">see more</a>');
+				}
+			});
+		}, 250);
+	}
 
-                // Check if this is a "SMS sent successfully" message (not an error about incorrect code)
-                // Success message: "Check your phone for a verification code"
-                // Error message: "The entered code is incorrect"
-                if(smsMessage.indexOf('Check your phone') !== -1 ||
-                   (smsMessage.indexOf('verification code') !== -1 && smsMessage.indexOf('incorrect') === -1)) {
+	function startResendTimer() {
+		if (resendTimerInterval) {
+			clearInterval(resendTimerInterval);
+			resendTimerInterval = null;
+		}
+		var seconds = 60;
+		$('#timer_countdown').text(seconds);
+		$('#resend_timer').show();
+		$('#resend_link').hide();
+		resendTimerInterval = setInterval(function () {
+			seconds -= 1;
+			$('#timer_countdown').text(seconds);
+			if (seconds <= 0) {
+				clearInterval(resendTimerInterval);
+				resendTimerInterval = null;
+				$('#resend_timer').hide();
+				$('#resend_link').show();
+			}
+		}, 1000);
+	}
 
-                    console.log('[DISCOUNT DEBUG] SMS sent successfully. Switching to Panel 2...');
+	function handleAjaxComplete() {
+		$(document).on('af_complete', function (event, response) {
+			if (!response || !response.form) {
+				return;
+			}
+			var form = response.form;
+			var formId = form.attr('id');
+			if (formId === 'modal_form' && response.success && $.fancybox) {
+				$.fancybox.close();
+				$.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
+			}
+			if (formId === 'modal_form_discount') {
+				handleDiscountFormResponse(form, response);
+			}
+			if (formId === 'feedback_form' && response.success && $.fancybox) {
+				$.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
+			}
+		});
+	}
 
-                    // Hide Panel 1, show Panel 2
-                    $('#panel_1').hide();
-                    $('#panel_2').show();
+	function handleDiscountFormResponse(form, response) {
+		if (response.success) {
+			if ($.fancybox) {
+				$.fancybox.close();
+				$.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
+			}
+			$.ajax({
+				type: 'POST',
+				url: '/ajax-discount.html',
+				dataType: 'json',
+				cache: false,
+				data: { action: 'getDiscount' },
+				success: function () {
+					var group = $('#filter-form input[name=group]:checked').val() || '';
+					var category = [];
+					$('#step-5-filter input[type=checkbox]:checked').each(function () {
+						category.push($(this).val());
+					});
+					var url = form.attr('action') || '';
+					if (group) {
+						url += (url.indexOf('?') === -1 ? '?' : '&') + 'filtergroup=' + group;
+					}
+					if (category.length) {
+						url += (url.indexOf('?') === -1 ? '?' : '&') + 'filtercategory=' + category.join(',');
+					}
+					var anchor = url.indexOf('to-concern') !== -1 ? '#step-1' : '#prices';
+					document.location.href = url + anchor;
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					alert(textStatus + ' ' + errorThrown);
+				}
+			});
+			return;
+		}
+		var smsMessage = response.data && response.data.sms_code;
+		if (!smsMessage) {
+			return;
+		}
+		if (smsMessage.indexOf('Check your phone') !== -1 ||
+			(smsMessage.indexOf('verification code') !== -1 && smsMessage.indexOf('incorrect') === -1)) {
+			$('#panel_1').hide();
+			$('#panel_2').show();
+			startResendTimer();
+			$('.jsSmsRepeat').off('click').on('click', function (event) {
+				event.preventDefault();
+				$('#resend_link').hide();
+				$('#resend_timer').show();
+				$('#smsCode').val('');
+				$('#panel_2').find('input[name=repeat_sms]').remove();
+				$('#panel_2').append('<input type="hidden" name="repeat_sms" value="1">');
+				form.find('button[type="submit"]').trigger('click');
+				setTimeout(function () { startResendTimer(); }, 500);
+			});
+		} else {
+			$('.error_sms_code').html(smsMessage).show();
+		}
+	}
 
-                    // Start timer
-                    startResendTimer();
+	function bindAjaxVideo() {
+		$(document).on('click', '.ajaxVideoJS, .ajaxVideoShortsJS', function (event) {
+			event.preventDefault();
+			var $trigger = $(this);
+			var resourceId = $trigger.data('id');
+			var action = $trigger.hasClass('ajaxVideoShortsJS') ? 'videoShorts' : 'video';
+			$.ajax({
+				type: 'POST',
+				url: '/ajax-video.html',
+				dataType: 'json',
+				cache: false,
+				data: { action: action, resource_id: resourceId },
+				success: function (data) {
+					if (data && data.text && $.fancybox) {
+						$.fancybox.open('<div class="modal style_popup_content">' + data.text + '</div>');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					alert(textStatus + ' ' + errorThrown);
+				}
+			});
+		});
+	}
 
-                    // Setup resend link handler (remove old handlers first)
-                    $('.jsSmsRepeat').off('click').on('click', function(e) {
-                        e.preventDefault();
-                        console.log('[DISCOUNT DEBUG] Resend code requested');
+	function bindCheckboxValidation() {
+		$(document).on('click', '#modal_form_discount #get_code_btn', function (event) {
+			var $form = $(this).closest('form');
+			var $checkbox = $form.find('input[name="politikmodal"]');
+			var panelVisible = $('#panel_1').is(':visible');
+			if (panelVisible && !$checkbox.is(':checked')) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				var $container = $checkbox.closest('.form__item');
+				$container.find('.privacy-error').remove();
+				$container.append('<span class="privacy-error" style="color:#ea6852; font-size:13px; display:block; margin-top:8px;">Please agree to the Privacy Policy to continue*</span>');
+			} else {
+				$form.find('.privacy-error').remove();
+			}
+		});
 
-                        // Hide resend link, show timer
-                        $('#resend_link').hide();
-                        $('#resend_timer').show();
-                        $("#smsCode").val(""); // Clear old SMS code
+		$(document).on('submit', '#modal_form_discount', function (event) {
+			var $form = $(this);
+			var $checkbox = $form.find('input[name="politikmodal"]');
+			var panelVisible = $('#panel_1').is(':visible');
+			if (panelVisible && !$checkbox.is(':checked')) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
+			}
+		});
+	}
 
-                        // Add repeat_sms flag and submit form
-                        $('#panel_2').find('input[name=repeat_sms]').remove();
-                        $('#panel_2').append('<input type="hidden" name="repeat_sms" value="1">');
-                        form.find('button[type="submit"]').trigger('click');
+	function bindAjaxFormAjaxComplete() {
+		$(document).on('mse2_load', function () {
+			if ($.fn.twentytwenty) {
+				$('.jsTwenty').twentytwenty();
+			}
+		});
+	}
 
-                        // Restart timer after submission
-                        setTimeout(function() {
-                            startResendTimer();
-                        }, 500);
-                    });
-                } else {
-                    // This is an error message (incorrect code, validation error, etc.)
-                    console.log('[DISCOUNT DEBUG] SMS validation error. Showing error message.');
-                    $('.error_sms_code').html(smsMessage).show();
-                }
-            }
-        }
-    }
-    // a.ivanov end
+	function handleHashScroll() {
+		win.addEventListener('load', function () {
+			if (win.location.hash === '#step-1' && win.location.pathname.indexOf('to-concern') !== -1) {
+				var attempts = 0;
+				var intervalId = setInterval(function () {
+					attempts += 1;
+					var servicesHeading = document.querySelector('#step-1 .main-heading');
+					if (servicesHeading && servicesHeading.textContent.indexOf('Services') !== -1) {
+						clearInterval(intervalId);
+						requestAnimationFrame(function () {
+							var headingTop = servicesHeading.getBoundingClientRect().top + win.scrollY;
+							var target = headingTop - (win.innerHeight * 0.15);
+							win.scrollTo({ top: target, behavior: 'smooth' });
+						});
+					}
+					if (attempts >= 50) {
+						clearInterval(intervalId);
+					}
+				}, 100);
+			}
+		});
+	}
 
-    if (form.attr('id') == 'feedback_form') {
-        if (response.success){
-            console.log('[DISCOUNT DEBUG] SUCCESS! Starting discount flow...');
-  		      $.fancybox.open('<div class="message"><p>Thank you for your request. Our manager will contact you shortly.</p></div>');
-        }
-    }
-});
+	onReady(function () {
+		initFaqPreview();
+		bindMoreReviews();
+		bindCookieButtons();
+		collapseSpecialistLists();
+		handleAjaxComplete();
+		bindAjaxVideo();
+		bindCheckboxValidation();
+		bindAjaxFormAjaxComplete();
+	});
 
-$(document).on('mse2_load', function (e, data) {
-	$('.jsTwenty').twentytwenty();
-});
+	handleHashScroll();
 
-
-$(document).ready(function () {
-
-    $(document).on('click', '.jsMorereview', function(){
-      let master_id = $(this).attr('data-master');
-      let start = 3;
-      let star_more = $(this).attr('data-count');
-
-      //console.log(master_id);
-
-      $.ajax({
-        type: 'POST',
-        url: '/ajax-more.html',
-        dataType: 'json',
-        cache: false,
-        data: ({'starmore': star_more,'master_id': master_id}),
-        success: function(data) {
-          $('.reviews__content').css('opacity', 1);
-          //console.log(data);
-          //$('.jsMorereview').remove();
-          //let more_html = '<a data-count="'+start+'" data-master="" class="btn jsMorereview" href="#">View more review</a>';
-          //$('#centered-box').append(more_html);
-          let star_more = parseInt($('.jsMorereview').attr('data-count'));
-          let sum = star_more + 3;
-          $('.jsMorereview').attr('data-count',sum);
-          $('.reviews__content').append(data.service);
-
-          if (sum > data.allcount) {
-            $('.jsMorereview').remove();
-          }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert(textStatus + ' ' + errorThrown);
-        },
-        beforeSend : function() {
-          $('.reviews__content').css('opacity', .5);
-        },
-      });
-      return false;
-
-    })
-
-
-  $(document).on('click', '.cky-btn-accept', function () {
-		$('.cky-box-bottom-left').remove();
-	  $.cookie('accept', 'accept', { expires: 7 });
-
-	})
-	$(document).on('click', '.cky-btn-reject', function () {
-		$('.cky-box-bottom-left').remove();
-	    $.cookie('accept', 'accept', { expires: 7 });
-
-	})
-
-
-
-
-  $('.specialist-item').each(function(){
-      var max = 4; // - количество отображаемых разделов
-      if ($(this).find(".specialist-item__body ul li").length > max) {
-        $(this).find('.specialist-item__body ul li:gt(3)').hide();
-        let url = $(this).closest('.specialist-item').attr('href');
-        $(this).find('.specialist-item__body ul').append('<a href="'+url+'" class="read">see more</a>');
-        /*
-        $(document).on('click', '.specialist-item .read', function () {
-          $(this).parent().find('li').show();
-          $(this).remove();
-          return false;
-        })
-        */
-      }
-  });
-
-
-});
-
-
-
-//video
-$(document).on('click', '.ajaxVideoJS', function(){
-    var resource_id = $(this).data('id');
-    $.ajax({
-    type: 'POST',
-    url: '/ajax-video.html',
-    dataType: 'json',
-    cache: false,
-    data: {
-        action:'video',
-        resource_id: resource_id
-    },
-    success: function(data) {
-      if(data.text) {
-        $.fancybox.open('<div class="modal style_popup_content">'+data.text+'</div>');
-      }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        alert(textStatus + ' ' + errorThrown);
-    },
-  });
-  return false;
-});
-
-$(document).on('click', '.ajaxVideoShortsJS', function(){
-    var resource_id = $(this).data('id');
-    $.ajax({
-    type: 'POST',
-    url: '/ajax-video.html',
-    dataType: 'json',
-    cache: false,
-    data: {
-        action:'videoShorts',
-        resource_id: resource_id
-    },
-    success: function(data) {
-      if(data.text) {
-        $.fancybox.open('<div class="modal style_popup_content">'+data.text+'</div>');
-      }
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-        alert(textStatus + ' ' + errorThrown);
-    },
-  });
-  return false;
-});
-// ========== DEBUG: Submit handler (BEFORE form submission) ==========
-$(document).on('submit', '#modal_form_discount', function(e) {
-    var formData = $(this).serializeArray();
-    // Don't prevent default - let form submit normally
-});
-// ========== END DEBUG ==========
-
-// ========== TIMER FUNCTION for Resend SMS Code ==========
-var resendTimerInterval = null; // Global variable to store timer ID
-
-function startResendTimer() {
-    // Stop any existing timer first
-    if (resendTimerInterval) {
-        clearInterval(resendTimerInterval);
-        resendTimerInterval = null;
-    }
-
-    var seconds = 60;
-    $('#timer_countdown').text(seconds);
-    $('#resend_timer').show();
-    $('#resend_link').hide();
-
-    resendTimerInterval = setInterval(function() {
-        seconds--;
-        $('#timer_countdown').text(seconds);
-
-        if (seconds <= 0) {
-            clearInterval(resendTimerInterval);
-            resendTimerInterval = null;
-            $('#resend_timer').hide();
-            $('#resend_link').show();
-        }
-    }, 1000);
-}
-// ========== END TIMER FUNCTION ==========
-
-// ========== VARIANT 2: Scroll to Services on to-concern page ==========
-window.addEventListener('load', function() {
-    if(window.location.hash === '#step-1' && window.location.pathname.indexOf('to-concern') !== -1) {
-        console.log('[TO-CONCERN] Detected #step-1 anchor, waiting for AJAX content...');
-
-        // Wait for AJAX content to load (Services block is loaded dynamically)
-        var checkContent = setInterval(function() {
-            var servicesHeading = document.querySelector('#step-1 .main-heading');
-            if(servicesHeading && servicesHeading.textContent.indexOf('Services') !== -1) {
-                clearInterval(checkContent);
-                console.log('[TO-CONCERN] Services heading found, scrolling...');
-
-                // Calculate scroll position so Services heading is at ~15% from top of screen
-                var headingTop = servicesHeading.getBoundingClientRect().top + window.scrollY;
-                var targetScroll = headingTop - (window.innerHeight * 0.15);
-
-                // Smooth scroll to target position
-                window.scrollTo({
-                    top: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-        }, 100);
-
-        // Safety timeout: stop checking after 5 seconds if content not loaded
-        setTimeout(function() {
-            clearInterval(checkContent);
-        }, 5000);
-    }
-});
-// ========== END VARIANT 2 ==========
+	win.startResendTimer = startResendTimer;
+}(window, window.jQuery));

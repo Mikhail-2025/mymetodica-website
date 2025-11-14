@@ -169,7 +169,7 @@
 		</div>
 		{/if}
 		{if $_modx->resource.home_video_ids}
-		<div class="videos">
+		<div class="videos" id="videos">
 			<div class="container">
 				<h2 class="main-heading">Videos</h2>
 			</div>
@@ -182,6 +182,7 @@
 							'depth' => 0,
 							'limit' => 0,
 							'includeTVs' => 'video_link,video_img,video_text',
+						'processTVs' => 1,
 							'tpl' => '@FILE chunks/work/video_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''
@@ -213,6 +214,7 @@
 							'depth' => 0,
 							'limit' => 0,
 							'includeTVs' => 'videoshorts_link,videoshorts_img,video_text',
+						'processTVs' => 1,
 							'tpl' => '@FILE chunks/work/videoshorts_tpl.tpl',
 							'sortby' => '',
 							'sortdir' => ''

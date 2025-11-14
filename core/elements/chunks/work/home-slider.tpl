@@ -10,7 +10,7 @@
 					<div class="main-screen__image-inner {$row.home_slider_image_class}">
 						<picture>
 							<source srcset="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_slider_img_pc~'', 'options' => '&f=webp'])}" type="image/webp">
-							<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_slider_img_pc~'', 'options' => '&f=png'])}" alt="">
+							<img src="{$_modx->runSnippet('!pThumb', ['input' => 'assets/templates/upload/images/'~$row.home_slider_img_pc~'', 'options' => '&f=jpg'])}" alt="" {if $idx == 0}fetchpriority="high" loading="eager"{else}loading="lazy"{/if}>
 						</picture>
 					</div>
 				</div>

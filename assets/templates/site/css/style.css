@@ -40,6 +40,7 @@ body {
   font-family: "Tenor Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
   color: #54565a;
   min-height: 100vh;
   display: -webkit-box;
@@ -134,6 +135,7 @@ input:-webkit-autofill {
   src: url("fonts/TenorSans.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "CoFoSans";
@@ -141,6 +143,7 @@ input:-webkit-autofill {
   src: url("fonts/CoFoSans-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/CoFoSans-Regular.woff") format("woff"), url("fonts/CoFoSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "CoFoSans";
@@ -148,6 +151,7 @@ input:-webkit-autofill {
   src: url("fonts/CoFoSans-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/CoFoSans-Medium.woff") format("woff"), url("fonts/CoFoSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "CoFoSans";
@@ -155,6 +159,7 @@ input:-webkit-autofill {
   src: url("fonts/CoFoSans-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/CoFoSans-Bold.woff") format("woff"), url("fonts/CoFoSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Casta";
@@ -162,6 +167,7 @@ input:-webkit-autofill {
   src: url("fonts/Casta-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/Casta-Regular.woff") format("woff"), url("fonts/Casta-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "Casta Slanted";
@@ -169,6 +175,7 @@ input:-webkit-autofill {
   src: url("fonts/Casta-Slanted.eot?#iefix") format("embedded-opentype"), url("fonts/Casta-Slanted.woff") format("woff"), url("fonts/Casta-Slanted.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 .container {
   max-width: 1460px;
@@ -4047,6 +4054,9 @@ h1 {
   .services-main__banner-inner {
     height: 470px;
     width: 640px;
+  }
+  .services-main__banner-inner--ai {
+    height: 560px;
   }
   .about-main__img {
     width: 500px;

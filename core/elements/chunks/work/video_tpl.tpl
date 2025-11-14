@@ -1,8 +1,12 @@
 <div class="video-card swiper-slide">
 	<a class="video-card__head" href="{$_pls['tv.video_link']}" data-fancybox>
-		{$_modx->runSnippet('!youtube', [
-			'url' => $_pls['tv.video_link']
-		])}
+		{var $parts1 = $_pls['tv.video_link']|split:'v='}
+		{var $parts2 = $parts1.1|split:'&'}
+		{var $videoId = $parts2.0}
+		<picture>
+			<source srcset="https://i.ytimg.com/vi_webp/{$videoId}/hqdefault.webp" type="image/webp">
+			<img src="https://img.youtube.com/vi/{$videoId}/hqdefault.jpg" alt="{$pagetitle}" width="480" height="360" loading="lazy" decoding="async">
+		</picture>
 		<div class="play-btn">
 			<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<g>
