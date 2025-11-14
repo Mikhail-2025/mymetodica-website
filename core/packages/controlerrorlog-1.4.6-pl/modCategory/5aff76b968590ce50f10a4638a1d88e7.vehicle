@@ -1,0 +1,128 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      '6ee32fac9f9ee5e3bbbb895bd9239f0a' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => false,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"errorLogPanel.tpl","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<div id=\\"side-panel-wrapper\\">\\r\\n\\t<ul class=\\"side-buttons\\">\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-open\\" class=\\"celicon-check-circle\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-refresh\\" class=\\"celicon-refresh\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-clear\\" class=\\"celicon-trash disabled\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t<\\/ul>\\r\\n\\t<div class=\\"side-panel\\">\\r\\n\\t\\t<div class=\\"side-panel-header\\">\\r\\n\\t\\t\\t<span>[[%error_log]]<\\/span>\\r\\n\\t\\t\\t<span id=\\"side-panel-close-button\\">&times;<\\/span>\\r\\n\\t\\t<\\/div>\\r\\n\\t\\t<div class=\\"side-panel-body\\"><\\/div>\\r\\n\\t\\t<div class=\\"side-panel-footer\\" data-records=\\"[[%errorlog_total_messages]]\\"> <\\/div>\\r\\n\\t<\\/div>\\r\\n<\\/div>","locked":0,"properties":null,"static":0,"static_file":"core\\/components\\/controlerrorlog\\/elements\\/chunks\\/chunk.errorlogpanel.tpl","content":"<div id=\\"side-panel-wrapper\\">\\r\\n\\t<ul class=\\"side-buttons\\">\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-open\\" class=\\"celicon-check-circle\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-refresh\\" class=\\"celicon-refresh\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t\\t<li class=\\"side-buttons-item\\"><span id=\\"side-button-clear\\" class=\\"celicon-trash disabled\\"><i class=\\"celicon\\"><\\/i><\\/span><\\/li>\\r\\n\\t<\\/ul>\\r\\n\\t<div class=\\"side-panel\\">\\r\\n\\t\\t<div class=\\"side-panel-header\\">\\r\\n\\t\\t\\t<span>[[%error_log]]<\\/span>\\r\\n\\t\\t\\t<span id=\\"side-panel-close-button\\">&times;<\\/span>\\r\\n\\t\\t<\\/div>\\r\\n\\t\\t<div class=\\"side-panel-body\\"><\\/div>\\r\\n\\t\\t<div class=\\"side-panel-footer\\" data-records=\\"[[%errorlog_total_messages]]\\"> <\\/div>\\r\\n\\t<\\/div>\\r\\n<\\/div>"}',
+        'guid' => '54a7f9c842bdfaca4407d13547655f9f',
+        'native_key' => 0,
+        'signature' => '4117fbe2f790408e94aa3de066a4bf7d',
+      ),
+    ),
+    'Plugins' => 
+    array (
+      'f55b727c18da9079f0eec8f8a3621f71' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"controlErrorLog","description":"","editor_type":0,"category":0,"cache_type":0,"plugincode":"\\/** @var modX $modx *\\/\\nswitch ($modx->event->name) {\\n    case \'OnManagerPageBeforeRender\':\\n        if ($modx->getOption(\'controlerrorlog.enable\', null, true) && $modx->hasPermission(\'error_log_view\')) {\\n            $modx->controller->addLexiconTopic(\'controlerrorlog:default\');\\n            $assetsUrl = $modx->getOption(\'controlerrorlog_assets_url\', null, $modx->getOption(\'assets_url\') . \'components\\/controlerrorlog\\/\') ;\\n            $modx->controller->addCss($assetsUrl . \'css\\/mgr\\/main.css\');\\n            $modx->controller->addJavascript($assetsUrl . \'js\\/mgr\\/cel.default.js\');\\n\\n\\n            $path = $modx->getOption(\'controlerrorlog_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/controlerrorlog\\/\') . \'processors\\/\';\\n            $response = $modx->runProcessor(\'mgr\\/get\', [\'includeContent\' => false], [\'processors_path\' => $path]);\\n            $resObj = $response->getObject();\\n            $_html = \\"<script>\\tcontrolErrorLog.config = \\" . $modx->toJSON($resObj) . \\";<\\/script>\\";\\n            $modx->controller->addHtml($_html);\\n        }\\n        break;\\n    case \'OnBeforeRegisterClientScripts\':\\n        $isAuth = $modx->user->isAuthenticated(\'mgr\') && $modx->user->isAuthenticated($modx->context->key);\\n        if ($isAuth && $modx->getOption(\'controlerrorlog.control_frontend\', null, true) && $modx->hasPermission(\'error_log_view\')) {\\n            $modx->lexicon->load(\'controlerrorlog:default\');\\n            $modx->regClientHTMLBlock($modx->getChunk(\'errorLogPanel.tpl\'));\\n\\n            $assetsUrl = $modx->getOption(\'controlerrorlog_assets_url\', null, $modx->getOption(\'assets_url\') . \'components\\/controlerrorlog\\/\') ;\\n            if ($css = $modx->getOption(\'controlerrorlog.css_file\', null, $assetsUrl . \'css\\/web\\/default.css\')) {\\n                $modx->regClientCSS($css);\\n            }\\n            if ($js = $modx->getOption(\'controlerrorlog.js_file\', null, $assetsUrl . \'js\\/web\\/default.js\')) {\\n                $modx->regClientScript($js);\\n            }\\n\\n            if (!isset($_SESSION[\'controlerrorlog\'][\'token\'])) {\\n                $_SESSION[\'controlerrorlog\'][\'token\'] = md5(MODX_HTTP_HOST . time() . mt_rand(1, 1000));\\n            }\\n            $path = $modx->getOption(\'controlerrorlog_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/controlerrorlog\\/\') . \'processors\\/\';\\n            $response = $modx->runProcessor(\'web\\/get\', [\'includeContent\' => false, \'token\' => @$_SESSION[\'controlerrorlog\'][\'token\']], [\'processors_path\' => $path]);\\n            $rObject = $response->getObject();\\n            $config = json_encode($rObject[\'config\']);\\n            $connectorUrl = $assetsUrl . \'api.php\';\\n            $rObject[\\"tooLarge\\"] = $rObject[\\"tooLarge\\"] ? \'true\' : \'false\';\\n            $rObject[\\"empty\\"] = $rObject[\\"empty\\"] ? \'true\' : \'false\';\\n            $resObj = \\"{\\n                token: \'{$_SESSION[\'controlerrorlog\'][\'token\']}\',\\n                config: {$config},\\n                collapsed: false,\\n                connectorUrl: \'{$connectorUrl}\',\\n                tooLarge: {$rObject[\\"tooLarge\\"]},\\n                size: \'{$rObject[\\"size\\"]}\',\\n                empty: {$rObject[\\"empty\\"]},\\n                log: \'{$rObject[\\"log\\"]}\',\\n                messages_count: {$rObject[\\"messages_count\\"]}\\n            }\\";\\n            $_html = \\"<script>\\\\r\\\\n\\\\tlet controlErrorLog = \\" . $resObj . \\";\\\\r\\\\n<\\/script>\\";\\n            $modx->regClientStartupHTMLBlock($_html);\\n        }\\n        break;\\n}","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/controlerrorlog\\/elements\\/plugins\\/plugin.controlerrorlog.php","content":"\\/** @var modX $modx *\\/\\nswitch ($modx->event->name) {\\n    case \'OnManagerPageBeforeRender\':\\n        if ($modx->getOption(\'controlerrorlog.enable\', null, true) && $modx->hasPermission(\'error_log_view\')) {\\n            $modx->controller->addLexiconTopic(\'controlerrorlog:default\');\\n            $assetsUrl = $modx->getOption(\'controlerrorlog_assets_url\', null, $modx->getOption(\'assets_url\') . \'components\\/controlerrorlog\\/\') ;\\n            $modx->controller->addCss($assetsUrl . \'css\\/mgr\\/main.css\');\\n            $modx->controller->addJavascript($assetsUrl . \'js\\/mgr\\/cel.default.js\');\\n\\n\\n            $path = $modx->getOption(\'controlerrorlog_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/controlerrorlog\\/\') . \'processors\\/\';\\n            $response = $modx->runProcessor(\'mgr\\/get\', [\'includeContent\' => false], [\'processors_path\' => $path]);\\n            $resObj = $response->getObject();\\n            $_html = \\"<script>\\tcontrolErrorLog.config = \\" . $modx->toJSON($resObj) . \\";<\\/script>\\";\\n            $modx->controller->addHtml($_html);\\n        }\\n        break;\\n    case \'OnBeforeRegisterClientScripts\':\\n        $isAuth = $modx->user->isAuthenticated(\'mgr\') && $modx->user->isAuthenticated($modx->context->key);\\n        if ($isAuth && $modx->getOption(\'controlerrorlog.control_frontend\', null, true) && $modx->hasPermission(\'error_log_view\')) {\\n            $modx->lexicon->load(\'controlerrorlog:default\');\\n            $modx->regClientHTMLBlock($modx->getChunk(\'errorLogPanel.tpl\'));\\n\\n            $assetsUrl = $modx->getOption(\'controlerrorlog_assets_url\', null, $modx->getOption(\'assets_url\') . \'components\\/controlerrorlog\\/\') ;\\n            if ($css = $modx->getOption(\'controlerrorlog.css_file\', null, $assetsUrl . \'css\\/web\\/default.css\')) {\\n                $modx->regClientCSS($css);\\n            }\\n            if ($js = $modx->getOption(\'controlerrorlog.js_file\', null, $assetsUrl . \'js\\/web\\/default.js\')) {\\n                $modx->regClientScript($js);\\n            }\\n\\n            if (!isset($_SESSION[\'controlerrorlog\'][\'token\'])) {\\n                $_SESSION[\'controlerrorlog\'][\'token\'] = md5(MODX_HTTP_HOST . time() . mt_rand(1, 1000));\\n            }\\n            $path = $modx->getOption(\'controlerrorlog_core_path\', null, $modx->getOption(\'core_path\') . \'components\\/controlerrorlog\\/\') . \'processors\\/\';\\n            $response = $modx->runProcessor(\'web\\/get\', [\'includeContent\' => false, \'token\' => @$_SESSION[\'controlerrorlog\'][\'token\']], [\'processors_path\' => $path]);\\n            $rObject = $response->getObject();\\n            $config = json_encode($rObject[\'config\']);\\n            $connectorUrl = $assetsUrl . \'api.php\';\\n            $rObject[\\"tooLarge\\"] = $rObject[\\"tooLarge\\"] ? \'true\' : \'false\';\\n            $rObject[\\"empty\\"] = $rObject[\\"empty\\"] ? \'true\' : \'false\';\\n            $resObj = \\"{\\n                token: \'{$_SESSION[\'controlerrorlog\'][\'token\']}\',\\n                config: {$config},\\n                collapsed: false,\\n                connectorUrl: \'{$connectorUrl}\',\\n                tooLarge: {$rObject[\\"tooLarge\\"]},\\n                size: \'{$rObject[\\"size\\"]}\',\\n                empty: {$rObject[\\"empty\\"]},\\n                log: \'{$rObject[\\"log\\"]}\',\\n                messages_count: {$rObject[\\"messages_count\\"]}\\n            }\\";\\n            $_html = \\"<script>\\\\r\\\\n\\\\tlet controlErrorLog = \\" . $resObj . \\";\\\\r\\\\n<\\/script>\\";\\n            $modx->regClientStartupHTMLBlock($_html);\\n        }\\n        break;\\n}"}',
+        'guid' => 'aab7c90e607773edbeef12565eb54b51',
+        'native_key' => NULL,
+        'signature' => 'd6f1ea699d4338e5311e9294259dd049',
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '10e278421f373faf82fbca6c0381bd6d' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnManagerPageBeforeRender","priority":0,"propertyset":0}',
+              'guid' => '6d728fced8e5c6e7bf5ff34fae699af4',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnManagerPageBeforeRender',
+              ),
+              'signature' => '83618db67bafb778a28acf6eca3a01de',
+            ),
+            '4f34ae81b37c606d8a9d27948cd7fe14' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnBeforeRegisterClientScripts","priority":0,"propertyset":0}',
+              'guid' => '67d9e2fc42433fa4830255a5c25f5b51',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnBeforeRegisterClientScripts',
+              ),
+              'signature' => '732136b27ba6a0f99146a1df4f63acaa',
+            ),
+          ),
+        ),
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => false,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'controlerrorlog',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"controlerrorlog-1.4.6-pl\\/modCategory\\/5aff76b968590ce50f10a4638a1d88e7\\/0\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"controlerrorlog"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"controlerrorlog-1.4.6-pl\\/modCategory\\/5aff76b968590ce50f10a4638a1d88e7\\/1\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"controlerrorlog"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '42752439d7856e003cf68c76e752e2b9',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '5aff76b968590ce50f10a4638a1d88e7',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"controlErrorLog","rank":0}',
+);

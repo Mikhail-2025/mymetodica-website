@@ -1,0 +1,17 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => true,
+  'unique_key' => 'text',
+  'related_objects' => true,
+  'namespace' => 'modb24crm',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '0c2a477691b150d098f374495adf858d',
+  'package' => 'modx',
+  'class' => 'modMenu',
+  'signature' => '32f49fcd6555762e1ccf09d5a74afaca',
+  'native_key' => 'modb24crm',
+  'object' => '{"text":"modb24crm","parent":"components","action":"home","description":"modb24crm_menu_desc","icon":"","menuindex":0,"params":"","handler":"","permissions":"","namespace":"modb24crm"}',
+);

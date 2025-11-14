@@ -1,0 +1,253 @@
+/**
+ * Video Page Styles
+ * Version: 4.1 - Border-radius matching shorts-page.css
+ * Date: 2025-11-02
+ *
+ * Changes v4.1:
+ * - Изменён border-radius с 16px на 12px (как в shorts-page.css)
+ * - Добавлен background: #000 для чистого скругления
+ * - Добавлен мобильный border-radius: 18px на @media (max-width: 900px)
+ *
+ * Changes v4.0:
+ * - Добавлена рамка 4px solid #7a7599 к .video-container
+ * - Добавлено скругление углов border-radius
+ * - Добавлен box-sizing: border-box
+ * - Добавлен border-radius: inherit к iframe для скругления видео
+ *
+ * Changes v3.0:
+ * - Треугольник перемещен после текста "Full Video Transcript"
+ * - Расстояние между словом и треугольником = расстояние между словами
+ * - Скрыт браузерный дефолтный треугольник
+ * - Треугольник поворачивается при открытии
+ *
+ * Changes v2.0:
+ * - Description скрыт по умолчанию (expandable)
+ * - Transcript через <details> (native HTML5)
+ * - Breadcrumbs "список-видео" скрыт
+ */
+
+/* Video Container - Responsive 16:9 aspect ratio */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin: 2rem 0;
+    border: 4px solid #7a7599;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background: #000;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+}
+
+/* Video Title */
+.video-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+/* ============================================================================
+   Video Summary (Description) - ПОЛНОСТЬЮ СКРЫТ (не показывать вообще)
+   ========================================================================== */
+.video-summary {
+    display: none;
+}
+
+/* ============================================================================
+   Video Transcript - через <details> (HTML5 native)
+   ========================================================================== */
+.video-transcript {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.transcript-details {
+    margin-top: 1rem;
+}
+
+.transcript-summary {
+    cursor: pointer;
+    user-select: none;
+    list-style: none; /* Убираем дефолтный треугольник браузера */
+}
+
+/* Скрываем стандартный маркер <details> в WebKit браузерах */
+.transcript-summary::-webkit-details-marker {
+    display: none;
+}
+
+.transcript-summary h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    display: inline;
+}
+
+/* Добавляем кастомный треугольник ПОСЛЕ текста */
+.transcript-summary h2::after {
+    content: ' ▶';
+    font-size: 1rem;
+    color: #7a7599;
+    margin-left: 0.525em; /* Расстояние как между словами (1 space = ~0.25-0.35em) */
+    transition: transform 0.2s ease;
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* Поворачиваем треугольник когда <details> открыт */
+.transcript-details[open] .transcript-summary h2::after {
+    transform: rotate(90deg);
+}
+
+.transcript-content {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+    color: #444;
+    padding: 1rem;
+    background: #fafafa;
+}
+
+.transcript-content h2,
+.transcript-content h3 {
+    color: #7a7599;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.transcript-content p {
+    margin-bottom: 1rem;
+}
+
+.transcript-content strong {
+    color: #333;
+}
+
+.transcript-content em {
+    font-style: italic;
+}
+
+/* ============================================================================
+   Breadcrumbs - СКРЫВАЕМ "список-видео"
+   ========================================================================== */
+.breadcrumbs {
+    margin-bottom: 2rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.breadcrumbs li {
+    display: inline-flex;
+    align-items: center;
+}
+
+.breadcrumbs li::after {
+    content: '›';
+    margin-left: 0.5rem;
+    color: #999;
+}
+
+.breadcrumbs li:last-child::after {
+    content: '';
+}
+
+.breadcrumbs a {
+    color: #7A7599;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs li[aria-current="page"] {
+    color: #333;
+    font-weight: normal;
+}
+
+/* СКРЫВАЕМ второй элемент breadcrumb (список-видео) */
+.breadcrumbs li:nth-child(2) {
+    display: none;
+}
+
+/* Убираем разделитель после Home, если Videos скрыт */
+.breadcrumbs li:nth-child(1)::after {
+    content: '›';
+}
+
+/* Error state */
+.video-error {
+    padding: 2rem;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    color: #856404;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video-title {
+        font-size: 1.5rem;
+    }
+
+    .video-summary p {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    .transcript-content {
+        padding: 0.75rem;
+    }
+}
+
+/* Mobile border-radius (matching shorts-page.css) */
+@media (max-width: 900px) {
+    .video-container {
+        border-radius: 18px;
+    }
+}
+
+/* ============================================================================
+   YOUTUBE SHORTS SUPPORT (9:16 VERTICAL ASPECT RATIO)
+   ============================================================================ */
+
+/* Vertical Shorts container */
+
+
+/* Mobile: full width minus padding */
+@media (max-width: 480px) {
+
+/* Keep scroll-margin for sticky header on Shorts */
+
+/* Desktop layout: video left, transcript right (Shorts only) */
+@media (min-width: 992px) {
+
+
+
+
+/* Desktop: Show transcript without collapsible header for Shorts */
+@media (min-width: 992px) {
+    /* Hide the collapsible summary header */

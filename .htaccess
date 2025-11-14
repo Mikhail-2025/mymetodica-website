@@ -1,0 +1,93 @@
+# MODX supports Friendly URLs via this .htaccess file
+RewriteEngine On
+
+# Redirect old Shorts URLs to new /shorts/ path
+RewriteRule ^spisok-video-shorts/(.*)$ /shorts/$1 [R=301,L]
+RewriteBase /
+
+# Prevent rewrite the .well-known directory used by LetsEncrypt
+RewriteRule "^\.well-known/" - [L]
+
+# Prevent dot directories (hidden directories like .git) to be exposed
+RewriteRule "/\.|^\.(?!well-known/)" - [F]
+
+# Rewrite www.example.com -> example.com
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# The Friendly URLs part
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+# Block SEO bots (добавим после проверки)
+RewriteCond %{HTTP_USER_AGENT} AhrefsBot [NC]
+RewriteRule .* - [F,L]
+
+# Block SEO bots
+RewriteCond %{HTTP_USER_AGENT} AhrefsBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} SemrushBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} DotBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} MJ12bot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} SerpstatBot [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} BLEXBot [NC]
+RewriteRule .* - [F,L]
+
+# ===== ЯНДЕКС.МЕТРИКА X-FRAME-OPTIONS =====
+# Настройка для работы карты кликов и веб-визора
+<IfModule mod_headers.c>
+    # Удаляем существующий заголовок X-Frame-Options
+    Header always unset X-Frame-Options
+    
+    # Устанавливаем новый заголовок с исключениями для Яндекс.Метрики
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Для доменов Яндекс.Метрики разрешаем показ в iframe
+    SetEnvIf Referer "^https://metrika\.yandex\.ru" YANDEX_METRIKA
+    SetEnvIf Referer "^https://metrika\.yandex\.by" YANDEX_METRIKA
+    SetEnvIf Referer "^https://metrika\.yandex\.com" YANDEX_METRIKA
+    SetEnvIf Referer "^https://webvisor\.com" YANDEX_METRIKA
+    
+    # Если запрос от Яндекс.Метрики - удаляем ограничение
+    Header always unset X-Frame-Options env=YANDEX_METRIKA
+</IfModule>
+
+# 301 Redirect: Old URL structure
+# /spisok-video/ redirects to /videos/ (which then uses Template 29 JS redirect to /#videos)
+RedirectMatch 301 ^/spisok-video/?$ /videos/
+
+# ===== BROWSER CACHING =====
+# Cache static resources for 1 year (31536000 seconds)
+# Chrome Lighthouse recommendation for better performance
+<IfModule mod_headers.c>
+    # Fonts - cache for 1 year (immutable)
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+
+    # Images - cache for 1 year (immutable)
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|avif)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+
+    # CSS and JavaScript with versioning - cache for 1 year
+    # Since you use ?v=XX versioning, long cache is safe
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+
+    # Video and audio files - cache for 1 year
+    <FilesMatch "\.(mp4|webm|ogv|mp3|ogg|wav)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+
+    # PDF and documents - cache for 1 month
+    <FilesMatch "\.(pdf|doc|docx|xls|xlsx|ppt|pptx)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+</IfModule>
+

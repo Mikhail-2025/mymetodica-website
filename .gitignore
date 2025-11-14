@@ -1,0 +1,80 @@
+# MODX Cache directories
+core/cache/*
+!core/cache/.gitkeep
+!core/cache/includes/
+core/cache/includes/*
+!core/cache/includes/.gitkeep
+
+# phpThumbOf cache
+assets/components/phpthumbof/cache/*
+!assets/components/phpthumbof/cache/.gitkeep
+
+# Image cache
+assets/image-cache/*
+!assets/image-cache/.gitkeep
+
+# Backup files
+*.backup
+*.backup_*
+*.bak
+*.old
+*.orig
+*.tmp
+
+# Session files
+core/components/*/sessions/*
+
+# Database config (use template instead)
+core/config/config.inc.php
+
+# Logs
+*.log
+core/cache/logs/*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+# Uploads directory (content, not tracked by Git)
+assets/uploads/*
+!assets/uploads/.gitkeep
+
+# Config files (use templates)
+config.core.php
+connectors/config.core.php
+manager/config.core.php
+config/
+
+# Authentication
+.htpasswd
+
+# Composer vendor
+vendor/
+
+# Temporary directories
+var/
+backup_*/
+
+# Backup files in core
+core/elements/chunks/**/*_before_*.tpl
+core/elements/chunks/**/*.backup_*
+core/elements/chunks/**/*.bak*
+assets/templates/site/css/*_before_*.css
+assets/templates/site/css/*.backup_*
+# Additional backup patterns
+*.before_*
+index.php.original
+*.pre-*
+*.new
+*_backup_*.css

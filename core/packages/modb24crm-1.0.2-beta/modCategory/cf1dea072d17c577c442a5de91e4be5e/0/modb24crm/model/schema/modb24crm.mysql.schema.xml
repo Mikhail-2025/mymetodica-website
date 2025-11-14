@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="modb24crm" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="modb24crm"
+       version="1.1">
+
+    <object class="modB24Account" table="modb24crm_accounts" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="host" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="token" dbtype="varchar" precision="30" phptype="string" null="false" default=""/>
+        <field key="userid" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <field key="context" dbtype="varchar" precision="100" phptype="string" null="true" default="web"/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+        <field key="sync_catalog" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+        <field key="sync_orders" dbtype="tinyint" precision="1" phptype="integer" null="true" default="1"/>
+        <field key="use_queue" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="host" name="host" primary="false" unique="false" type="BTREE">
+            <column key="host" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sync_catalog" name="sync_catalog" primary="false" unique="false" type="BTREE">
+            <column key="sync_catalog" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sync_orders" name="sync_orders" primary="false" unique="false" type="BTREE">
+            <column key="sync_orders" length="" collation="A" null="false"/>
+        </index>
+
+        <composite alias="Links" class="modB24Link" local="id" foreign="account_id" cardinality="many" owner="local"/>
+        <composite alias="Fields" class="modB24Field" local="id" foreign="account_id" cardinality="many" owner="local"/>
+        <composite alias="FiHooks" class="modB24FIHook" local="id" foreign="account_id" cardinality="many" owner="local"/>
+        <composite alias="Queues" class="modB24Queue" local="id" foreign="account_id" cardinality="many" owner="local"/>
+    </object>
+
+    <object class="modB24Link" table="modb24crm_links" extends="xPDOObject">
+        <field key="account_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="object_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="bitrix_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="type" dbtype="tinyint" precision="2" attributes="unsigned" phptype="integer" null="false" default="0" />
+
+        <index alias="link" name="link" primary="true" unique="true" type="BTREE">
+            <column key="account_id" length="" collation="A" null="false"/>
+            <column key="object_id" length="" collation="A" null="false"/>
+            <column key="type" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Account" class="modB24Account" local="account_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="modB24Field" table="modb24crm_fields" extends="xPDOObject">
+        <field key="account_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="section" dbtype="varchar" precision="50" phptype="string" null="false" default=""/>
+        <field key="btx" dbtype="varchar" precision="50" phptype="string" null="false" default=""/>
+        <field key="value" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="isfield" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="1"/>
+        <field key="type" dbtype="varchar" precision="50" phptype="string" null="false" default=""/>
+        <field key="multiple" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+
+        <index alias="field" name="field" primary="true" unique="true" type="BTREE">
+            <column key="account_id" length="" collation="A" null="false"/>
+            <column key="section" length="" collation="A" null="false"/>
+            <column key="btx" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Account" class="modB24Account" local="account_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="modB24FIHook" table="modb24crm_fi_hooks" extends="xPDOSimpleObject">
+        <field key="account_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="section" dbtype="varchar" precision="50" phptype="string" null="false" default=""/>
+
+        <aggregate alias="Account" class="modB24Account" local="account_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="modB24Queue" table="modb24crm_queues" extends="xPDOSimpleObject">
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="account_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="oid" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
+        <field key="handler" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="properties" dbtype="text" phptype="json" null="true"/>
+        <field key="sending" dbtype="datetime" phptype="datetime" null="true" />
+
+        <index alias="account_id" name="account_id" primary="false" unique="false" type="BTREE">
+            <column key="account_id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="oid" name="oid" primary="false" unique="false" type="BTREE">
+            <column key="oid" length="" collation="A" null="false"/>
+        </index>
+        <index alias="handler" name="handler" primary="false" unique="false" type="BTREE">
+            <column key="handler" length="" collation="A" null="false"/>
+        </index>
+
+        <aggregate alias="Account" class="modB24Account" local="account_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+</model>
