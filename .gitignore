@@ -49,3 +49,32 @@ desktop.ini
 # Uploads directory (content, not tracked by Git)
 assets/uploads/*
 !assets/uploads/.gitkeep
+
+# Config files (use templates)
+config.core.php
+connectors/config.core.php
+manager/config.core.php
+config/
+
+# Authentication
+.htpasswd
+
+# Composer vendor
+vendor/
+
+# Temporary directories
+var/
+backup_*/
+
+# Backup files in core
+core/elements/chunks/**/*_before_*.tpl
+core/elements/chunks/**/*.backup_*
+core/elements/chunks/**/*.bak*
+assets/templates/site/css/*_before_*.css
+assets/templates/site/css/*.backup_*
+# Additional backup patterns
+*.before_*
+index.php.original
+*.pre-*
+*.new
+*_backup_*.css
