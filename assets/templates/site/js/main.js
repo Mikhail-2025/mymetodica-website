@@ -269,7 +269,14 @@ $(document).ready(function () {
         } else {
             $('.fixed-panel').removeClass('active')
         }
-    })
+    });
+    $(document).on('click', '.jsFindMore', function () {
+        var $this = $(this);
+        var $text = $this.find('.jsFindText');
+        var $parent = $(this).closest('.jsFindItem');
+        $parent.toggleClass('active');
+        $parent.hasClass('active') ? $text.text('Hide') : $text.text('Show more');
+    });
 })
 
 

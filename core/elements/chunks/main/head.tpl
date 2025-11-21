@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="assets/templates/site/css/fancybox.css">
 	<link rel="stylesheet" href="assets/templates/site/css/twenty-twenty.css">
 	<link rel="stylesheet" href="assets/templates/site/css/style.css?v50">
-	<link rel="stylesheet" href="assets/templates/site/css/add-style.css?v50">
+	<link rel="stylesheet" href="assets/templates/site/css/add-style.css?v51">
 	{if $_modx->resource.template == 5}
 	<link rel="stylesheet" href="assets/templates/site/css/video-page.css?v=40">
 	{/if}
