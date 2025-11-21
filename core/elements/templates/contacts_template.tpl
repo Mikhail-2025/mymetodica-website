@@ -7,6 +7,7 @@
 		<h1>{if $_modx->resource.longtitle}{$_modx->resource.longtitle}{else}{$_modx->resource.pagetitle}{/if}</h1>
 		{include 'file:chunks/main/contacts.tpl'}
 		{include 'file:chunks/main/follow.tpl'}
+		{include 'file:chunks/main/routes.tpl'}
 		<div class="practice">
 			<div class="container">
 				<h2 class="main-heading no-mobile">Our Med Spa</h2>

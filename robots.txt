@@ -1,3 +1,92 @@
-# Staging Environment - Block All Robots
-User-agent: *
+# AI Crawlers Priority Access
+User-agent: GPTBot
+Crawl-delay: 0
+Allow: /
+
+User-agent: ChatGPT-User
+Crawl-delay: 0
+Allow: /
+
+User-agent: CCBot
+Crawl-delay: 0
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Block SEO Analysis Bots
+User-agent: AhrefsBot
 Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SerpstatBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SeekportBot
+Disallow: /
+
+User-agent: Moz
+Disallow: /
+
+User-agent: Majestic
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: AspiegelBot
+Disallow: /
+
+# Block if not targeting these markets
+User-agent: Baiduspider
+Disallow: /
+
+# Yandex - limited access for Russian-speaking clients
+User-agent: Yandex
+Crawl-delay: 2
+Disallow: /reviews/
+Disallow: /otzyvy/
+
+# General crawlers (Google, Bing, etc.)
+User-agent: *
+Crawl-delay: 1
+Disallow: /reviews/
+Disallow: /otzyvy/
+Disallow: /manager/
+Disallow: /core/
+Disallow: /connectors/
+Disallow: /assets/components/
+Disallow: /*?print=
+Disallow: /*?download=
+Disallow: /index.php
+Disallow: /*?id=
+Allow: /assets/images/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.css$
+Allow: /*.js$
+
+# Sitemap
+Sitemap: https://mymetodica.com/sitemap.xml
+Sitemap: https://mymetodica.com/video-sitemap.xml
