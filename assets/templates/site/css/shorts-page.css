@@ -1,0 +1,192 @@
+/**
+ * Shorts Page Styles
+ * Version: 3.8 - MOBILE PADDING FIX
+ * Date: 2025-11-02
+ */
+
+/* ==============================================================================
+   DESKTOP LAYOUT: CSS Grid (Video LEFT, Text RIGHT)
+   ============================================================================== */
+
+.shorts-page .video-content {
+    display: grid;
+    grid-template-columns: minmax(260px, clamp(33.333%, 360px, 400px)) minmax(0, 1fr);
+    column-gap: 3rem;
+    row-gap: 2rem;
+    align-items: start;
+    margin-bottom: 4rem;
+}
+
+.shorts-page .video-title {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.shorts-page .video-container {
+    width: clamp(300px, 33vw, 420px);
+    aspect-ratio: 9 / 16;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+}
+
+.shorts-page .video-container iframe {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: calc(100% * 16 / 9 * 1.06);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 0;
+    border-radius: inherit;
+}
+
+.shorts-page .video-summary {
+    display: none;
+}
+
+.shorts-page .video-transcript {
+    grid-column: 2;
+    margin: 0;
+}
+
+/* ==============================================================================
+   TRANSCRIPT STYLES
+   ============================================================================== */
+
+.shorts-page .transcript-details {
+    margin-top: 1rem;
+}
+
+.shorts-page .transcript-summary {
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+.shorts-page .transcript-summary::-webkit-details-marker {
+    display: none;
+}
+
+.shorts-page .transcript-summary h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+    display: inline;
+}
+
+.shorts-page .transcript-summary h2::after {
+    content: ' ▶';
+    font-size: 1.2rem;
+    color: #7a7599;
+    transition: transform 0.2s;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+.shorts-page .transcript-details[open] .transcript-summary h2::after {
+    transform: rotate(90deg);
+}
+
+.shorts-page .transcript-details[open] .transcript-summary {
+    display: none;
+}
+
+.shorts-page .transcript-content {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+    color: #444;
+    padding: 1.5rem;
+    background: #fafafa;
+    border-radius: 4px;
+}
+
+.shorts-page .transcript-content h2,
+.shorts-page .transcript-content h3 {
+    color: #7a7599;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.shorts-page .transcript-content p {
+    margin-bottom: 1rem;
+}
+
+.shorts-page .transcript-content strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ==============================================================================
+   BREADCRUMBS
+   ============================================================================== */
+
+.shorts-page .breadcrumbs li:nth-child(2) {
+    display: none;
+}
+
+/* ==============================================================================
+   MOBILE LAYOUT: Vertical Stack with Container Control
+   ============================================================================== */
+
+@media (max-width: 900px) {
+    .shorts-page .container {
+        padding-inline: clamp(12px, 4vw, 18px);
+    }
+
+    .shorts-page .video-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-inline: auto;
+        width: min(100%, 520px);
+        padding-inline: 0;
+    }
+
+    .shorts-page .video-container {
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        border: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #000;
+        position: relative;
+    }
+
+    .shorts-page .video-container iframe {
+        position: absolute;
+        inset: 0;
+        width: 112%;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 0;
+    }
+
+    .shorts-page .video-title {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .shorts-page .video-transcript {
+        grid-column: auto;
+    }
+}
+
+/* ==============================================================================
+   iOS SAFARI OPTIMIZATIONS
+   ============================================================================== */
+
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 900px) {
+        .shorts-page .video-container iframe {
+            width: 115%;
+        }
+    }
+}

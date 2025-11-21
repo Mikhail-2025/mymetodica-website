@@ -1,0 +1,54 @@
+<?php return array (
+  'preserve_keys' => false,
+  'update_object' => true,
+  'unique_key' => 'name',
+  'related_objects' => 
+  array (
+    'PluginEvents' => 
+    array (
+      '0dff4b9dd784b3837c201c3d2790dd96' => 
+      array (
+        'preserve_keys' => true,
+        'update_object' => false,
+        'unique_key' => 
+        array (
+          0 => 'pluginid',
+          1 => 'event',
+        ),
+        'class' => 'modPluginEvent',
+        'object' => '{"pluginid":4,"event":"OnDocFormRender","priority":0,"propertyset":0}',
+        'guid' => '75da151887cc171fd55eb52f514c31d7',
+        'native_key' => 
+        array (
+          0 => 4,
+          1 => 'OnDocFormRender',
+        ),
+        'signature' => '8bf434dd5f4b838f209304be6429b045',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'PluginEvents' => 
+    array (
+      'preserve_keys' => true,
+      'update_object' => false,
+      'unique_key' => 
+      array (
+        0 => 'pluginid',
+        1 => 'event',
+      ),
+    ),
+  ),
+  'namespace' => 'autotemplate',
+  'resolve' => NULL,
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'ccfbb6d3a5cd74d8835334c478f7b8be',
+  'package' => 'modx',
+  'class' => 'modPlugin',
+  'signature' => '382d03d286e561a88727d88aae413b91',
+  'native_key' => 4,
+  'object' => '{"id":4,"source":1,"property_preprocess":0,"name":"AutoTemplate","description":"Set the template of a new resource automatically to the one it\'s siblings have or, if it has no siblings, to the one it\'s parent has.","editor_type":0,"category":4,"cache_type":0,"plugincode":"\\/**\\n * AutoTemplate for MODx Revolution\\n *\\n * This plugin sets a new document\'s template automatically to the one it\'s siblings\\n * have or, if it has no siblings, to the one it\'s parent has.\\n *\\n * AutoTemplate is free software; you can redistribute it and\\/or modify it under\\n * the terms of the GNU General Public License as published by the Free Software\\n * Foundation; either version 2 of the License, or (at your option) any later\\n * version.\\n *\\n * AutoTemplate is distributed in the hope that it will be useful, but WITHOUT\\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS\\n * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more\\n * details.\\n *\\n * You should have received a copy of the GNU General Public License along with\\n * Inherit Template; if not, write to the Free Software Foundation, Inc., 59 Temple\\n * Place, Suite 330, Boston, MA 02111-1307 USA\\n *\\n * @author      Maarten     <@maarten>\\n * @copyright   Copyright\\u00a0(c)\\u00a02009,\\u00a0Magnatron\\n * @license     GPL v2\\n *\\n * @package     AutoTemplate\\n * @subpackage  plugin\\n *\\/\\n\\n\\nif ($modx->event->name === \'OnDocFormRender\') {\\n\\t\\n\\t\\/\\/ Only when new\\n\\tif (empty($scriptProperties[\'mode\']) || $scriptProperties[\'mode\'] !== \'new\') return;\\n\\t\\n\\t\\/\\/ Siblings\\n\\t$c = $modx->newQuery(\'modResource\', array(\'parent\'=>$_REQUEST[\'parent\']));\\n\\t$c->sortby(\'id\', \'desc\'); \\/\\/ Reference last added sibling\\n\\t$siblings = $modx->getCollection(\'modResource\', $c);\\n\\tif(count($siblings)>0){\\n\\t\\t$bro = array_shift($siblings);\\n\\t\\t$modx->controller->setProperty(\'template\', $bro->get(\'template\'));\\n\\t\\treturn;\\n\\t}\\n\\t\\/\\/ No siblings, use parent\\n\\tif((int)$_REQUEST[\'parent\']!=0){\\n\\t\\t$dad = $modx->getObject(\'modResource\', $_REQUEST[\'parent\']);\\n\\t\\t$modx->controller->setProperty(\'template\', $dad->get(\'template\'));\\n\\t\\treturn;\\n\\t}\\n}\\n\\nreturn;","locked":0,"properties":"a:0:{}","disabled":0,"moduleguid":"","static":0,"static_file":"","content":"\\/**\\n * AutoTemplate for MODx Revolution\\n *\\n * This plugin sets a new document\'s template automatically to the one it\'s siblings\\n * have or, if it has no siblings, to the one it\'s parent has.\\n *\\n * AutoTemplate is free software; you can redistribute it and\\/or modify it under\\n * the terms of the GNU General Public License as published by the Free Software\\n * Foundation; either version 2 of the License, or (at your option) any later\\n * version.\\n *\\n * AutoTemplate is distributed in the hope that it will be useful, but WITHOUT\\n * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS\\n * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more\\n * details.\\n *\\n * You should have received a copy of the GNU General Public License along with\\n * Inherit Template; if not, write to the Free Software Foundation, Inc., 59 Temple\\n * Place, Suite 330, Boston, MA 02111-1307 USA\\n *\\n * @author      Maarten     <@maarten>\\n * @copyright   Copyright\\u00a0(c)\\u00a02009,\\u00a0Magnatron\\n * @license     GPL v2\\n *\\n * @package     AutoTemplate\\n * @subpackage  plugin\\n *\\/\\n\\n\\nif ($modx->event->name === \'OnDocFormRender\') {\\n\\t\\n\\t\\/\\/ Only when new\\n\\tif (empty($scriptProperties[\'mode\']) || $scriptProperties[\'mode\'] !== \'new\') return;\\n\\t\\n\\t\\/\\/ Siblings\\n\\t$c = $modx->newQuery(\'modResource\', array(\'parent\'=>$_REQUEST[\'parent\']));\\n\\t$c->sortby(\'id\', \'desc\'); \\/\\/ Reference last added sibling\\n\\t$siblings = $modx->getCollection(\'modResource\', $c);\\n\\tif(count($siblings)>0){\\n\\t\\t$bro = array_shift($siblings);\\n\\t\\t$modx->controller->setProperty(\'template\', $bro->get(\'template\'));\\n\\t\\treturn;\\n\\t}\\n\\t\\/\\/ No siblings, use parent\\n\\tif((int)$_REQUEST[\'parent\']!=0){\\n\\t\\t$dad = $modx->getObject(\'modResource\', $_REQUEST[\'parent\']);\\n\\t\\t$modx->controller->setProperty(\'template\', $dad->get(\'template\'));\\n\\t\\treturn;\\n\\t}\\n}\\n\\nreturn;"}',
+);

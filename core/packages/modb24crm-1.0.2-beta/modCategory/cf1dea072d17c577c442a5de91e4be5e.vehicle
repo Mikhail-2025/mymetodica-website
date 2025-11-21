@@ -1,0 +1,217 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Snippets' => 
+    array (
+      '5fd848fd9bdd340da77a71e8bb573396' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":0,"source":1,"property_preprocess":0,"name":"modB24CRM","description":"modB24CRM hook for sending lead or deal from FormIt to Bitrix24 CRM","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var modB24CRM $modB24CRM *\\/\\n$modB24CRM = $modx->getService(\'modB24CRM\', \'modB24CRM\', MODX_CORE_PATH . \'components\\/modb24crm\\/model\\/\');\\nif (!$modB24CRM)\\n    return;\\n\\n$modB24CRMHook = $modx->getOption(\'modB24CRMHook\', $scriptProperties, false, true);\\nif (!$modB24CRMHook)\\n    return;\\n\\n$criteria = array(\\n    \'modB24Account.active\' => 1,\\n    \'modB24Account.context\' => $modx->context->key,\\n);\\nif (is_numeric($modB24CRMHook)){\\n    $criteria[\'modB24FIHook.id\'] = intval($modB24CRMHook);\\n}\\nelseif (is_string($modB24CRMHook)){\\n    $criteria[\'modB24FIHook.name\'] = trim($modB24CRMHook);\\n}\\nelse{\\n    return;\\n}\\n$q = $modx->newQuery(\'modB24FIHook\')\\n    ->innerJoin(\'modB24Account\', \'modB24Account\', \'modB24Account.id = modB24FIHook.account_id\')\\n    ->where($criteria);\\n\\n\\/** @var modB24FIHook $fihook *\\/\\nif (!$fihook = $modx->getObject(\'modB24FIHook\', $q))\\n    return;\\n\\n\\/** @var modB24Account $account *\\/\\n$account = $fihook->getOne(\'Account\');\\n\\n$fields = array();\\nforeach ($account->getSectionFields(\'fihook\' . $fihook->get(\'id\')) as $row){\\n    if ($row[\'isfield\']){\\n        if ($row[\'type\'] == \'file\'){\\n            if (isset($_FILES[$row[\'value\']])) {\\n                if ($row[\'multiple\']){\\n                    $tmp = array();\\n                    foreach (array_keys($_FILES[$row[\'value\']][\'name\']) as $idx){\\n                        $tmp[] = array(\'fileData\' => array(\\n                                $_FILES[$row[\'value\']][\'name\'][$idx],\\n                                base64_encode(file_get_contents($_FILES[$row[\'value\']][\'tmp_name\'][$idx]))\\n                        ));\\n                    }\\n                }\\n                else {\\n                    $tmp = array(\'fileData\' => array(\\n                        $_FILES[$row[\'value\']][\'name\'],\\n                        base64_encode(file_get_contents($_FILES[$row[\'value\']][\'tmp_name\']))\\n                    ));\\n                }\\n            }\\n        }\\n        else{\\n            $tmp = $hook->getValue($row[\'value\']);\\n        }\\n    }\\n    else{\\n        $tmp = $row[\'value\'];\\n    }\\n    if (($row[\'multiple\'] || $row[\'type\'] == \'crm_multifield\') && !is_array($tmp)){\\n        $tmp = array($tmp);\\n    }\\n    if ($row[\'type\'] == \'crm_multifield\'){\\n        foreach ($tmp as &$v){\\n            $v = array(\\n                \'VALUE\' => $v,\\n            );\\n        }\\n    }\\n    $fields[$row[\'btx\']] = $tmp;\\n}\\n\\n$account->addQueue($fihook->get(\'id\'), \'fihook\', $fields);\\n\\nreturn true;","locked":0,"properties":"a:1:{s:13:\\"modB24CRMHook\\";a:7:{s:4:\\"name\\";s:13:\\"modB24CRMHook\\";s:4:\\"desc\\";s:28:\\"modb24crm_prop_modB24CRMHook\\";s:4:\\"type\\";s:9:\\"textfield\\";s:7:\\"options\\";a:0:{}s:5:\\"value\\";s:0:\\"\\";s:7:\\"lexicon\\";s:20:\\"modb24crm:properties\\";s:4:\\"area\\";s:0:\\"\\";}}","moduleguid":"","static":0,"static_file":"core\\/components\\/modb24crm\\/elements\\/snippets\\/modb24crm.php","content":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var modB24CRM $modB24CRM *\\/\\n$modB24CRM = $modx->getService(\'modB24CRM\', \'modB24CRM\', MODX_CORE_PATH . \'components\\/modb24crm\\/model\\/\');\\nif (!$modB24CRM)\\n    return;\\n\\n$modB24CRMHook = $modx->getOption(\'modB24CRMHook\', $scriptProperties, false, true);\\nif (!$modB24CRMHook)\\n    return;\\n\\n$criteria = array(\\n    \'modB24Account.active\' => 1,\\n    \'modB24Account.context\' => $modx->context->key,\\n);\\nif (is_numeric($modB24CRMHook)){\\n    $criteria[\'modB24FIHook.id\'] = intval($modB24CRMHook);\\n}\\nelseif (is_string($modB24CRMHook)){\\n    $criteria[\'modB24FIHook.name\'] = trim($modB24CRMHook);\\n}\\nelse{\\n    return;\\n}\\n$q = $modx->newQuery(\'modB24FIHook\')\\n    ->innerJoin(\'modB24Account\', \'modB24Account\', \'modB24Account.id = modB24FIHook.account_id\')\\n    ->where($criteria);\\n\\n\\/** @var modB24FIHook $fihook *\\/\\nif (!$fihook = $modx->getObject(\'modB24FIHook\', $q))\\n    return;\\n\\n\\/** @var modB24Account $account *\\/\\n$account = $fihook->getOne(\'Account\');\\n\\n$fields = array();\\nforeach ($account->getSectionFields(\'fihook\' . $fihook->get(\'id\')) as $row){\\n    if ($row[\'isfield\']){\\n        if ($row[\'type\'] == \'file\'){\\n            if (isset($_FILES[$row[\'value\']])) {\\n                if ($row[\'multiple\']){\\n                    $tmp = array();\\n                    foreach (array_keys($_FILES[$row[\'value\']][\'name\']) as $idx){\\n                        $tmp[] = array(\'fileData\' => array(\\n                                $_FILES[$row[\'value\']][\'name\'][$idx],\\n                                base64_encode(file_get_contents($_FILES[$row[\'value\']][\'tmp_name\'][$idx]))\\n                        ));\\n                    }\\n                }\\n                else {\\n                    $tmp = array(\'fileData\' => array(\\n                        $_FILES[$row[\'value\']][\'name\'],\\n                        base64_encode(file_get_contents($_FILES[$row[\'value\']][\'tmp_name\']))\\n                    ));\\n                }\\n            }\\n        }\\n        else{\\n            $tmp = $hook->getValue($row[\'value\']);\\n        }\\n    }\\n    else{\\n        $tmp = $row[\'value\'];\\n    }\\n    if (($row[\'multiple\'] || $row[\'type\'] == \'crm_multifield\') && !is_array($tmp)){\\n        $tmp = array($tmp);\\n    }\\n    if ($row[\'type\'] == \'crm_multifield\'){\\n        foreach ($tmp as &$v){\\n            $v = array(\\n                \'VALUE\' => $v,\\n            );\\n        }\\n    }\\n    $fields[$row[\'btx\']] = $tmp;\\n}\\n\\n$account->addQueue($fihook->get(\'id\'), \'fihook\', $fields);\\n\\nreturn true;","file":"modb24crm"}',
+        'guid' => 'e30fbecab2f9afdfee26011d6a4f6c92',
+        'native_key' => 0,
+        'signature' => '70ba5b59092b6b021f76366a1e430786',
+      ),
+    ),
+    'Plugins' => 
+    array (
+      '64fe59f6c10a6303dfd8bee3df4bf223' => 
+      array (
+        'unique_key' => 'name',
+        'preserve_keys' => false,
+        'update_object' => true,
+        'related_objects' => 
+        array (
+          'PluginEvents' => 
+          array (
+            '9a7578d591102985817a9c9139ef9f07' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"msOnChangeOrderStatus","priority":100,"propertyset":0}',
+              'guid' => '17d0ba8f7dcd66d77b04dd71c2d71f3e',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'msOnChangeOrderStatus',
+              ),
+              'signature' => '4bd282c9d28f6feaa34f135b265efb7c',
+            ),
+            'fb31bad9df12f83f2520ffb1b1890269' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"msOnUpdateOrder","priority":100,"propertyset":0}',
+              'guid' => 'b809c0e6fcf29fd323589b4578fc00af',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'msOnUpdateOrder',
+              ),
+              'signature' => 'ad92ed7d1f020dd30496b09976e9887a',
+            ),
+            '3c5f32dc05f2a737b9af8aee71751ddd' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnDocFormSave","priority":100,"propertyset":0}',
+              'guid' => '8fd0a92c150e4063761b5309dff5d246',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnDocFormSave',
+              ),
+              'signature' => 'db7d51b77ca8b10caace1c42d390efdb',
+            ),
+            '758c91724d264281cb864cea45a2ed93' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnEmptyTrash","priority":100,"propertyset":0}',
+              'guid' => '2e48d1e2c9be500e5f39da0a13251cc3',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnEmptyTrash',
+              ),
+              'signature' => '1bd2f51755cf51e579b1ae12634475f8',
+            ),
+            'dd615ae13574b1389bbb28de43425f70' => 
+            array (
+              'preserve_keys' => true,
+              'update_object' => true,
+              'unique_key' => 
+              array (
+                0 => 'pluginid',
+                1 => 'event',
+              ),
+              'class' => 'modPluginEvent',
+              'object' => '{"pluginid":0,"event":"OnResourceDuplicate","priority":100,"propertyset":0}',
+              'guid' => 'e7056039a0886d42a28160fec4e267c3',
+              'native_key' => 
+              array (
+                0 => 0,
+                1 => 'OnResourceDuplicate',
+              ),
+              'signature' => 'fb8a71c6f75878ae4a00d48701c38008',
+            ),
+          ),
+        ),
+        'related_object_attributes' => 
+        array (
+          'PluginEvents' => 
+          array (
+            'preserve_keys' => true,
+            'update_object' => true,
+            'unique_key' => 
+            array (
+              0 => 'pluginid',
+              1 => 'event',
+            ),
+          ),
+        ),
+        'class' => 'modPlugin',
+        'object' => '{"id":null,"source":1,"property_preprocess":0,"name":"modB24CRM","description":"","editor_type":0,"category":0,"cache_type":0,"plugincode":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var modB24CRM $modB24CRM *\\/\\n$modB24CRM = $modx->getService(\'modB24CRM\', \'modB24CRM\', MODX_CORE_PATH . \'components\\/modb24crm\\/model\\/\');\\n\\n$className = \'modB24CRMPlugin\' . ucfirst($modx->event->name);\\n$modx->loadClass(\'modB24CRMPlugin\', $modB24CRM->config[\'modelPath\'] . \'modb24crm\\/plugins\\/\', true, true);\\n$modx->loadClass($className, $modB24CRM->config[\'modelPath\'] . \'modb24crm\\/plugins\\/\', true, true);\\n\\nif (class_exists($className)) {\\n    $handler = new $className($modB24CRM, $scriptProperties);\\n    $handler->run();\\n}\\nreturn;","locked":0,"properties":null,"disabled":0,"moduleguid":"","static":0,"static_file":"core\\/components\\/modb24crm\\/elements\\/plugins\\/modb24crm.php","content":"\\/** @var modX $modx *\\/\\n\\/** @var array $scriptProperties *\\/\\n\\/** @var modB24CRM $modB24CRM *\\/\\n$modB24CRM = $modx->getService(\'modB24CRM\', \'modB24CRM\', MODX_CORE_PATH . \'components\\/modb24crm\\/model\\/\');\\n\\n$className = \'modB24CRMPlugin\' . ucfirst($modx->event->name);\\n$modx->loadClass(\'modB24CRMPlugin\', $modB24CRM->config[\'modelPath\'] . \'modb24crm\\/plugins\\/\', true, true);\\n$modx->loadClass($className, $modB24CRM->config[\'modelPath\'] . \'modb24crm\\/plugins\\/\', true, true);\\n\\nif (class_exists($className)) {\\n    $handler = new $className($modB24CRM, $scriptProperties);\\n    $handler->run();\\n}\\nreturn;","file":"modb24crm","events":{"msOnChangeOrderStatus":{"priority":100},"msOnUpdateOrder":{"priority":100},"OnDocFormSave":{"priority":100},"OnEmptyTrash":{"priority":100},"OnResourceDuplicate":{"priority":100}}}',
+        'guid' => 'd26e3a9a42a9aaadaea973ade737c1d9',
+        'native_key' => NULL,
+        'signature' => '0e1f8bb446db9e8581e71edf797be72f',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Plugins' => 
+    array (
+      'unique_key' => 'name',
+      'preserve_keys' => false,
+      'update_object' => true,
+      'related_objects' => true,
+      'related_object_attributes' => 
+      array (
+        'PluginEvents' => 
+        array (
+          'preserve_keys' => true,
+          'update_object' => true,
+          'unique_key' => 
+          array (
+            0 => 'pluginid',
+            1 => 'event',
+          ),
+        ),
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+  ),
+  'namespace' => 'modb24crm',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"modb24crm-1.0.2-beta\\/modCategory\\/cf1dea072d17c577c442a5de91e4be5e\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"modb24crm"}',
+    ),
+    1 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"modb24crm-1.0.2-beta\\/modCategory\\/cf1dea072d17c577c442a5de91e4be5e\\/1\\/","target":"return MODX_ASSETS_PATH . \'components\\/\';","name":"modb24crm"}',
+    ),
+    2 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"modb24crm-1.0.2-beta\\/modCategory\\/cf1dea072d17c577c442a5de91e4be5e.encryption.resolver","type":"php","name":"encryption"}',
+    ),
+    3 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"modb24crm-1.0.2-beta\\/modCategory\\/cf1dea072d17c577c442a5de91e4be5e.symlinks.resolver","type":"php","name":"symlinks"}',
+    ),
+    4 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"modb24crm-1.0.2-beta\\/modCategory\\/cf1dea072d17c577c442a5de91e4be5e.tables.resolver","type":"php","name":"tables"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '238ee55a6c0807eec0b05b6ec74f0799',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => 'cf1dea072d17c577c442a5de91e4be5e',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"modB24CRM","rank":0}',
+);

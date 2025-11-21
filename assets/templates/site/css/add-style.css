@@ -1,0 +1,559 @@
+.form__input.error {
+    border: 1px solid red;
+}
+
+.feedback__form-input.error {
+    border: 1px solid red;
+}
+
+.search-categories__item input:disabled ~ .search-categories__item-text {
+    background: #ccc;
+}
+
+.control-checkbox input[type=checkbox].error~.control__text:before {
+    border: 1px solid #f71d21;
+}
+.specialist-card__name a {
+    color: #fff;
+}
+
+.detail-education__content p:has(strong) {
+  margin: 0 0 0px 0 !important;
+}
+.footer__dop_text {
+    margin: 0px 0px 25px 0px;
+}
+.footer__dop_text_mob {
+    display: none;
+}
+
+/*a.ivanov*/
+.error_sms_code.error + .form__item {
+    display: block!important;
+}
+.jGrowl {
+    z-index: 100000;
+}
+.sms_code_wrap.show {
+    display: block!important;
+}
+.error_sms_code {
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.error_sms_code .btn {
+    width: 200px;
+    padding: 8px 12px;
+    margin: 0;
+    font-size: 16px;
+    background-color: #a17c7c;
+}
+
+.old_price {
+    color: #bcaba7;
+    text-decoration: line-through;
+    margin-right: 7px;
+    font-size: 24px;
+    display: block;
+}
+
+
+
+
+.cky-box-bottom-left {
+    bottom: 40px;
+    left: 40px;
+}
+
+.cky-consent-container {
+    position: fixed;
+    width: 440px;
+    box-sizing: border-box;
+    z-index: 9999999;
+    border-radius: 6px;
+    font-family: "CoFoSans";
+}
+.cky-consent-container .cky-consent-bar {
+    background: #ffffff;
+    border: 1px solid;
+    padding: 20px 26px;
+    box-shadow: 0 -1px 10px 0 #acabab4d;
+    border-radius: 6px;
+}
+
+.cky-notice .cky-title {
+    color: #212121;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 12px 0;
+}
+.cky-notice-des {
+    color: #212121;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.cky-notice-btn-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+.cky-notice-btn-wrapper .cky-btn {
+    text-shadow: none;
+    box-shadow: none;
+}
+.cky-btn-accept {
+    background: #1863dc;
+    color: #ffffff;
+    border: 2px solid #1863dc;
+}
+.cky-btn {
+    flex: auto;
+    max-width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 24px;
+    padding: 8px;
+    font-weight: 500;
+    margin: 0 8px 0 0;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: none;
+    min-height: 0;
+}
+.cky-btn-reject {
+    background: transparent;
+    border: 2px solid #1863dc;
+}
+
+.main-heading-price-text {
+    color: #ea6852;
+    font-style: italic;
+    max-width: 757px;
+    margin: 0 auto;
+    line-height: normal;
+    margin-top: 15px;
+    font-family: "CoFoSans";
+}
+.specialist-item .read {
+    color: #ea6852;
+    text-decoration: underline;
+}
+
+.detail-main__specialisation ul {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    gap: 20px;
+}
+.about_advantages_text {
+    margin-bottom: 70px;
+}
+.main-heading.text-left {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 0 40px 0;
+    text-transform: none;
+}
+.about-info__item .about-info__text ul {
+    padding-left: 40px;
+}
+.about-info__item .about-info__text ul li{
+    list-style-type: disc;
+}
+
+.main-screen__descr ul {
+    padding-left: 20px;
+    margin: 0 0 15px 0;
+}
+.main-screen__descr ul li{
+    list-style-type: disc;
+}
+.service_advantages_text {
+    margin: 70px 0px 70px 0px;
+}
+
+.service_advantages_text ul {
+    padding-left: 40px;
+    margin: 0 0 15px 0;
+}
+.service_advantages_text ul li{
+    list-style-type: disc;
+}
+
+
+.faq__item-body ul {
+    padding-left: 40px;
+    margin: 0 0 15px 0;
+}
+.faq__item-body ul li{
+    list-style-type: disc;
+}
+.faq__item-body ol {
+    padding-left: 40px;
+    margin: 0 0 15px 0;
+}
+
+
+.faq__item-body img{
+    width: 50% !important;
+    height: auto;
+}
+
+.blog-main.refferalmain {
+    /*background: #f5f1f4;*/
+    background: #f3f3f3; 
+}
+.title-blog {
+    margin: 0 0 35px 0;
+    font-size: 80px;
+    font-weight: 400;
+    font-family: "Casta";
+    line-height: normal;
+    text-transform: uppercase;
+    text-align: center;
+}
+.main-heading.text-alt-left {
+    font-size: 40px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0 0 40px 0;
+    text-transform: none;
+}
+.blog-main__full_img {
+    width: 100%;
+    height: auto;
+}
+.blog-main__full_mobile_img {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+.feedback .stock-info__buttons a {
+    color: #fff;
+}
+
+.video-card__body_read {
+    display: flex;
+    justify-content: center;
+}
+
+.style_popup_content p {
+    margin: 0 0 15px 0;
+}
+.style_popup_content h2 {
+    margin: 0 0 15px 0;
+    text-align: center;
+    line-height: normal;
+}
+
+.modal.style_popup_content::after {
+    display: none;
+}
+.shorts__slider-item {
+    position: relative;
+    display: block;
+}
+.shorts__slider-img {
+    position: relative;
+}
+.feedback .feedback__inner {
+    justify-content: center;
+}
+.feedback .feedback__inner .stock-info__buttons{
+    justify-content: center;
+}
+
+.blog-main-new .blog-main__inner {
+    position: relative;
+}
+.blog-main-new .blog-main__inner h1 {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    font-size: 50px;
+}
+
+.blog-row-new {
+  margin: 50px 0 91px 0;
+  position: relative;
+}
+
+.blog-row__img-new {
+  width: 450px;
+  float: left;
+  margin: 0 85px 50px 0;
+  position: relative;
+}
+
+/*TT33712 a.ivanov*/
+.ai_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 39px;
+}
+
+.ai_btn  span {
+    margin-right: 20px;
+}
+
+.ai_button_wrap--inner {
+    margin-top: 20px;
+}
+
+.ai_pre_wrap .about-advantages {
+    margin-bottom: 20px;
+}
+
+.ai_wrap {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.ai_wrap .ai_button_wrap--inner.last {
+    margin-top: 0;
+}
+
+.ai_wrap .ai_button_wrap {
+    justify-content: center;
+}
+.ai_wrap--service .ai_btn {
+    padding: 10px 39px;
+}
+
+.stock-info__buttons {
+    margin-top: 20px;
+}
+/*TT33712 a.ivanov end*/
+
+
+.find__item-textbox ul,
+.find__item-textbox ol {
+    font-size: 18px;
+    line-height: 140%;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+.find__item-textbox ul li:not(:last-child),
+.find__item-textbox ol li:not(:last-child) {
+    margin: 0 !important;
+}
+
+@media screen and (max-width: 1340px) {
+    .title-blog {
+       font-size: 70px; 
+    }
+    
+}
+@media screen and (max-width: 1024px) {
+	.blog-main-new .blog-main__inner h1 {
+	    font-size: 25px;
+    	line-height: 25px;
+	}
+    .title-blog {
+      font-size: 40px;
+    }
+    .main-heading.text-alt-left {
+        margin: 0 0 20px 0;
+        font-size: 25px;
+        line-height: 25px;
+    }
+    .blog-row-new {
+        margin: 50px 0;
+    }
+    .blog-row__img-new {
+        width: auto;
+        float: none !important;
+        margin: 0 0 32px 0 !important;
+    }
+    .blog-main-new .blog-main__inner h1 {
+        position: unset;
+        transform: unset;
+    }
+}
+@media screen and (max-width: 768px) {
+    .find__item-textbox ul,
+    .find__item-textbox ol {
+        display: none;
+    }
+    .find__item.active .find__item-textbox ul {
+        display: block;
+    }
+    .blog-main__full_img {
+        display: none;
+    }
+    .blog-main__full_mobile_img {
+        display: block;
+    }
+    .title-blog {
+      margin: 0 0 25px 0;
+    }
+    .main-heading.text-alt-left {
+       text-align: center;
+        margin: 0 0 23px 0; 
+    }
+    
+    .shorts__slider .video-card__body_read button {
+        font-size: 12px;
+    }
+    
+    
+}
+@media screen and (max-width: 1024px) {
+   .detail-main__specialisation ul {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0px;
+    }
+    .main-heading.text-left {
+        margin: 0 0 20px 0;
+        font-size: 25px;
+        line-height: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .faq__item-body img{
+    width: 100% !important;
+  }
+  
+  .main-screen__descr ul {
+    margin: 0 0 5px 0;
+  }  
+  .main-screen__descr ul li {
+    margin-bottom: 5px !important;
+  }
+  .search-table td::before {
+    content: attr(data-sells);
+    display: block;
+    font-family: "CoFoSans";
+    color: #bcaba7;
+    text-decoration: line-through;
+    margin-right: 7px;
+    font-weight: 400;
+    font-size: 18px;
+  }
+  /*
+  td[data-sells]::after {
+      padding-left: 72px;
+  }
+  */
+  td[data-sells]::before {
+        position: absolute;
+        top: auto;
+        bottom: 12px;
+        left: 0;
+        right: auto;
+    }
+    
+    td[data-sells] {
+        position: relative;
+    }
+    /*
+    .search-table tr.no_discount td[data-sells]::before {
+        top: 40px;
+    }
+    */
+    
+    .search-table tr.no_discount td[data-sells],
+    .search-table tr.no_discount:first-child td {
+        padding-bottom: 36px;
+    }
+}
+/*a.ivanov end*/
+
+
+@media screen and (max-width: 768px) {
+    .footer__dop_text {
+        display: none;
+    }
+    .footer__dop_text_mob {
+        display: block;
+    }
+     /* TT33712 a.ivanov */
+    .ai_button_wrap {
+        flex-direction: row-reverse;
+    }
+    
+    .ai_button_wrap--inner.last {
+        margin-top: -37px;
+    }
+    
+    .ai_btn {
+        padding: 10px 14px;
+    }
+    
+    .ai_btn span {
+        font-size: 16px;
+        margin-right: 12px;
+    }
+    
+    .ai_btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ai_wrap--service .ai_button_wrap {
+        flex-direction: row;
+    }
+    
+    .ai_wrap--offer .ai_button_wrap {
+        justify-content: center;
+    }
+    
+    .ai_wrap--service .ai_button_wrap--inner.last {
+        margin-top: 20px;
+    }
+    /* TT33712 a.ivanov end */
+}
+
+@media screen and (max-width: 500px) {
+    .cky-consent-container {
+        width: 300px;
+    }
+    .follow.pink .follow__content .main-heading {
+        font-size: 32px;
+    }
+    .feedback .feedback__inner .main-heading span {
+        display: block;
+    }
+}
+/* ========== Scroll offset for #prices anchor ========== */
+#prices {
+    scroll-margin-top: 50vh; /* 50% from top of screen */
+}
+/* ========== End scroll offset ========== */
+
+/* ========== Scroll offset for services block heading ========== */
+.search-services__inner {
+    scroll-margin-top: 10vh; /* 10% from top */
+}
+.main-heading-price-text {
+    scroll-margin-top: 10vh; /* 10% from top */
+}
+/* ========== End scroll offset ========== */
+
+/* ========== Scroll offset for services-heading (to-concern page) ========== */
+#services-heading {
+    scroll-margin-top: 15vh; /* 15% from top of screen */
+}
+/* ========== End scroll offset ========== */
+
+/* Fix для якоря #videos на мобильных - учитываем высоту липкого header */
+#videos {
+    scroll-margin-top: 150px; /* Компенсация sticky header */
+}
+
+@media (max-width: 768px) {
+    #videos {
+        scroll-margin-top: 150px; /* На мобильных header ~74px */
+    }
+}

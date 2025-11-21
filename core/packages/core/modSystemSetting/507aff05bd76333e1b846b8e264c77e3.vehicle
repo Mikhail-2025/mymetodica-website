@@ -1,0 +1,12 @@
+<?php return array (
+  'preserve_keys' => true,
+  'update_object' => false,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => 'b501f3bf2d22e9efc3e8545866821fda',
+  'package' => 'modx',
+  'class' => 'modSystemSetting',
+  'signature' => '507aff05bd76333e1b846b8e264c77e3',
+  'native_key' => 'inline_help',
+  'object' => '{"key":"inline_help","value":1,"xtype":"combo-boolean","namespace":"core","area":"manager","editedon":null}',
+);
