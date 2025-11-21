@@ -334,6 +334,19 @@
 }
 /*TT33712 a.ivanov end*/
 
+
+.find__item-textbox ul,
+.find__item-textbox ol {
+    font-size: 18px;
+    line-height: 140%;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+.find__item-textbox ul li:not(:last-child),
+.find__item-textbox ol li:not(:last-child) {
+    margin: 0 !important;
+}
+
 @media screen and (max-width: 1340px) {
     .title-blog {
        font-size: 70px; 
@@ -367,6 +380,13 @@
     }
 }
 @media screen and (max-width: 768px) {
+    .find__item-textbox ul,
+    .find__item-textbox ol {
+        display: none;
+    }
+    .find__item.active .find__item-textbox ul {
+        display: block;
+    }
     .blog-main__full_img {
         display: none;
     }
