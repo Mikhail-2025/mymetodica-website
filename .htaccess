@@ -15,9 +15,9 @@ RewriteRule "/\.|^\.(?!well-known/)" - [F]
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# Force HTTPS
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# DISABLED for nginx proxy: # Force HTTPS
+# DISABLED for nginx proxy: RewriteCond %{HTTPS} !=on
+# DISABLED for nginx proxy: RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # The Friendly URLs part
 RewriteCond %{REQUEST_FILENAME} !-f
