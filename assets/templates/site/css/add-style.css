@@ -557,3 +557,14 @@
         scroll-margin-top: 150px; /* На мобильных header ~74px */
     }
 }
+
+/* ========== Fix for images in offer_text content ========== */
+.stock-info__content img {
+    width: 100%;
+    height: auto;
+    max-width: 730px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+/* ========== End fix for offer images ========== */
